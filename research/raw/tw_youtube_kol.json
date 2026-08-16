@@ -1,0 +1,331 @@
+{
+  "lens": "tw_youtube_kol",
+  "sources": [
+    {
+      "title": "新制多益【8個必懂考前秘訣】多益990教我的事",
+      "url": "https://www.youtube.com/watch?v=GkMkQ4I91uI",
+      "author_or_channel": "Ricky//英語小蛋糕",
+      "type": "youtube",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（YouTube頁面為動態載入，WebFetch無法取得觀看數）；於「多益 990 心得 youtube」搜尋結果中排名第7",
+      "summary_zh": "Ricky（多益六次滿分、曾連續三次990）分享考前必懂的8個秘訣，強調先了解自身程度訂目標分數，並示範利用「換句話說」與句型模板解題。",
+      "published": "未知（頻道長期熱門影片）"
+    },
+    {
+      "title": "阿滴英文｜多益改新制後還能考滿分990嗎? feat. 考試心得與準備方針",
+      "url": "https://www.youtube.com/watch?v=1Kz7AYuYHfU",
+      "author_or_channel": "阿滴英文",
+      "type": "youtube",
+      "language": "zh-TW",
+      "popularity_signal": "頻道訂閱數約270萬（台灣最大英語教學YouTuber之一）；於「多益 990 心得 youtube」搜尋結果中排名第5",
+      "summary_zh": "阿滴（四次多益滿分990）分享新制多益考試心得與準備方針，包含熟悉新題型、加強單字量與加快閱讀速度等建議。",
+      "published": "未知"
+    },
+    {
+      "title": "多益 990 的高分秘訣，開啟逆襲之路吧｜無私分享 準備方法、單字、技巧 ft. Victor",
+      "url": "https://www.youtube.com/watch?v=ogdYd97-ItY",
+      "author_or_channel": "未知頻道 ft. Victor",
+      "type": "youtube",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益 990 心得 youtube」搜尋結果中排名第4",
+      "summary_zh": "以990高分者Victor為主角，分享準備方法、單字記憶與應考技巧的完整心得影片。",
+      "published": "未知"
+    },
+    {
+      "title": "多益聽力解題技巧上 // TOEIC Listening Strategy Part 1 & 2",
+      "url": "https://www.youtube.com/watch?v=fHHL0yc_5Kk",
+      "author_or_channel": "未知頻道",
+      "type": "youtube",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益 聽力 技巧 KOL youtube」搜尋結果中排名第1",
+      "summary_zh": "針對多益聽力Part 1圖片題與Part 2應答問題，講解常見陷阱選項與刪去法技巧。",
+      "published": "未知"
+    },
+    {
+      "title": "新制多益閱讀的時間分配/解題順序（看板 TOEIC）",
+      "url": "https://www.ptt.cc/bbs/TOEIC/M.1533477895.A.C08.html",
+      "author_or_channel": "PTT TOEIC板網友（sam09220、ni7902、love11098787、forelsket等）",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "PTT TOEIC板討論串，多篇高互動推文；於「多益閱讀 part 7 時間分配 技巧」搜尋結果中出現",
+      "summary_zh": "多位考生實際交流Part5/6/7的時間分配方案（正序 vs 倒序作答），並達成「5+6控制在20分鐘內」的共識。",
+      "published": "2018年前後"
+    },
+    {
+      "title": "[技巧]來不及寫完多益閱讀！？現在教你如何推倒TOEIC READING大魔王",
+      "url": "https://miranda0860.pixnet.net/blog/post/226683479",
+      "author_or_channel": "米蘭達（痞客邦部落客）",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益閱讀 part 7 時間分配 技巧」搜尋結果中排名第4",
+      "summary_zh": "職場人士因升遷需求重考多益，分享文法快速判斷、刪除法猜題與單字詞性連記的具體讀書法。",
+      "published": "未知"
+    },
+    {
+      "title": "TOEIC 990 準備心得分享",
+      "url": "https://medium.com/@cheezzya/toeic-990-sharing-a2ccfb9bda28",
+      "author_or_channel": "Michelle Chang",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益 990 心得 youtube」搜尋結果中列出",
+      "summary_zh": "Amazon Global Selling Taiwan員工分享考取多益滿分990的準備方法，包含搜索式作答法、認真檢討優於狂寫題本等心法。",
+      "published": "2017年5月考取，文章發布時間未知"
+    },
+    {
+      "title": "【必聽】4個TOEIC多益英文自學 Podcast推薦！通勤 開車超適用！",
+      "url": "https://mosgoing0324.pixnet.net/blog/post/346878019",
+      "author_or_channel": "小編@達達（痞客邦部落客）",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益 podcast 高分 心得」搜尋結果中排名第3",
+      "summary_zh": "推薦4個適合準備多益的Podcast節目（Jarlin's多益英文、BBC Learning English、一小時聽英文、All Ears English），並說明各自適合的英文程度。",
+      "published": "未知"
+    },
+    {
+      "title": "多益測驗寫不完？5 個多益文法必考重點，掌握快速解題技巧！",
+      "url": "https://cln-asia.com/%E5%A4%9A%E7%9B%8A%E6%96%87%E6%B3%95/",
+      "author_or_channel": "CLN-Asia（多益備考網站）",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益 猜答案 消去法 選項 技巧」搜尋結果中列出",
+      "summary_zh": "整理Part5/6最常考的5大文法重點（詞性判斷、時態、使役動詞、分詞構句、感官動詞）與對應快速解題口訣。",
+      "published": "未知"
+    },
+    {
+      "title": "多益閱讀總是寫不完？多益閱讀準備秘訣一次報你知！",
+      "url": "https://blog.wordup.com.tw/blog/2021/03/17/toeic-reading-part-preparation/",
+      "author_or_channel": "WordUp Blog",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown；於「多益閱讀 part 7 時間分配 技巧」搜尋結果中排名第2",
+      "summary_zh": "整理Part5-7各自的解題技巧，並提出「寫完一個題組再畫卡」等節省時間的實用做法。",
+      "published": "2021-03-17"
+    },
+    {
+      "title": "2026多益閱讀滿分指南：多益閱讀技巧、時間管理到解題技巧完整攻略",
+      "url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "於「多益閱讀 part 7 時間分配 技巧」搜尋結果中排名第1（Google第一名）",
+      "summary_zh": "完整攻略涵蓋Part5詞性判斷黃金法則、Part6轉折詞邏輯、Part7的Skimming/Scanning六步驟解題流程，以及三層次錯題檢討法。",
+      "published": "2026年版"
+    },
+    {
+      "title": "多益猜同一個答案有用嗎？3大策略提升25%答對率",
+      "url": "https://prepedu.com/zh-hant/blog/toeic-same-answer-guessing-strategy-analysis",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "於「多益 猜答案 消去法 選項 技巧」搜尋結果中列出",
+      "summary_zh": "依剩餘時間長短分成三種應急策略（統一猜測法、混合策略、刪去法），並附上各策略的期望值數據。",
+      "published": "未知"
+    },
+    {
+      "title": "多益考試時間分配｜四技能高分策略與緊急應對方案全解析",
+      "url": "https://prepedu.com/zh-hant/blog/time-management-in-toeic-exam",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "於「多益閱讀 part 7 時間分配 技巧」搜尋結果中排名第3",
+      "summary_zh": "列出聽力/閱讀各Part官方建議秒數，以及剩餘時間不足時的三大緊急應對技巧（快速猜題、放棄決策標準、8秒黃金預讀）。",
+      "published": "未知"
+    },
+    {
+      "title": "多益 Part 3 & Part 4 搶分關鍵：3 步驟讓你掌握預讀神技",
+      "url": "https://vocus.cc/article/6958ee44fd8978000103027d",
+      "author_or_channel": "Vocus方格子作者",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "於「多益 part 3 4 先讀題 技巧 秒殺」搜尋結果中排名第1",
+      "summary_zh": "拆解Part3/4預讀技巧為3步驟：鎖定3W關鍵字、建立預期聆聽目標、聽完立刻作答不回頭，並提出8秒完成轉換的訓練目標。",
+      "published": "未知"
+    },
+    {
+      "title": "【多益聽力】「5W1H」、「刪去法」！聽力題型解析、解題技巧整理",
+      "url": "https://tw.blog.voicetube.com/archives/51306/",
+      "author_or_channel": "VoiceTube",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "VoiceTube為台灣最大英語學習平台之一；於「多益 三指神功 折手指 刪去法 聽力」搜尋結果中列出",
+      "summary_zh": "VoiceTube整理聽力全Part共通的5W1H分類法與刪去法技巧，教考生先判斷問題類型再鎖定要聽的資訊。",
+      "published": "未知"
+    },
+    {
+      "title": "多益準備10天905分心得+3個全英文Podcast推薦",
+      "url": "https://www.dcard.tw/f/english_tests/p/254736420",
+      "author_or_channel": "Dcard 英文檢定板網友",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "Dcard英文檢定板熱門心得文（WebFetch遭403阻擋，內容取自搜尋結果摘要）；於「多益 podcast 高分 心得」搜尋結果中排名第1",
+      "summary_zh": "10天內從指定分數衝到905分的心得分享，提及用Audipo等App將聽力調快至1.5-1.75倍速練習，並推薦全英文Podcast。",
+      "published": "未知"
+    },
+    {
+      "title": "#多益 多益 600 分攻略：過來人分享超實用應試技巧",
+      "url": "https://www.dcard.tw/f/english_tests/p/257515336",
+      "author_or_channel": "Dcard 英文檢定板網友",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "Dcard英文檢定板文章（WebFetch無法取得內容）；於「Dcard 多益 高分 心得 技巧 分享」搜尋結果中排名第6",
+      "summary_zh": "過來人分享600分等級的應試技巧，因WebFetch無法讀取全文，僅列為來源參考，未直接引用其獨有內容作為技巧。",
+      "published": "未知"
+    }
+  ],
+  "tips": [
+    {
+      "title_zh": "Part 3/4 預讀只抓 3 個關鍵字（Who/What/When or Where），不要讀選項",
+      "part": "P3",
+      "detail_zh": "利用題組播放說明的空檔，快速瀏覽下一組三題，只圈出「誰」「什麼事」「何時/何地」，不要浪費時間讀四個選項；開始播放後專心捕捉這些關鍵字對應的內容，聽完立刻作答、不回頭重聽。練到能在8秒內完成「預讀→作答」的轉換，才有餘裕預讀下一題組。",
+      "example": "Who is the speaker? / What problem does the man mention? / When will the meeting be rescheduled?",
+      "source_url": "https://vocus.cc/article/6958ee44fd8978000103027d"
+    },
+    {
+      "title_zh": "Part 4 獨白靠開場前5秒定調全文情境，避免被中段細節干擾",
+      "part": "P4",
+      "detail_zh": "獨白（廣播、語音信箱、導覽等）通常一開場就會點出情境，聽懂開場等於掌握大半方向；搭配預讀到的關鍵字鎖定聽力重點。若不慎漏聽開場，可靠選項中的專有名詞、數字反推情境類型。",
+      "example": "",
+      "source_url": "https://vocus.cc/article/6958ee44fd8978000103027d"
+    },
+    {
+      "title_zh": "時間快沒了：剩最後2分鐘、10題以上未寫完，直接全部塗同一個選項",
+      "part": "Time",
+      "detail_zh": "統一塗同一個選項（例如全部塗C）比隨機亂猜的期望值更穩定，每題仍有25%答對機率，遠勝留白拿0分。這個策略只在真的時間不夠、無法逐題判斷時才用，正常作答仍以理解與刪去法為主。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-same-answer-guessing-strategy-analysis"
+    },
+    {
+      "title_zh": "設定明確放棄標準：Part1/2超過3秒判斷不出來就猜，Part3/4音檔進到下一題絕不回頭",
+      "part": "Time",
+      "detail_zh": "猶豫超過3秒代表這題已超出目前實力範圍，硬想只會拖累後面題目的預讀時間；音檔一旦進入下一題組，就要立刻放棄回想前一題答案，把心力放在新題組的預讀上，這叫「策略性放棄」而非消極放棄。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/time-management-in-toeic-exam"
+    },
+    {
+      "title_zh": "閱讀 Part 5+6 合計控制在20分鐘內，把時間留給 Part 7",
+      "part": "Time",
+      "detail_zh": "PTT TOEIC板多位高分考生共識是Part5+6合計不超過20分鐘（平均每題約20-25秒），把剩下50-55分鐘留給文章量大、配分高的Part7；若Part5+6經常超時，代表文法/單字基本功不夠，應平時加強而非考試時硬拖。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1533477895.A.C08.html"
+    },
+    {
+      "title_zh": "找到適合自己的固定作答順序（正序或倒序），並在模考中反覆練熟",
+      "part": "Plan",
+      "detail_zh": "部分考生偏好先寫Part7、再回頭寫Part5/6（因為Part7答案都在文章裡，不需額外文法判斷），也有考生堅持正序作答、靠大量練習衝速度。兩派都強調的重點是：選一種順序、平時模考反覆練到成為肌肉記憶，考場上才不會因猶豫順序而浪費時間。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1533477895.A.C08.html"
+    },
+    {
+      "title_zh": "先讀題目關鍵字定位，再回文章掃描找答案，不要整篇通讀",
+      "part": "P7",
+      "detail_zh": "多益考的是「資訊檢索能力」而非文學鑑賞。應先看題目抓出人名、時間、數字、地點等關鍵字，再回文章用掃描（scanning）方式定位答案句，而不是先讀完全文、再回頭找題目——後者等於多讀了好幾次文章，非常浪費時間。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "拿到文章先花30秒略讀（Skimming）：只看標題、首段、粗體字、數字日期",
+      "part": "P7",
+      "detail_zh": "花30秒掌握「這是什麼文件、誰寫給誰、目的是什麼」，把注意力放在標題、第一段、粗體字與日期數字上，建立文章骨架後再針對題目做細節掃描，能大幅降低因看不懂就整篇重讀而超時的風險。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "雙篇/三篇閱讀要建立「交叉對照表」，追蹤時間、數字與人物對應關係",
+      "part": "P7",
+      "detail_zh": "多篇閱讀常故意把關鍵資訊拆在不同文章中（例如email提到的日期要對照到另一篇的價目表或行程表），建議邊讀邊在草稿紙或腦中記下人物、時間、數字的對應關係，遇到題目時才能快速交叉比對，不必每次都重新翻找兩三篇文章。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "Part 5 詞性判斷口訣：限定詞後接名詞、動詞/句尾常接副詞",
+      "part": "P5",
+      "detail_zh": "遇到句子填空先看空格前後的詞性線索：冠詞/所有格（the, a, my）後面接名詞；單獨修飾名詞的空格通常填形容詞；動詞後或句尾的空格通常填副詞；助動詞（will/should/can）後面要接原形動詞。用詞性直接刪掉不合文法的選項，不需要先理解整句語意就能作答，是Part5最快的解題捷徑。",
+      "example": "The company's ___ increased significantly last quarter.（空格在the company's之後、increased之前，需要名詞 → profit，而非profitable或profitably）",
+      "source_url": "https://cln-asia.com/%E5%A4%9A%E7%9B%8A%E6%96%87%E6%B3%95/"
+    },
+    {
+      "title_zh": "看到 for + 一段時間／usually 等頻率副詞，直接鎖定對應時態",
+      "part": "P5",
+      "detail_zh": "時態題不用死背文法規則，而是找句子裡的時間標記詞：「for + 一段時間」通常提示現在完成式；「yesterday」提示過去式；「usually / always」等頻率副詞提示現在簡單式。看到這些關鍵字就能秒選對應時態的選項。",
+      "example": "The team has worked on this project for three years.（for + 時間 → 現在完成式 has worked）",
+      "source_url": "https://cln-asia.com/%E5%A4%9A%E7%9B%8A%E6%96%87%E6%B3%95/"
+    },
+    {
+      "title_zh": "使役動詞、分詞構句：先判斷『受詞跟後面動作是主動還是被動』再選形式",
+      "part": "P5",
+      "detail_zh": "遇到have/make/let等使役動詞，或逗點開頭的分詞構句時，先看受詞和後面動作的關係：受詞主動做這件事就用原形動詞或現在分詞(V-ing)；受詞被動接受動作就用過去分詞(p.p.)。這個判斷方式比死背文法規則更快、更不容易混淆。",
+      "example": "Having finished the report, she submitted it to her manager.（主詞she主動完成動作 → 用現在分詞Having finished）",
+      "source_url": "https://cln-asia.com/%E5%A4%9A%E7%9B%8A%E6%96%87%E6%B3%95/"
+    },
+    {
+      "title_zh": "Part 6 靠轉折詞和指示代名詞抓文意邏輯，不能只看單句文法",
+      "part": "P6",
+      "detail_zh": "Part6空格常需看前後句甚至整段才能選對。遇到選項是連接詞/轉折詞（Therefore/However/Furthermore等），要判斷前後句是因果、轉折還是補充關係；遇到This/That/Such等指示代名詞，要往前找它指的是哪個名詞，才能選出邏輯通順的插入句。",
+      "example": "The flight was delayed. Therefore, passengers were asked to wait at Gate 12.（前後為因果關係 → Therefore）",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "聽力用『折手指刪去法』代替筆記，邊聽邊淘汰選項",
+      "part": "P2",
+      "detail_zh": "多益規定不能在題本上做記號，可以用三根手指分別代表A/B/C三個選項，聽到明顯不對或答非所問的選項就把對應手指收起來，聽完三個選項後手指剩幾根就代表候選答案剩幾個，避免因分心筆記而漏聽關鍵字，是Part2最實用的手動輔助法。",
+      "example": "",
+      "source_url": "https://www.youtube.com/watch?v=fHHL0yc_5Kk"
+    },
+    {
+      "title_zh": "Part 1 圖片題優先聽『動詞/動作』，名詞聽對不等於答案對",
+      "part": "P1",
+      "detail_zh": "Part1最常見的陷阱選項是把圖片中「存在的名詞」講對，但動作講錯，例如圖片人物明明是站著，選項卻說「正在坐下」。聽的時候要優先鎖定動詞和進行式（is/are + Ving），而不是聽到熟悉的名詞就直接選它。",
+      "example": "圖片：一群人正在排隊等公車。陷阱選項：They are boarding the bus.（實際上還在排隊、尚未上車）正解：They are standing in line.",
+      "source_url": "https://www.youtube.com/watch?v=fHHL0yc_5Kk"
+    },
+    {
+      "title_zh": "聽力全Part共通心法：先分類問題屬於5W1H中的哪一種，再鎖定要聽的資訊",
+      "part": "P2",
+      "detail_zh": "聽到題目當下先判斷這是問Who(誰)/What(什麼)/When(何時)/Where(哪裡)/Why(為什麼)/How(如何)中的哪一種，鎖定要抓的資訊類型，搭配刪去法排除明顯不相關或答非所問的選項，可避免因聽不懂全部內容而慌亂放棄整題。",
+      "example": "",
+      "source_url": "https://tw.blog.voicetube.com/archives/51306/"
+    },
+    {
+      "title_zh": "檢討要分三層：表面錯因→技巧應用→根本能力缺口，不要只對答案",
+      "part": "General",
+      "detail_zh": "對完答案後，先寫下「為什麼選錯」（表面層），再想「應該用什麼解題技巧才能避開這個錯」（技巧層），最後判斷「這是單字不會、文法不熟還是理解力不足」（根本層）。建立錯題分類檔案追蹤自己最常在哪個Part或哪種題型出錯，比盲目多刷題本更有效率。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "寫模考「質勝於量」：一份題本認真三層檢討，勝過五六份都不訂正",
+      "part": "Plan",
+      "detail_zh": "990滿分考生分享，聽力+閱讀作答約需2小時，但認真檢討常要花掉作答時間的2-3倍；與其求快刷完多本題庫都不回頭看，不如每寫一份就徹底檢討、整理生詞本和文法訂正本，把同樣的錯誤模式徹底解決，避免下次考試重蹈覆轍。",
+      "example": "",
+      "source_url": "https://medium.com/@cheezzya/toeic-990-sharing-a2ccfb9bda28"
+    },
+    {
+      "title_zh": "背單字要連詞性、片語一起背，不能只背中文意思",
+      "part": "Vocab",
+      "detail_zh": "990滿分考生建議背單字時要同步記住這個字的詞性變化（動詞/名詞/形容詞/副詞），最好連常見搭配的片語或例句一起記，因為Part5常考「同一個字根不同詞性該選哪個」，只記中文意思在考場上分不出詞性陷阱。",
+      "example": "decide (v.) → decision (n.) → decisive (adj.) → decisively (adv.)",
+      "source_url": "https://medium.com/@cheezzya/toeic-990-sharing-a2ccfb9bda28"
+    },
+    {
+      "title_zh": "考前一個月用通勤時間聽全英文新聞Podcast，養成「英文腦」與商用語感",
+      "part": "Plan",
+      "detail_zh": "多篇心得都推薦用通勤、開車等零碎時間聽全英文新聞類Podcast（如BBC Learning English、All Ears English），因為多益聽力和閱讀文章常結合時事與職場情境，習慣新聞語速和商用詞彙後，考試時對話與獨白會更容易跟上，也能補足「非考題本」的語感訓練。",
+      "example": "",
+      "source_url": "https://mosgoing0324.pixnet.net/blog/post/346878019"
+    },
+    {
+      "title_zh": "用1.5倍速練聽力，先習慣比考試更快的語速",
+      "part": "P3",
+      "detail_zh": "有考生分享用手機App（如Audipo）把聽力題目調成1.5倍甚至1.75倍速播放練習，讓耳朵先適應比正常語速更快的節奏；正式考試用正常速度播放時會感覺「變慢」、更從容，對Part3/4的長對話與獨白特別有幫助。",
+      "example": "",
+      "source_url": "https://www.dcard.tw/f/english_tests/p/254736420"
+    },
+    {
+      "title_zh": "高效畫卡法：寫完一整個題組再畫卡，不要逐題畫",
+      "part": "Time",
+      "detail_zh": "Part5可以連續作答5題後再一次畫卡，Part7每篇文章寫完再一次畫卡，減少「解題→找到答案卡位置→畫記→回到題本」反覆切換造成的時間耗損，尤其在時間緊迫時能省下數十秒到一分鐘不等的零碎時間。",
+      "example": "",
+      "source_url": "https://blog.wordup.com.tw/blog/2021/03/17/toeic-reading-part-preparation/"
+    }
+  ]
+}

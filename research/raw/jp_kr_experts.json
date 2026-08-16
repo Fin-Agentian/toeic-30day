@@ -1,0 +1,274 @@
+{
+  "lens": "jp_kr_experts",
+  "sources": [
+    {
+      "title": "TOEIC990点を取った勉強法と参考書を満点ホルダーが徹底解説！｜Sakablog",
+      "url": "https://sakachanblog.com/toeic990",
+      "author_or_channel": "Sakablog（さかちゃんブログ）",
+      "type": "blog",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEIC 990 コツ」結果前段）",
+      "summary_zh": "日本部落客親身考取TOEIC滿分990分的完整讀書法，涵蓋聽力影子跟讀電影法、文法題海戰術與三本單字書的具體使用方式。",
+      "published": "unknown"
+    },
+    {
+      "title": "【TOEIC】リスニングは、とにかく問題文を先読みする｜notebook",
+      "url": "https://note.com/notebook555/n/n67c480036f21",
+      "author_or_channel": "notebook555（note.com個人創作者）",
+      "type": "blog",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEICリスニング攻略先読み」結果第2名）",
+      "summary_zh": "強調聽力先讀是提分關鍵，說明如何利用說明時間、題目間隔與省略重播的時間來預讀下一題選項。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEICの攻略法！リスニングは先読み、リーディングは時間配分を意識しよう！",
+      "url": "https://www.qqeng.com/blog2/study/column153.html",
+      "author_or_channel": "QQEnglish（線上英語會話學校官方部落格）",
+      "type": "prep_site",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEICリスニング攻略先読み」結果第3名，QQEnglish為知名線上英語品牌）",
+      "summary_zh": "整合聽力先讀技巧與閱讀各Part具體時間分配建議（Part5約10分、Part6約20分、Part7約44分）。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Part5 文法問題で失点しない解き方",
+      "url": "https://academy.kirihara.co.jp/blog/toeic/toeic-part5-bunpou/",
+      "author_or_channel": "桐原書店 KIRIHARA Online Academy",
+      "type": "official",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEICパート5攻略文法問題コツ」結果第1名，日本教育出版社官方網站）",
+      "summary_zh": "日本教育出版社官方部落格，整理Part5常見文法考點與「平行結構→前後線索→文意收斂」三步驟解題流程。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Part2のひっかけパターンを完全攻略！間接応答とトラップを見破る対策法",
+      "url": "https://english-lab-japan.com/archives/34129",
+      "author_or_channel": "丸暗記英語からの脱却ブログ",
+      "type": "blog",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEICパート2ひっかけ対策コツ」結果第6名）",
+      "summary_zh": "系統整理Part2五種陷阱選項類型（音似陷阱、迴音陷阱、關聯詞陷阱、間接應答等），並附具體例句。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Part2 難しくなった？【原因と対策】こうやって解く！",
+      "url": "https://jsjapan.xsrv.jp/tc_part2_kotsu/",
+      "author_or_channel": "リスニング ゼロから対策ナビ",
+      "type": "blog",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEICパート2ひっかけ対策コツ」結果第1名）",
+      "summary_zh": "分析近年Part2變難的原因（口音、新表達方式），並依疑問詞型／Yes-No型／非疑問句型三類提供對應解法。",
+      "published": "unknown"
+    },
+    {
+      "title": "토익 LC 만점 전략, 파트별 공략부터 쉐도잉까지 완벽 정리",
+      "url": "https://mogeul.com/career/%ED%86%A0%EC%9D%B5-lc-%EB%A7%8C%EC%A0%90-%EC%A0%84%EB%9E%B5-%ED%8C%8C%ED%8A%B8%EB%B3%84-%EA%B3%B5%EB%9E%B5%EB%B6%80%ED%84%B0-%EC%89%90%EB%8F%84%EC%9E%89-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC/",
+      "author_or_channel": "Mogeul（모글）학습 콘텐츠 플랫폼",
+      "type": "blog",
+      "language": "ko",
+      "popularity_signal": "unknown（Google搜尋「토익 LC 팁 파트별」結果第6名）",
+      "summary_zh": "完整整理LC Part1-4各自的解題策略（消去法標記、疑問詞聚焦、skimming），並提供四步驟shadowing練習法。",
+      "published": "unknown"
+    },
+    {
+      "title": "매번 시간이 부족한 당신을 위한 토익 리딩 파트 공략 비법",
+      "url": "https://engoo.co.kr/blog/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80-tip/%EB%A7%A4%EB%B2%88-%EC%8B%9C%EA%B0%84%EC%9D%B4-%EB%B6%80%EC%A1%B1%ED%95%9C-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%86%A0%EC%9D%B5-%EB%A6%AC%EB%94%A9-%ED%8C%8C%ED%8A%B8-%EA%B3%B5%EB%9E%B5/",
+      "author_or_channel": "Engoo（跨國線上英語學習平台官方部落格）",
+      "type": "prep_site",
+      "language": "ko",
+      "popularity_signal": "unknown（Google搜尋「토익 리딩 시간 부족 파트7 풀이 순서」結果第3名，Engoo為知名跨國線上英語品牌）",
+      "summary_zh": "針對RC時間不足問題，提供Part5/6/7的具體秒數配速建議與高難度題型的策略性放棄法。",
+      "published": "unknown"
+    },
+    {
+      "title": "토익 파트7 시간 부족해요? 어떻게 빨리 읽는 방법 없을까요?",
+      "url": "https://www.dokjongban.com/2017/11/05/3790/",
+      "author_or_channel": "독종반（Dokjongban）",
+      "type": "blog",
+      "language": "ko",
+      "popularity_signal": "unknown（Google搜尋「토익 리딩 시간 부족 파트7 풀이 순서」結果第7名）",
+      "summary_zh": "提出Part7快速閱讀七大原則，強調意義分塊閱讀、不回頭重讀，並指出用筆指讀可提升約33%閱讀速度。",
+      "published": "unknown"
+    },
+    {
+      "title": "📓토익하는데 LC 점수가 고민인 사람을 위한 LC 공부팁!",
+      "url": "https://community.linkareer.com/honeytips/513865",
+      "author_or_channel": "Linkareer 커뮤니티（韓國求職學習社群平台）",
+      "type": "forum",
+      "language": "ko",
+      "popularity_signal": "unknown（Google搜尋「토익 LC 팁 파트별」結果第3名）",
+      "summary_zh": "社群用戶整理LC各Part具體技巧（Part1消去法、Part2疑問詞聚焦、Part3-4skimming）與10天衝刺讀書法。",
+      "published": "unknown"
+    },
+    {
+      "title": "토익 시간분배 꿀팁 + 수준에 따라 여러가지 방법 제공",
+      "url": "https://www.amazingtalker.co.kr/blog/ko/kr-en/48889/",
+      "author_or_channel": "AmazingTalker（跨國線上家教平台官方部落格）",
+      "type": "prep_site",
+      "language": "ko",
+      "popularity_signal": "unknown（Google搜尋「토익 리딩 시간 부족 파트7 풀이 순서」結果第2名，AmazingTalker為知名跨國線上教育平台）",
+      "summary_zh": "提供RC各Part精確秒數配速（Part5每題15-20秒、Part6每題30秒至1分）及800分以上考生適用的逆序解題法。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC®本番まで1カ月！スコアアップできる？勉強のコツやスケジュールの立て方も",
+      "url": "https://studying.jp/toeic/about-more/1month.html",
+      "author_or_channel": "STUDYing（線上課程平台官方網站）",
+      "type": "prep_site",
+      "language": "ja",
+      "popularity_signal": "unknown（Google搜尋「TOEIC 1ヶ月勉強法スコアアップ」結果第1名）",
+      "summary_zh": "提供一個月讀書計畫的具體時程規劃（前兩週攻單字文法、後兩週模考實戰）與每日投入時數對應分數增幅參考表。",
+      "published": "unknown"
+    }
+  ],
+  "tips": [
+    {
+      "title_zh": "聽力先讀是準確率關鍵，善用每個空檔預讀題目與選項",
+      "part": "P3",
+      "detail_zh": "在Part3/4的說明時間、每組題目之間的間隔，甚至第一題選項朗讀的空檔，都要盡快讀完下一題的題目與四個選項，先掌握關鍵字再聽音檔；聽完當題答案立刻做記號，省下不必要重聽的時間拿來預讀下一組題目。日本專家指出「先預測內容再聽」和「毫無準備直接聽」的聽懂程度差異非常大，這個習慣要在備考期練到成為反射動作，考試當天才用得出來。",
+      "example": "先看到 'What does the woman ask the man to do?' 就鎖定聽 woman 的請求句，忽略其餘細節。",
+      "source_url": "https://note.com/notebook555/n/n67c480036f21"
+    },
+    {
+      "title_zh": "利用Part1、2的固定說明語音時間，先看之後的題目或搶做Part5",
+      "part": "P3",
+      "detail_zh": "Part1、Part2開頭播放的英文說明（Direction）每次考試內容完全一樣，不需要專心聽，可以利用這段時間先把Part3、Part4的部分題目skim過一遍，甚至先看幾題Part5；同樣地，每組對話的題目答完後不要停下來檢查答案卡，要立刻skim下一組的三個問題，把「聽」跟「看題」的時間錯開來用，避免因為低頭找題目而漏聽下一段對話的開頭。",
+      "example": "",
+      "source_url": "https://mogeul.com/career/%ED%86%A0%EC%9D%B5-lc-%EB%A7%8C%EC%A0%90-%EC%A0%84%EB%9E%B5-%ED%8C%8C%ED%8A%B8%EB%B3%84-%EA%B3%B5%EB%9E%B5%EB%B6%80%ED%84%B0-%EC%89%90%EB%8F%84%EC%9E%89-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC/"
+    },
+    {
+      "title_zh": "Part1用O/△/X三段標記消去法，並聚焦動詞與介系詞",
+      "part": "P1",
+      "detail_zh": "聽每個選項時立刻在題本旁標記O（確定對）、△（不確定）、X（確定錯），四個選項聽完後直接依標記判斷，不必回想整句話內容；同時把注意力放在動詞（照片中的動作）和介系詞（位置關係）上，因為Part1常見陷阱是名詞聽起來正確，但動詞或介系詞其實講錯，動詞、介系詞聽對了幾乎就等於答對整題。",
+      "example": "A man is standing near the window（關鍵在near這個介系詞，而非window這個名詞）。",
+      "source_url": "https://mogeul.com/career/%ED%86%A0%EC%9D%B5-lc-%EB%A7%8C%EC%A0%90-%EC%A0%84%EB%9E%B5-%ED%8C%8C%ED%8A%B8%EB%B3%84-%EA%B3%B5%EB%9E%B5%EB%B6%80%ED%84%B0-%EC%89%90%EB%8F%84%EC%9E%89-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC/"
+    },
+    {
+      "title_zh": "Part2先抓住句首疑問詞的0.5秒，其餘用刪去法",
+      "part": "P2",
+      "detail_zh": "日韓資料一致指出，Part2約有六成題目只要聽清楚句首的疑問詞（Who/What/When/Where/Why/How）就能鎖定答案方向；聽不出疑問詞或是非疑問句時，退而求其次先排除明顯答非所問、時態或主詞不合的選項，剩下的選項再依語意合理性判斷。三個選項務必都聽完再作答，不要因為只聽到片段就立刻選定。",
+      "example": "",
+      "source_url": "https://jsjapan.xsrv.jp/tc_part2_kotsu/"
+    },
+    {
+      "title_zh": "Part2要提防『音似陷阱』與『迴音陷阱』兩種誘答選項",
+      "part": "P2",
+      "detail_zh": "Part2最常見的兩種誘答手法：一是「音似陷阱」，選項用發音相近但意義不同的字混淆考生；二是「迴音陷阱」，選項直接照抄題目中出現過的單字，聽起來很熟悉卻答非所問。遇到選項裡出現和題目「聽起來很像」或「一模一樣」的字詞時要提高警覺，先問自己這句話在邏輯上合不合理，而不是看到熟悉的字就直覺選它。",
+      "example": "Where is the pharmacy? → 誤答陷阱：The pharmacy is popular.（照抄pharmacy卻沒有回答地點）。copy/coffee、meet/meat/meeting 也是常見的音似混淆組合。",
+      "source_url": "https://english-lab-japan.com/archives/34129"
+    },
+    {
+      "title_zh": "Part2正確答案常是迂迴說明，而非直接的Yes/No",
+      "part": "P2",
+      "detail_zh": "近年多益Part2的出題趨勢降低了「聽到疑問詞就能秒答」的比例，改考「間接應答」：正確答案往往不是Yes/No或直接給資訊，而是用替代方案、狀況說明或反問方式回應，需要考生自己判斷這個回答在邏輯上合不合理。平時練習可特別整理這類迂迴回答的句型，考試中看到選項「答得太乾脆直接」反而該多想一秒再選。",
+      "example": "Did you finish the report? → 正解：I'll have it done by lunch.（而非直接回答Yes或No）。",
+      "source_url": "https://english-lab-japan.com/archives/34129"
+    },
+    {
+      "title_zh": "Part5先看選項判斷是『文法題』還是『詞彙題』，再決定要找什麼線索",
+      "part": "P5",
+      "detail_zh": "拿到題目先掃一眼四個選項而非急著讀題幹：如果四個選項是同一個字根的不同詞性或時態變化，就是文法題，重點放在空格前後的詞性、時態線索；如果四個選項是完全不同的單字，就是詞彙題，重點放在句意與常見固定搭配（collocation）。每題控制在20-30秒內，抓不到線索時果斷憑印象猜一個就跳過，不要卡關拖累後面時間。",
+      "example": "選項為 rely / reliance / reliable / reliably → 一看就是詞性題，只需判斷空格該填動詞、名詞、形容詞還是副詞。",
+      "source_url": "https://engoo.co.kr/blog/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80-tip/%EB%A7%A4%EB%B2%88-%EC%8B%9C%EA%B0%84%EC%9D%B4-%EB%B6%80%EC%A1%B1%ED%95%9C-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%86%A0%EC%9D%B5-%EB%A6%AC%EB%94%A9-%ED%8C%8C%ED%8A%B8-%EA%B3%B5%EB%9E%B5/"
+    },
+    {
+      "title_zh": "Part5文法題用三步驟解：先看平行結構，再找前後線索詞，最後用文意收斂",
+      "part": "P5",
+      "detail_zh": "日本出版社桐原書店整理的解題順序：①先確認句中是否有並列/對等結構（parallelism），空格要與已知詞形保持一致；②利用空格前後的詞彙、連接詞、介系詞、關係代名詞等線索判斷所需詞性或句型；③如果還剩下兩個以上候選項，再用整句語意的自然程度做最終判斷。這個順序能避免一看到選項就憑語感亂猜，導致誤判文法規則。",
+      "example": "",
+      "source_url": "https://academy.kirihara.co.jp/blog/toeic/toeic-part5-bunpou/"
+    },
+    {
+      "title_zh": "Part6要先抓出段落主詞+動詞主幹，每組四題控制在2分鐘內",
+      "part": "P6",
+      "detail_zh": "Part6是短文填空，只看空格前後一句常常不夠判斷，須先快速找出該句甚至前後句的主詞+動詞主幹，掌握文章邏輯脈絡（尤其是句子插入題），才能正確判斷連接詞、代名詞或轉折語該填什麼。建議每組（4題）控制在2分鐘內解決，遇到需要通篇邏輯才能判斷的難題可先跳過標記，回頭再處理，避免拖慢後面Part7的節奏。",
+      "example": "",
+      "source_url": "https://engoo.co.kr/blog/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80-tip/%EB%A7%A4%EB%B2%88-%EC%8B%9C%EA%B0%84%EC%9D%B4-%EB%B6%80%EC%A1%B1%ED%95%9C-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%86%A0%EC%9D%B5-%EB%A6%AC%EB%94%A9-%ED%8C%8C%ED%8A%B8-%EA%B3%B5%EB%9E%B5/"
+    },
+    {
+      "title_zh": "Part7先讀題目和選項抓關鍵字，再回本文用掃讀方式定位答案",
+      "part": "P7",
+      "detail_zh": "韓日兩地專家一致反對「先通篇讀完文章再看題目」，因為那是浪費時間；正確做法是先讀題目與選項，抓出需要找的資訊類型（人名、數字、日期、專有名詞、地點），再回到本文用掃讀（scanning）方式尋找關鍵字所在段落，只精讀關鍵字附近的一兩句話確認答案，不必逐字讀完整篇文章。",
+      "example": "",
+      "source_url": "https://engoo.co.kr/blog/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80-tip/%EB%A7%A4%EB%B2%88-%EC%8B%9C%EA%B0%84%EC%9D%B4-%EB%B6%80%EC%A1%B1%ED%95%9C-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%86%A0%EC%9D%B5-%EB%A6%AC%EB%94%A9-%ED%8C%8C%ED%8A%B8-%EA%B3%B5%EB%9E%B5/"
+    },
+    {
+      "title_zh": "800分以上考生適用：Part7用逆序解題法，連鎖文章優先於單篇",
+      "part": "P7",
+      "detail_zh": "針對800分以上的高分考生，建議打破「從Part5依序寫到Part7」的直覺順序，改成：Part7雙篇/三篇連鎖閱讀 → Part7單篇文章 → Part6 → Part5。理由是連鎖閱讀通常安排在RC最後，也最容易因時間不夠而被迫用猜的方式草草作答，但這類題目配分高、需要交叉比對多段線索，提早處理才能確保有被認真讀過，Part5單題配分低且解題快，放到最後補完風險最小。",
+      "example": "",
+      "source_url": "https://www.amazingtalker.co.kr/blog/ko/kr-en/48889/"
+    },
+    {
+      "title_zh": "Part7遇到作者意圖題、句子插入題等高耗時題型要策略性放棄",
+      "part": "P7",
+      "detail_zh": "面對作者意圖題（What does the author mean by...）、句子插入題等難度極高且需要通篇理解才能作答的題型，若時間已經緊張，應該先隨意標記一個答案跳過，優先把時間留給確定能拿分、線索明確的題目，等其餘題目都完成後如果還有剩餘時間再回頭處理。核心理念是Part7的答案幾乎都能在原文中找到，時間充裕時正確率自然會提升，因此時間分配比死磕單題更重要。",
+      "example": "",
+      "source_url": "https://engoo.co.kr/blog/%EC%98%81%EC%96%B4%EA%B3%B5%EB%B6%80-tip/%EB%A7%A4%EB%B2%88-%EC%8B%9C%EA%B0%84%EC%9D%B4-%EB%B6%80%EC%A1%B1%ED%95%9C-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%86%A0%EC%9D%B5-%EB%A6%AC%EB%94%A9-%ED%8C%8C%ED%8A%B8-%EA%B3%B5%EB%9E%B5/"
+    },
+    {
+      "title_zh": "Part7閱讀用『意義塊』整體理解，讀完整句才判斷要不要回頭",
+      "part": "P7",
+      "detail_zh": "不要按文法逐字逐句拆解分析後再整句翻譯，而是按語意單位（chunk）一塊一塊直接理解意思；讀的時候盡量向前推進，不要句子讀到一半就往回找前面讀過的內容，先把整句讀完，再判斷是否真的需要回頭確認。同時練習一次辨識多個單字組成的意義塊，逐步擴大每次閱讀能吸收的資訊量，藉此加快處理速度而不犧牲理解正確度。",
+      "example": "",
+      "source_url": "https://www.dokjongban.com/2017/11/05/3790/"
+    },
+    {
+      "title_zh": "Part7閱讀時用筆指讀，比單純用眼睛掃視快約33%",
+      "part": "P7",
+      "detail_zh": "研究指出用筆尖或手指沿文字移動輔助閱讀，比純粹用眼睛跳著掃視快約33%，因為手指能強迫視線維持穩定的前進節奏，減少視線來回跳動或漏行的情況；同時邊讀邊在腦中把內容畫面化（visualize），可以避免讀到後面忘記前面內容而必須整段重讀，對長文本的Part7閱讀特別有幫助。",
+      "example": "",
+      "source_url": "https://www.dokjongban.com/2017/11/05/3790/"
+    },
+    {
+      "title_zh": "RC三個Part的具體秒數配速：Part5每題15-20秒、Part6每題30秒-1分、Part7每題約1分鐘",
+      "part": "Time",
+      "detail_zh": "多份日韓資料整理出RC（閱讀）75分鐘的具體時間分配基準：Part5（30題）約10分鐘完成，平均每題15-20秒；Part6（16題）約8分鐘完成，平均每題30秒到1分鐘；Part7（54題）用剩餘的時間（約54-57分鐘）完成，平均每題抓1分鐘，另外保留約3分鐘統一畫卡。考前用模考練習掐表訓練這個節奏，考試中途可以看時鐘檢查進度，若某個Part超時要提醒自己加速或先跳題。",
+      "example": "",
+      "source_url": "https://www.amazingtalker.co.kr/blog/ko/kr-en/48889/"
+    },
+    {
+      "title_zh": "聽力（LC）結束後、閱讀（RC）開始前統一畫記聽力答案卡",
+      "part": "Time",
+      "detail_zh": "聽力播放期間若同步在答案卡上塗黑選項，會佔用原本可以拿來預讀下一題的寶貴時間；建議先在題本上用鉛筆輕輕圈選答案，等整個聽力測驗（Part1-4）結束、閱讀測驗正式開始前的空檔，再一次把所有答案統一謄寫到答案卡上，把聽力時間完整保留給先讀與聽解，避免因為畫卡分心而漏聽下一題的開頭。",
+      "example": "",
+      "source_url": "https://mogeul.com/career/%ED%86%A0%EC%9D%B5-lc-%EB%A7%8C%EC%A0%90-%EC%A0%84%EB%9E%B5-%ED%8C%8C%ED%8A%B8%EB%B3%84-%EA%B3%B5%EB%9E%B5%EB%B6%80%ED%84%B0-%EC%89%90%EB%8F%84%EC%9E%89-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC/"
+    },
+    {
+      "title_zh": "四步驟Shadowing練習法：先錯題分析、看稿跟讀、再脫稿跟讀",
+      "part": "General",
+      "detail_zh": "①先完整做一回聽力題並對答案，找出錯題重點複習；②對照script逐句分析內容，把不懂的單字或表達方式整理起來，確保完全理解每一句話的意思；③邊看script邊跟著音檔朗讀約3-4遍，熟悉發音和語調節奏；④最後完全不看script，只靠聲音，慢半拍跟著音檔覆誦整段內容。這個流程比單純重複聽更能同時提升聽力理解與發音辨識能力。",
+      "example": "",
+      "source_url": "https://mogeul.com/career/%ED%86%A0%EC%9D%B5-lc-%EB%A7%8C%EC%A0%90-%EC%A0%84%EB%9E%B5-%ED%8C%8C%ED%8A%B8%EB%B3%84-%EA%B3%B5%EB%9E%B5%EB%B6%80%ED%84%B0-%EC%89%90%EB%8F%84%EC%9E%89-%EC%99%84%EB%B2%BD-%EC%A0%95%EB%A6%AC/"
+    },
+    {
+      "title_zh": "用單部電影完整台詞做影子跟讀，每句重複練到自然脫口而出",
+      "part": "General",
+      "detail_zh": "選定一部完整的電影或影集台詞，針對每一句進行反覆的影子跟讀（shadowing）練習，直到能不看字幕、跟著演員的語速與語調自然說出來為止，同一句話可能需要重複練習30到100次才能內化。這種訓練方式能同時磨練連音（linking）、消音（reduction）、閃音（flapping）等英語發音規則的聽辨能力，對聽力拿高分特別有幫助，但需要較長時間投入（原分享者約花2個月完成一部電影）。",
+      "example": "",
+      "source_url": "https://sakachanblog.com/toeic990"
+    },
+    {
+      "title_zh": "文法題海戰術：刷完一本1000題文法題本，練到能對別人講解為止",
+      "part": "P5",
+      "detail_zh": "除了單字量之外，滿分考生強調文法題要透過大量刷題累積「一看就懂考點」的直覺反應，建議完整寫完一本收錄約1000題的文法練習題本，而且每一題的解說都要理解到「可以向別人講解」的程度，而不是單純知道正確答案是什麼。搭配精讀＋朗讀循環（先做句子結構分析，再把同一篇文章多次朗讀出聲），可以同時強化文法直覺與閱讀速度。",
+      "example": "",
+      "source_url": "https://sakachanblog.com/toeic990"
+    },
+    {
+      "title_zh": "考前一個月讀書計畫：前兩週攻單字文法，後兩週用官方模擬題實戰",
+      "part": "Plan",
+      "detail_zh": "把僅剩的一個月分成前後兩個階段：前兩週集中火力複習單字和文法，單字每天固定學習、集中使用同一本單字書反覆記憶而不要換書，文法則著重理解句子結構而非死背規則；後兩週開始配合官方模擬題（公式問題集）做整回實戰練習，邊寫模擬題邊回頭補強還不熟的單字文法。準備時建議同時備妥四種教材：單字書、文法對策書、TOEIC綜合教材、官方模擬題各一本，避免教材過多分散心力。",
+      "example": "",
+      "source_url": "https://studying.jp/toeic/about-more/1month.html"
+    },
+    {
+      "title_zh": "用每日讀書時數換算可能的分數增幅，據此反推一個月的讀書量",
+      "part": "Time",
+      "detail_zh": "資料提供的粗略換算：每天投入約2小時讀書，一個月大約可以拉高20分；每天4到5小時，大約可以拉高50分；每天8到10小時，大約可以拉高100分。可以用這個對照表反推自己一個月內能投入的每日時數，設定合理的目標分數，並依此規劃每天「幾點讀什麼、讀多少量」的具體時間表，而不是漫無目的地讀。距離2026-09-20僅剩約一個月的考生，可以用這個表校準每天實際能安排的讀書時數與期望值。",
+      "example": "",
+      "source_url": "https://studying.jp/toeic/about-more/1month.html"
+    }
+  ]
+}

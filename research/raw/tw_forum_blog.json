@@ -1,0 +1,284 @@
+{
+  "lens": "tw_forum_blog",
+  "sources": [
+    {
+      "title": "一個月準備期，多益900分心得",
+      "url": "https://www.dcard.tw/f/exam/p/233677545",
+      "author_or_channel": "Dcard 匿名使用者",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 一個月 900分 心得」結果第1名，Dcard 考試板熱門文）",
+      "summary_zh": "分享一個月半準備、每三天寫一次模擬題的節奏，強調前期正確率比速度重要，並用Word Up APP分類熟悉/陌生單字追蹤背誦進度。也提到聽力調1.2倍速練習，正式考試會覺得變慢更好抓重點。",
+      "published": "unknown"
+    },
+    {
+      "title": "【一個月430➡️900攻略】均標仔靠理組準備法考到900分啦！",
+      "url": "https://www.dcard.tw/f/language/p/236154020",
+      "author_or_channel": "Dcard 匿名使用者",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Dcard 語言板，同批關鍵字搜尋結果第3名）",
+      "summary_zh": "自稱「理組準備法」，一個月內從430分衝到900分，內容涵蓋Part5/6控制20分鐘內完成、先看題目再讀文章、用三指法蓋住錯誤選項等具體策略。",
+      "published": "unknown"
+    },
+    {
+      "title": "[心得] 920分心得&用書介紹",
+      "url": "https://www.ptt.cc/bbs/TOEIC/M.1584622253.A.2D2.html",
+      "author_or_channel": "PTT TOEIC板",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（PTT TOEIC板長年被引用的「用書介紹」心得文，多篇後續文章互相引用）",
+      "summary_zh": "以半年準備、四次模考累積920分，提供五星用書評比與三層複習法背單字（昨天已背/今天要背/明天預習），並強調刷題不中斷以練習疲勞作答的臨場感。",
+      "published": "unknown"
+    },
+    {
+      "title": "新多益New TOEIC金色證照三個月900分準備心得分享",
+      "url": "https://drshawnchang.pixnet.net/blog/post/294622400",
+      "author_or_channel": "工程師也能這樣過生活（痞客邦部落格）",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（文中提及曾被優渥誌採訪引用，屬長期累積流量的部落格熱門文）",
+      "summary_zh": "三個月分階段規劃（單字文法→聽力→密集刷題），用Excel建檔背單字並用顏色標記熟悉度，聽力檢討時間需為做題時間3-4倍，閱讀盡量用英文理解英文避免逐字翻譯。",
+      "published": "2019-12-18（文中註記2019新增優渥誌訪問內容）"
+    },
+    {
+      "title": "多益閱讀總是寫不完？多益閱讀準備秘訣一次報你知！",
+      "url": "https://blog.wordup.com.tw/blog/2021/03/17/toeic-reading-part-preparation/",
+      "author_or_channel": "WordUp 官方部落格",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 閱讀 Part7 時間分配 技巧」結果第2名，官方教材網站長期SEO熱門文）",
+      "summary_zh": "詳細拆解Part5/6/7的時間分配（5+6共20分鐘、Part7至少50分鐘）與各題型解法，強調先看題目再讀文章、寫完一題組再畫卡、時間不足時優先做題數少的題組。",
+      "published": "2021-03-17"
+    },
+    {
+      "title": "[討論] 新制多益閱讀的時間分配/解題順序",
+      "url": "https://www.ptt.cc/bbs/TOEIC/M.1533477895.A.C08.html",
+      "author_or_channel": "PTT TOEIC板",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋同關鍵字結果第1名，PTT長年被引用討論串）",
+      "summary_zh": "討論正序/倒序作答的優劣，建議英文程度不足者直接放棄難題全力拿閱讀分數，並提出「多益測技巧而非實力」的核心心法，遇不確定題目直覺作答不要耗時。",
+      "published": "unknown"
+    },
+    {
+      "title": "【多益準備】一個月從500到875",
+      "url": "https://wanding.pixnet.net/blog/post/48988987",
+      "author_or_channel": "WanDing的部落格（痞客邦）",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 短期衝刺 讀書計畫 一個月」結果第2名）",
+      "summary_zh": "提供逐週讀書計畫：第1週單字打底（早中晚分段各3-4小時）、第2週銜接試題、第3-4週強化刷題+隔日檢討。聽力技巧含Part1刪去法手指標記、Part2注意第一個字、Part3-4「三紙神功」。",
+      "published": "unknown"
+    },
+    {
+      "title": "[心得] 多益弱底準備心得分享（445->725）",
+      "url": "https://www.ptt.cc/bbs/TOEIC/M.1642389780.A.311.html",
+      "author_or_channel": "PTT TOEIC板",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google/PTT 搜尋「多益 弱底 準備心得」多次出現於前5名，含moptt鏡像站）",
+      "summary_zh": "英文底子差者3個月從445進步到725分的心得，提供分大題計時檢討法（記錄各Part耗時與錯題數以抓弱點），閱讀建議從Part7開始做（頭腦清楚時做難題）。",
+      "published": "2022年（依文章網址時間戳）"
+    },
+    {
+      "title": "[心得] 多益930準備",
+      "url": "https://www.pttweb.cc/bbs/TOEIC/M.1737536233.A.C8F",
+      "author_or_channel": "PTT TOEIC板（PTT網頁版）",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（PTT TOEIC板搜尋「準備方法 心得」結果前8名內）",
+      "summary_zh": "二戰從885進步到930分，使用字神多益講義準備，聽力每天跟讀(shadowing)練習1小時，閱讀掌握轉折詞與配分機制判斷重點，並分享選擇考場（逢甲大學）的實務建議。",
+      "published": "2025年（依文章網址時間戳，推測為近期考試心得）"
+    },
+    {
+      "title": "多益一個月從400衝刺到850的秘密攻略",
+      "url": "https://vocus.cc/article/66208cd4fd89780001caabcc",
+      "author_or_channel": "vocus 方格子作者",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 短期衝刺 讀書計畫 一個月」結果第4名）",
+      "summary_zh": "42天衝刺期心得，核心主張「寫模考題是關鍵」勝過單純背單字，提供每天閱讀75分鐘+聽力45分鐘並隔日檢討的具體排程，並建議提早調整作息配合考試時段。",
+      "published": "unknown"
+    },
+    {
+      "title": "多益聽力Part 3和Part 4怎麼準備？考前必看的5個關鍵技巧",
+      "url": "https://online.tilc.com.tw/posts/toeic-27",
+      "author_or_channel": "時代國際英日韓語（補習班官網）",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 聽力 Part3 Part4 技巧 心得」結果第1名，同文亦被YOTTA轉載）",
+      "summary_zh": "補習班整理的5個關鍵技巧：培養英文直接反射力、3秒瀏覽複習法、作答時不分心看閱讀部分、事先瀏覽題目選項、邊聽邊主動找線索比對選項。",
+      "published": "unknown"
+    },
+    {
+      "title": "多益3.5個月440➡️755心得分享&準備過程&成績紀錄",
+      "url": "https://www.dcard.tw/f/exam/p/239710256",
+      "author_or_channel": "Dcard 匿名使用者",
+      "type": "forum",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Dcard 搜尋「dcard 多益 高分 心得」結果第5名）",
+      "summary_zh": "3.5個月從440進步到755分，提到聽力Part3/4先預讀題目選項、以及用「三指技巧」蓋住明顯錯誤選項以維持專注的作答習慣。",
+      "published": "unknown"
+    },
+    {
+      "title": "多益聽力部分Part 3 & Part 4考試技巧：應試必備策略",
+      "url": "https://www.language-world.com.tw/TOEIC%E5%A4%9A%E7%9B%8A/%E5%A4%9A%E7%9B%8A%E8%81%BD%E5%8A%9Bpart3&part4%E8%80%83%E8%A9%A6%E6%8A%80%E5%B7%A7_%E6%87%89%E8%A9%A6%E5%BF%85%E5%82%99%E7%AD%96%E7%95%A5.html",
+      "author_or_channel": "時代國際英日韓語（補習班官網）",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（Google 搜尋「多益 聽力 Part3 Part4 技巧 心得」結果第4名）",
+      "summary_zh": "補習班文章統整同義字替換陷阱為Part3/4常見出題手法，考生需練習聽出選項中以同義詞取代原文用字的情況，並掌握對話人物關係判斷技巧。",
+      "published": "unknown"
+    }
+  ],
+  "tips": [
+    {
+      "title_zh": "背單字採三層循環法：複習昨天、熟記今天、預習明天",
+      "part": "Vocab",
+      "detail_zh": "使用分級單字書時，每天同時進行「複習昨天內容、熟記今天新詞、預習明天段落」三層循環，並搭配音檔同步背誦，讓聽覺與視覺一起記憶。此方法可在約3個月內完整跑完一輪教材，適合中長期準備者鞏固單字量。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1584622253.A.2D2.html"
+    },
+    {
+      "title_zh": "聽力全程用1.1~1.3倍速播放練習，習慣正式考試語速",
+      "part": "General",
+      "detail_zh": "平時用APP或播放器把聽力題目調成1.1~1.3倍速練習，讓耳朵習慣比正常語速更快的內容。正式考試用原速播放時就會覺得「變慢」，更容易抓住每句重點與細節，是多篇心得共同提到的關鍵技巧。",
+      "example": "",
+      "source_url": "https://wanding.pixnet.net/blog/post/48988987"
+    },
+    {
+      "title_zh": "Part5+6控制在20分鐘內完成，把時間留給Part7",
+      "part": "P5",
+      "detail_zh": "高分考生一致建議把Part5（單句填空）與Part6（段落填空）合併控制在約20分鐘完成，因為這兩部分多為固定文法與詞彙考點，判斷速度可以練得很快；省下的時間才能應付Part7大量長篇閱讀，避免最後因時間不足而用猜的做完雙篇、三篇文章。",
+      "example": "",
+      "source_url": "https://drshawnchang.pixnet.net/blog/post/294622400"
+    },
+    {
+      "title_zh": "Part7採先看題目、再帶著問題掃讀文章的解題順序",
+      "part": "P7",
+      "detail_zh": "開始讀文章前先瀏覽該題組所有題目與關鍵字，帶著問題去掃讀文章，才不會讀完整篇後還要回頭重新尋找答案位置；讀到與題目關鍵字對應的段落時直接作答，可大幅縮短單題作答時間。",
+      "example": "Question asks \"What is the purpose of the memo?\" — scan the opening sentence for the stated purpose before reading the rest of the passage.",
+      "source_url": "https://blog.wordup.com.tw/blog/2021/03/17/toeic-reading-part-preparation/"
+    },
+    {
+      "title_zh": "利用轉折詞與特殊符號快速定位Part6/Part7答案線索",
+      "part": "P6",
+      "detail_zh": "練習辨識however、therefore、in addition、suddenly等轉折詞，以及破折號、冒號等特殊符號，這些通常標示句意轉折或補充說明，是Part6填入句子題與Part7細節題最常見的解題線索；掌握配分機制與常見出題模式可加快答題速度。",
+      "example": "\"The shipment was delayed. However, the client agreed to a new deadline.\" — \"However\" signals the sentence that should fill the blank right after the delay is mentioned.",
+      "source_url": "https://www.pttweb.cc/bbs/TOEIC/M.1737536233.A.C8F"
+    },
+    {
+      "title_zh": "聽力Part3/4利用題型說明播報空檔預覽三題選項",
+      "part": "P3",
+      "detail_zh": "每組對話開始前，音檔會先唸一段固定的題型說明，這段時間務必拿來瀏覽該題組三題的題目與選項，並圈出人名、地點、數字等關鍵字；聽對話時就能主動抓取對應資訊作答，而不是被動聽完才回頭看題目。",
+      "example": "",
+      "source_url": "https://online.tilc.com.tw/posts/toeic-27"
+    },
+    {
+      "title_zh": "Part3/4依「先答細節題、後答總結題」的順序安排作答節奏",
+      "part": "P4",
+      "detail_zh": "三題中通常有一題是需要聽到對話或獨白結束才能推論出的總結、意圖題，建議優先完成能從對話前段就找到答案的細節題，最後才處理需整段理解的推論題，避免因等待總結題答案而漏接其他兩題的線索。",
+      "example": "",
+      "source_url": "https://online.tilc.com.tw/posts/toeic-27"
+    },
+    {
+      "title_zh": "對話開頭一兩句用來判斷說話者身分與情境",
+      "part": "P3",
+      "detail_zh": "多益對話與短文的角色設定資訊幾乎都藏在開頭一兩句，例如自我介紹、打招呼或說明來電目的；聽到開頭就先建立「誰在跟誰說話、在什麼場景」的畫面，能幫助後續快速理解對話走向並排除不合理選項。",
+      "example": "\"Hi, this is Tom from the IT department calling about your laptop request.\" — establishes caller identity and topic within the first sentence.",
+      "source_url": "https://online.tilc.com.tw/posts/toeic-27"
+    },
+    {
+      "title_zh": "留意同義字替換陷阱，選項常用同義詞取代原文用字",
+      "part": "General",
+      "detail_zh": "多益聽力與閱讀都偏好在題目或選項中使用原文的同義詞而非原詞重複出現。平時精聽/精讀時要刻意練習抓取同義詞轉換，才不會因為選項裡找不到「原字」而誤判沒聽到答案，進而選錯。",
+      "example": "Dialogue: \"I'm running late for the meeting.\" → Correct paraphrase option: \"The speaker is delayed.\"",
+      "source_url": "https://www.language-world.com.tw/TOEIC%E5%A4%9A%E7%9B%8A/%E5%A4%9A%E7%9B%8A%E8%81%BD%E5%8A%9Bpart3&part4%E8%80%83%E8%A9%A6%E6%8A%80%E5%B7%A7_%E6%87%89%E8%A9%A6%E5%BF%85%E5%82%99%E7%AD%96%E7%95%A5.html"
+    },
+    {
+      "title_zh": "用「三指技巧」蓋住明顯錯誤選項,聽力作答不猶豫直接刪去",
+      "part": "P1",
+      "detail_zh": "Part1看圖辨識題可搭配手指直接壓住明顯錯誤的選項（俗稱三指技巧），聽到不符合圖片描述的敘述就立刻用手指蓋掉，剩下用直覺選出最可能的答案；正式考試中不要因猶豫而回頭修改，避免因分心錯過下一題的開頭。",
+      "example": "",
+      "source_url": "https://www.dcard.tw/f/exam/p/239710256"
+    },
+    {
+      "title_zh": "Part2先聽清楚句首的疑問詞，判斷答題方向",
+      "part": "P2",
+      "detail_zh": "Part2是一問一答，題目不會印在題本上，只能靠耳朵抓重點；開頭的疑問詞（What/When/Where/Who/Why/How）幾乎決定了答案類型，例如問「When」通常對應時間或條件子句的回答而非直接Yes/No，聽漏開頭字就容易整題用猜的。",
+      "example": "Q: \"When will the shipment arrive?\" → Correct answer type: a time expression like \"By Friday,\" not \"Yes, it will.\"",
+      "source_url": "https://wanding.pixnet.net/blog/post/48988987"
+    },
+    {
+      "title_zh": "Part7作答時「寫完一個題組再畫卡」而非逐題畫卡",
+      "part": "P7",
+      "detail_zh": "在Part7長篇閱讀中，建議先把答案劃記在題本上，等一組題目（通常3-5題）都確認後再一次畫到答案卡，減少來回切換題本與答案卡造成的節奏中斷與找錯行風險，尤其在時間緊迫時更能維持專注。",
+      "example": "",
+      "source_url": "https://blog.wordup.com.tw/blog/2021/03/17/toeic-reading-part-preparation/"
+    },
+    {
+      "title_zh": "遇到卡關超過1分鐘的題目先直覺作答並跳過，把握確定分數",
+      "part": "General",
+      "detail_zh": "高分考生普遍採取「先拿穩拿分數，再拚困難題」的策略：若一題（尤其Part5文法題或Part7細節題）思考超過一分鐘仍無頭緒，先隨意作答並標記，跳去做後面確定會的題目，考完再回頭檢查，避免因卡關而排擠掉其他題目的作答時間。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1584622253.A.2D2.html"
+    },
+    {
+      "title_zh": "刷模擬題全程不中途休息，刻意練習「疲勞作答」的臨場感",
+      "part": "Plan",
+      "detail_zh": "平常寫模擬題時建議整份聽力+閱讀（約2小時）一次連續完成，不中途暫停休息，讓身體習慣長時間高度專注、後段仍需維持答題品質的疲勞感。正式考試無法中途休息，練習時先體驗過這種狀態，臨場才不會因後段注意力渙散而失分。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1584622253.A.2D2.html"
+    },
+    {
+      "title_zh": "檢討時間需為做題時間的3~4倍，而非只對答案",
+      "part": "Plan",
+      "detail_zh": "寫完一回模擬題後，檢討不是只看對錯，而是要花做題時間3到4倍的時間，逐題確認為什麼錯、單字是否不會、文法概念是否不熟，並把生詞和易混淆文法整理進錯題筆記本；這個檢討量在多篇心得中都被列為進步的關鍵，而非單純增加刷題量。",
+      "example": "",
+      "source_url": "https://drshawnchang.pixnet.net/blog/post/294622400"
+    },
+    {
+      "title_zh": "一個月衝刺法：第一週單字打底，之後每天閱讀75分鐘+聽力45分鐘並隔日檢討",
+      "part": "Plan",
+      "detail_zh": "針對僅剩一個月的衝刺讀者，建議第一週先密集背誦分級單字書（每天3-4小時，分早中晚三段時間吸收），第二週起銜接試題本，之後每天固定安排「閱讀75分鐘、聽力45分鐘」的模考練習，並在隔天完整檢討前一天寫過的題目，形成「寫題—隔日檢討」的循環直到考前。",
+      "example": "",
+      "source_url": "https://vocus.cc/article/66208cd4fd89780001caabcc"
+    },
+    {
+      "title_zh": "分大題計時練習，記錄各Part耗時與錯題數精準抓弱點",
+      "part": "Plan",
+      "detail_zh": "練習時分別替Part5/6、Part7單篇、雙三篇、聽力四大題各自計時，並記錄下花費時間與錯題數，若某大題耗時異常長或錯誤率高，就代表是該加強單字量、閱讀速度或特定文法概念的訊號，比起籠統地「多寫題」更能精準抓出弱點並對症下藥。",
+      "example": "",
+      "source_url": "https://www.ptt.cc/bbs/TOEIC/M.1642389780.A.311.html"
+    },
+    {
+      "title_zh": "把單字書與聽力題庫音檔匯入手機，用零碎時間反覆複習",
+      "part": "Vocab",
+      "detail_zh": "把單字書內容匯入Wordup等背單字APP，或把聽力題庫音檔下載到手機，利用通勤、等車、睡前等零碎時間反覆聽或做拼字測驗；許多心得都提到單靠正課時間不夠，需要把瑣碎時間也用上才能在一個月內有感進步。",
+      "example": "",
+      "source_url": "https://wanding.pixnet.net/blog/post/48988987"
+    },
+    {
+      "title_zh": "閱讀時遇生字先用上下文猜意，避免逐字查中文翻譯",
+      "part": "P7",
+      "detail_zh": "練習時刻意不查字典逐字翻譯，而是先透過上下文、字根字首、句型結構去猜測生字意思，訓練「用英文理解英文」的語感。正式考試時間有限，若每個生字都要在腦中轉換成中文再理解，速度會明顯落後，難以在75分鐘內完成100題閱讀。",
+      "example": "",
+      "source_url": "https://drshawnchang.pixnet.net/blog/post/294622400"
+    },
+    {
+      "title_zh": "每天安排約1小時跟讀練習(Shadowing)，強化聽力反應速度",
+      "part": "General",
+      "detail_zh": "除了刷題，額外安排每天約1小時的跟讀練習：拿到聽力文字稿，一邊播放音檔一邊跟著唸出來，訓練自己抓住連音、弱讀與正確斷句的節奏。這種方法能同步提升聽力反應速度與語感，對Part3/4的長對話理解特別有幫助。",
+      "example": "",
+      "source_url": "https://www.pttweb.cc/bbs/TOEIC/M.1737536233.A.C8F"
+    },
+    {
+      "title_zh": "考前1~2週調整作息到考試時段，避免熬夜衝刺影響臨場專注力",
+      "part": "Time",
+      "detail_zh": "多益考試多在固定的上午或下午時段開始，建議考前一到兩週開始調整生理時鐘，讓自己在正式考試那個時段大腦最清醒、專注力最好；同時考前一晚要有充足睡眠，避免熬夜衝刺反而在考場注意力渙散、影響聽力與閱讀的判斷速度。",
+      "example": "",
+      "source_url": "https://vocus.cc/article/66208cd4fd89780001caabcc"
+    }
+  ]
+}

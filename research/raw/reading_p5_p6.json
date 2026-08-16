@@ -1,0 +1,233 @@
+{
+  "lens": "reading_p5_p6",
+  "sources": [
+    {
+      "title": "多益閱讀高分攻略：Part 5 文法核心考點完全整理 + Part 7 精準定位閱讀法",
+      "url": "https://www.tutorabc.com/blog/zh-tw/post/68667",
+      "author_or_channel": "TutorABC",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "Google 搜尋「多益 part 5 技巧 秒殺 詞性」第 1 名",
+      "summary_zh": "整理 Part 5 詞性題「位置法」、時態判斷的時間標誌詞、介系詞 vs 連接詞的判斷方式；並提供 Part 7 略讀→預測定位→回文確認三步驟閱讀法。內容具體到每種詞性前後應出現的詞類線索。",
+      "published": "未標示，內容含2026年多益趨勢字樣"
+    },
+    {
+      "title": "2026多益閱讀滿分指南：多益閱讀技巧、時間管理到解題技巧完整攻略",
+      "url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "多組關鍵字（時間分配、閱讀技巧）搜尋皆排名前列",
+      "summary_zh": "提供「穩健型」與「衝刺型」兩種 Part 5/6/7 時間分配表，並拆解 Part 5 詞性/時態/介系詞/單字題各自的解題公式，以及 Part 6 連接詞、句子插入、完整句填空的個別技巧。",
+      "published": "2026年版攻略"
+    },
+    {
+      "title": "【新多益閱讀】句子填空高分解題技巧",
+      "url": "https://www.language-center.com.tw/toeic/exam/skill-1.html",
+      "author_or_channel": "語言中心 Language-Center",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（搜尋結果第3名，「多益 part 5 技巧」）",
+      "summary_zh": "以三個難度層級（純技巧、需語義理解、全面理解）的實際考題為例，說明新制多益 Part 5 已不能只靠詞性技巧，需扎實累積單字與文法基礎，並提出 respective vs respectable 等易混淆詞例。",
+      "published": "未標示"
+    },
+    {
+      "title": "必考5個多益文法重點解析！完整解題技巧，帶你練習如何秒拿高分",
+      "url": "https://www.cocolong.com.tw/zh-tw/english/article.php?act=view&id=80",
+      "author_or_channel": "Cocolong 英文",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（多組關鍵字搜尋結果皆出現，含「文法高頻考點」「詞性秒殺」）",
+      "summary_zh": "條列時態題、詞性題、主動被動語態題、分詞題、介系詞/連接詞題五大重點，每項都附判斷口訣（如 by+人→被動、interesting news vs surprised employees），並提醒難題先跳過。",
+      "published": "未標示"
+    },
+    {
+      "title": "Mastering TOEIC Reading Part 6: Tips for Completing Texts with Ease",
+      "url": "https://www.famousjamesadventures.com/blog/toeic-reading-part-6-text-completion-strategies-for-higher-scores",
+      "author_or_channel": "Famous James Adventures",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "unknown（Google 搜尋「TOEIC part 6 sentence insertion tips」第4名）",
+      "summary_zh": "以一封專案信件的實際範例，示範讀完整段落抓語氣與目的、檢查空格前後句、句子插入題須雙向檢查邏輯銜接、累積同義字辨析等五項具體做法。",
+      "published": "未標示"
+    },
+    {
+      "title": "多益文法重點整理：系統學習15個核心語法考點",
+      "url": "https://prepedu.com/zh-hant/blog/toeic-test-grammar",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（「多益 文法 高頻 考點 整理」搜尋前列）",
+      "summary_zh": "把多益文法考點濃縮成15項（詞性、主謂一致、代名詞、時態、語態、不定詞/動名詞、分詞、分詞構句、連接詞vs介系詞、關係子句、形容詞副詞、比較級、假設語氣、倒裝句、名詞數量詞），並宣稱文法題約占總分35%，掌握15點可覆蓋九成以上題目。",
+      "published": "未標示"
+    },
+    {
+      "title": "多益介系詞必考重點總整理：從基礎到進階一次搞懂",
+      "url": "https://prepedu.com/zh-hant/blog/toeic-preposition",
+      "author_or_channel": "Prepedu",
+      "type": "prep_site",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（「多益 part 5 介系詞 固定搭配 高頻」搜尋前列）",
+      "summary_zh": "分類列出動詞+介系詞（deal with、look forward to、result in、depend on）與形容詞+介系詞（responsible for、interested in、different from）高頻搭配，並用例句對比 despite/although、because of/because 的介系詞 vs 連接詞差異。",
+      "published": "未標示"
+    },
+    {
+      "title": "TOEIC Part 6: Master Text Completion with Strategy, Grammar & Flow",
+      "url": "https://www.mytoeiccoach.com/toeic-part6-guide",
+      "author_or_channel": "MyTOEICCoach",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "unknown（「TOEIC part 6 sentence insertion tips」搜尋結果之一）",
+      "summary_zh": "把 Part 6 解法拆成先辨識文本類型、檢查前後句、連貫性測試（flow test）優先於單句文法正確、追蹤代名詞指涉、句子插入題雙向測試、設定放棄時限、練習後做錯題歸因八個具體步驟。",
+      "published": "未標示"
+    },
+    {
+      "title": "4大歷屆多益文法必考題型，考前一定要看過一遍！",
+      "url": "https://blog.wordup.com.tw/blog/2021/06/07/to-solve-toeic-grammar/",
+      "author_or_channel": "WORD UP 聰明學習",
+      "type": "blog",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（「多益 part 6 連接詞 轉折語 技巧」與「文法高頻考點」搜尋皆出現）",
+      "summary_zh": "整理詞性題、時態題、分詞題、轉折詞題四大題型，強調即使不懂單字意思也能靠詞性位置作答，並提醒轉折詞需判斷作者語氣是否轉變（however、meanwhile、then 等）。",
+      "published": "2021-06-07"
+    },
+    {
+      "title": "【多益閱讀】如何秒殺Part 5詞性題│巨匠美語多益秒學堂",
+      "url": "https://www.youtube.com/watch?v=CEEeHbcvuqw",
+      "author_or_channel": "巨匠美語",
+      "type": "youtube",
+      "language": "zh-TW",
+      "popularity_signal": "unknown（YouTube 觀看數未能擷取；於「多益 part 5 攻略 YouTube」搜尋結果排名第3）",
+      "summary_zh": "補習班官方頻道教學影片，主題為利用字根字首與詞性線索快速判斷 Part 5 詞性題答案；WebFetch 僅能取得標題與頻道名稱，無法擷取觀看數與逐字稿內容。",
+      "published": "未標示"
+    }
+  ],
+  "tips": [
+    {
+      "title_zh": "詞性題用「空格前後位置法」，不用先讀懂整句",
+      "part": "P5",
+      "detail_zh": "四個選項若是同一個字的詞性變化（名詞/動詞/形容詞/副詞），先看空格緊鄰的詞：冠詞或所有格後面接名詞，be動詞後面接形容詞，動詞前後接副詞，名詞前面接形容詞。這個方法能在不理解句意的情況下，把作答時間壓在20秒內完成，是多篇來源共同強調的第一原則。",
+      "example": "The manager gave us some helpful ___ (advice/advise/advisable/advisably). 前面已有形容詞 helpful 修飾，空格須填名詞 advice。",
+      "source_url": "https://www.tutorabc.com/blog/zh-tw/post/68667"
+    },
+    {
+      "title_zh": "先看四個選項，再回句子找線索（選項優先法）",
+      "part": "P5",
+      "detail_zh": "遇到句子較長或較難的題目，先掃描四個選項的詞性與字義差異，判斷考的是詞性、時態還是搭配題，再帶著明確目標回到空格前後找線索驗證，可比先讀完整句再選快上許多，避免把時間花在不必要的完整翻譯。",
+      "example": "",
+      "source_url": "https://www.tutorabc.com/blog/zh-tw/post/68667"
+    },
+    {
+      "title_zh": "動詞時態靠時間標誌詞判斷，注意現在完成式的陷阱",
+      "part": "P5",
+      "detail_zh": "句中出現 for、since、already、yet 通常對應現在完成式；出現 yesterday、last night、next month 等明確過去/未來時間點則對應過去式或未來式；描述時刻表、班次、例行公事則用現在簡單式。先找時間詞再決定時態，比單純背文法規則更快也更準。",
+      "example": "Sales ___ steadily since last year. → have increased（現在完成式，因為有 since）。",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-test-grammar"
+    },
+    {
+      "title_zh": "「by + 人」是被動語態的強烈訊號",
+      "part": "P5",
+      "detail_zh": "句子出現「by + 人／單位」時，動詞多半要選被動語態（be + 過去分詞）；判斷主詞是動作的執行者還是承受者，是主動被動題最快的切入點，不需要理解句子全部意思。",
+      "example": "The proposal was reviewed by the committee.",
+      "source_url": "https://www.cocolong.com.tw/zh-tw/english/article.php?act=view&id=80"
+    },
+    {
+      "title_zh": "分詞題：V-ing表主動特徵，V-ed表被動感受",
+      "part": "P5",
+      "detail_zh": "現在分詞（-ing）用來形容「會讓人產生某種感受」的事物本身，過去分詞（-ed）用來形容「感受到某情緒」的人。先判斷空格要修飾的名詞是「事物」還是「人」，再決定用哪一種分詞形式。",
+      "example": "interesting news（新聞本身有趣） vs. surprised employees（員工感到驚訝）。",
+      "source_url": "https://www.cocolong.com.tw/zh-tw/english/article.php?act=view&id=80"
+    },
+    {
+      "title_zh": "介系詞 vs 連接詞：看空格後面接名詞還是接子句",
+      "part": "P5",
+      "detail_zh": "介系詞（despite、because of、during）後面只能接名詞或名詞片語；連接詞（although、because、while）後面必須接含有主詞+動詞的完整子句。遇到 despite/although、because of/because 這類意思相近但詞性不同的成對選項，直接看空格後方的文法結構就能秒選，不需理解語意。",
+      "example": "Despite the rain, the conference proceeded. / Although it rained, the conference proceeded.",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-preposition"
+    },
+    {
+      "title_zh": "硬記高頻「動詞/形容詞+介系詞」固定搭配",
+      "part": "P5",
+      "detail_zh": "多益 Part 5、6 每回必定出現2–3題介系詞固定搭配題，這類題目無法用文法邏輯推理，只能靠平時累積記憶。優先背誦商用高頻組合，遇到題目時直接比對記憶中的搭配，答題速度可大幅提升。",
+      "example": "responsible for、interested in、different from、deal with、look forward to、result in、depend on。",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-preposition"
+    },
+    {
+      "title_zh": "難題先跳過，避免拖累後面所有題目的時間",
+      "part": "Time",
+      "detail_zh": "Part 5 建議每題控制在20–30秒內，若超過仍無法判斷，直接依詞性/邏輯猜一個最合理的選項並做記號跳過，等答完所有題目後有剩餘時間再回頭檢查。維持穩定節奏比在單一題目上死磕更能保住 Part 7 的作答時間。",
+      "example": "",
+      "source_url": "https://www.cocolong.com.tw/zh-tw/english/article.php?act=view&id=80"
+    },
+    {
+      "title_zh": "Part 5+6 合計時間上限抓15–25分鐘，把時間讓給Part 7",
+      "part": "Plan",
+      "detail_zh": "多篇資料建議 Part 5 約10–12分鐘、Part 6 約8–10分鐘，兩者合計不超過20–25分鐘，確保 Part 7 至少有50–57分鐘可用（Part 7 題數最多、單題分數效益最高）。可先設定手錶或考場時鐘檢查點，提醒自己在時限內強制往下一部分推進。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-reading-strategies"
+    },
+    {
+      "title_zh": "Part 6 先掃過整段抓語氣與目的，再回頭填空",
+      "part": "P6",
+      "detail_zh": "不同於 Part 5 單句即可作答，Part 6 是一整篇文章挖空，若只看空格前後一句就填，容易選出「單句文法對、但破壞全文邏輯」的錯誤答案。花10–15秒先掃過全文抓文本類型（信件/公告/文章）與整體語氣走向，再回頭逐格作答，正確率會明顯提升。",
+      "example": "",
+      "source_url": "https://www.mytoeiccoach.com/toeic-part6-guide"
+    },
+    {
+      "title_zh": "連貫性優先於單句文法正確（flow test）",
+      "part": "P6",
+      "detail_zh": "若某個選項單獨放進句子文法上通順，但會讓整段文章語意跳躍或前後矛盾，這個選項通常是錯的。Part 6 出題邏輯是測試「段落理解」而非單純文法，所以每次選定答案後，順著讀一次前後兩句確認語意是否通順再定案。",
+      "example": "",
+      "source_url": "https://www.mytoeiccoach.com/toeic-part6-guide"
+    },
+    {
+      "title_zh": "連接詞/轉折詞題先判斷邏輯關係類型，再選字",
+      "part": "P6",
+      "detail_zh": "看到連接詞或轉折副詞（however、meanwhile、in addition、as a result、therefore）的選項時，先判斷前後句是因果、對比、遞進還是舉例關係，再從對應類型的詞庫裡挑選，同時留意分號和逗號的使用習慣，因為連接副詞前通常用分號、連接詞前用逗號。",
+      "example": "The shipment was delayed; however, the client was notified in advance.",
+      "source_url": "https://blog.wordup.com.tw/blog/2021/06/07/to-solve-toeic-grammar/"
+    },
+    {
+      "title_zh": "句子插入題要雙向檢查：能接上句、也能接下句",
+      "part": "P6",
+      "detail_zh": "句子插入題（选择整句填入空格）不能只看插入句本身是否合理，必須確認它同時能自然承接「前一句」與銜接「後一句」，並追蹤代名詞（this、it、they）指涉的對象是否與上下文一致，避免選到主題正確但邏輯銜接錯位的選項。",
+      "example": "",
+      "source_url": "https://www.mytoeiccoach.com/toeic-part6-guide"
+    },
+    {
+      "title_zh": "遇到不確定的答案，設定放棄時限並記錄錯題型態",
+      "part": "P6",
+      "detail_zh": "Part 6 每空格建議不超過30秒仍無法判斷就先選最合理的答案跳過。練習後應統計自己錯在「翻譯太慢」「抓不到段落邏輯」還是「看錯文本類型」，針對最常出現的錯誤類型加強，而不是無差別地大量刷題。",
+      "example": "",
+      "source_url": "https://www.mytoeiccoach.com/toeic-part6-guide"
+    },
+    {
+      "title_zh": "同義詞混淆題靠語境判斷，不能只背中文意思",
+      "part": "Vocab",
+      "detail_zh": "多益常在選項中放入意思相近的字（advise/recommend/suggest、despite/although）測試精準用法差異，死背中文翻譯無法區分，需要透過大量例句建立每個字的固定搭配與使用情境，考試時才能依語境秒選。",
+      "example": "advise sb. to V／recommend + V-ing or that子句／suggest + V-ing or that子句，三者中文都翻「建議」但文法搭配不同。",
+      "source_url": "https://www.language-center.com.tw/toeic/exam/skill-1.html"
+    },
+    {
+      "title_zh": "高頻商用單字分類主題背，一個月300–400字可見效",
+      "part": "Vocab",
+      "detail_zh": "與其漫無目的背單字書，不如按主題分類（人資、行銷、財務、物流）一次記10–15個字，複習時再跨主題混合測驗加深記憶；每天投入30分鐘、持續一個月，足以覆蓋 Part 5、6 常考的商用字彙範圍，直接提升閱讀速度與答題準確度。",
+      "example": "",
+      "source_url": "https://www.mytoeiccoach.com/toeic-part6-guide"
+    },
+    {
+      "title_zh": "文法題約占總分三成以上，15個核心考點覆蓋九成題目",
+      "part": "P5",
+      "detail_zh": "把準備範圍收斂到詞性、主謂一致、代名詞、時態、語態、不定詞/動名詞、分詞、分詞構句、連接詞vs介系詞、關係子句、形容詞副詞、比較級最高級、假設語氣、倒裝句、名詞數量詞這15個文法考點，逐一弄懂判斷口訣，就能應付 Part 5、6 九成以上的文法題型，比漫無目的做題更有效率。",
+      "example": "",
+      "source_url": "https://prepedu.com/zh-hant/blog/toeic-test-grammar"
+    },
+    {
+      "title_zh": "新制多益已不能只靠純技巧，需搭配單字語意判斷",
+      "part": "P5",
+      "detail_zh": "新制多益中，僅憑「詞性位置」等純技巧就能作答的題目已不到5題，多數詞性題選項間意思差異頗大（如 respective「各自的」vs respectable「值得尊敬的」），必須理解單字意思才能選對，因此扎實累積字彙量仍是拿高分的根本，技巧只能加速已經看得懂的題目。",
+      "example": "their ___ offices → respective offices（各自的辦公室），respectable 意思不合語境。",
+      "source_url": "https://www.language-center.com.tw/toeic/exam/skill-1.html"
+    }
+  ]
+}

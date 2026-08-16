@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="30 天 TOEIC 衝刺計畫：技巧、做題、聽力、單字 SRS、模考與錯題本。">
+<title>TOEIC 30 天衝刺</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn sidebar-toggle" id="sidebarToggle" aria-label="開啟選單" aria-controls="sidebar" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <a href="#/dashboard" class="brand">
+        <span class="brand-mark" aria-hidden="true">🎯</span>
+        <span class="brand-name">TOEIC 30 天衝刺</span>
+      </a>
+    </div>
+    <div class="topbar-right">
+      <div class="pill pill-countdown" id="countdownPill" title="距考試天數">
+        <span class="pill-icon" aria-hidden="true">⏳</span>
+        <span id="countdownText">距考試 -- 天</span>
+      </div>
+      <div class="pill pill-day" id="dayPill" title="今日進度">
+        <span id="dayText">Day -/30</span>
+      </div>
+      <button class="icon-btn" id="themeToggle" aria-label="切換主題" title="切換主題">🌓</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <nav class="sidebar" id="sidebar" aria-label="主導覽">
+      <ul class="sidebar-nav">
+        <li><a href="#/dashboard" data-route="dashboard"><span class="nav-icon" aria-hidden="true">📊</span><span>儀表板</span></a></li>
+        <li><a href="#/plan" data-route="plan"><span class="nav-icon" aria-hidden="true">📅</span><span>30 天計畫</span></a></li>
+        <li><a href="#/tips" data-route="tips"><span class="nav-icon" aria-hidden="true">💡</span><span>技巧庫</span></a></li>
+        <li><a href="#/quiz" data-route="quiz"><span class="nav-icon" aria-hidden="true">✏️</span><span>閱讀做題</span></a></li>
+        <li><a href="#/listening" data-route="listening"><span class="nav-icon" aria-hidden="true">🎧</span><span>聽力練習</span></a></li>
+        <li><a href="#/vocab" data-route="vocab"><span class="nav-icon" aria-hidden="true">📚</span><span>單字卡</span></a></li>
+        <li><a href="#/mock" data-route="mock"><span class="nav-icon" aria-hidden="true">🎯</span><span>迷你模考</span></a></li>
+        <li><a href="#/review" data-route="review"><span class="nav-icon" aria-hidden="true">🔁</span><span>錯題本</span></a></li>
+        <li><a href="#/settings" data-route="settings"><span class="nav-icon" aria-hidden="true">⚙️</span><span>設定</span></a></li>
+      </ul>
+    </nav>
+
+    <main id="view" class="main-view" tabindex="-1" aria-live="polite">
+      <div class="empty-state">
+        <div class="empty-state-icon" aria-hidden="true">⏳</div>
+        <h2>載入中…</h2>
+        <p>正在準備你的學習內容，請稍候。</p>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom-tabbar" aria-label="主導覽（手機版）">
+    <a href="#/dashboard" data-route="dashboard" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">📊</span><span class="tab-label">儀表板</span>
+    </a>
+    <a href="#/plan" data-route="plan" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">📅</span><span class="tab-label">計畫</span>
+    </a>
+    <a href="#/quiz" data-route="quiz" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">✏️</span><span class="tab-label">做題</span>
+    </a>
+    <a href="#/vocab" data-route="vocab" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">📚</span><span class="tab-label">單字</span>
+    </a>
+    <button type="button" id="moreTabBtn" class="tab-item tab-item-more">
+      <span class="tab-icon" aria-hidden="true">⋯</span><span class="tab-label">更多</span>
+    </button>
+  </nav>
+
+</div>
+
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+<div id="modal-root"></div>
+
+<!-- data（依 DESIGN §3 順序；缺檔不影響其餘腳本載入，views 需友善處理空資料） -->
+<script src="data/tips.js"></script>
+<script src="data/plan.js"></script>
+<script src="data/vocab_1.js"></script>
+<script src="data/vocab_2.js"></script>
+<script src="data/questions_p5_1.js"></script>
+<script src="data/questions_p5_2.js"></script>
+<script src="data/questions_p5_3.js"></script>
+<script src="data/questions_p6.js"></script>
+<script src="data/questions_p7_1.js"></script>
+<script src="data/questions_p7_2.js"></script>
+<script src="data/listening_1.js"></script>
+<script src="data/listening_2.js"></script>
+<script src="data/listening_3.js"></script>
+
+<!-- core -->
+<script src="js/util.js"></script>
+<script src="js/store.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/tts.js"></script>
+
+<!-- views -->
+<script src="js/views/dashboard.js"></script>
+<script src="js/views/plan.js"></script>
+<script src="js/views/tips.js"></script>
+<script src="js/views/quiz.js"></script>
+<script src="js/views/listening.js"></script>
+<script src="js/views/vocab.js"></script>
+<script src="js/views/mock.js"></script>
+<script src="js/views/review.js"></script>
+<script src="js/views/settings.js"></script>
+
+<!-- app shell（最後載入） -->
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+{
+  "lens": "intl_prep_sites",
+  "sources": [
+    {
+      "title": "How to prepare for the TOEIC Listening and Reading test?",
+      "url": "https://etsglobal.org/About-us/News/5-Tips-to-Prepare-for-the-TOEIC-R-Listening-and-Reading-Test",
+      "author_or_channel": "ETS Global",
+      "type": "official",
+      "language": "en",
+      "popularity_signal": "ETS 官方授權機構網站，Google 搜尋『TOEIC test taking strategies tips ETS official』第一名",
+      "summary_zh": "ETS Global 官方頁面提供 5 大備考建議，包含先用 TOEIC Test Level Projector 評估程度、每天用不開字幕的英文影集與歌詞磨耳朵、熟悉四種口音與 200 題兩小時的測驗架構。強調 TOEIC 不需要商業專業知識，純粹測驗英語能力。",
+      "published": "unknown"
+    },
+    {
+      "title": "20 TOEIC Tips",
+      "url": "https://www.englishclub.com/esl-exams/ets-toeic-tips.php",
+      "author_or_channel": "EnglishClub",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "老牌 ESL 學習網站，多組關鍵字搜尋（TOEIC tips、Grammarly TOEIC tips）皆排名前 5",
+      "summary_zh": "EnglishClub 列出 20 條 TOEIC 應考建議，涵蓋設定目標分數、依弱點調整讀書時間分配、建立商務主題字彙庫、以及整理常見誘答選項類型等具體讀書策略。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC® Reading Part 5: Incomplete Sentences – Grammar and Vocabulary Tips",
+      "url": "https://www.famousjamesadventures.com/blog/mastering-toeic-part-5-incomplete-sentences-strategy-and-tips",
+      "author_or_channel": "FamousJames Adventures",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 5 grammar vocabulary tips shortcut strategy』前 10 名",
+      "summary_zh": "詳細拆解 Part 5 的解題流程：先讀完整句抓決定性線索、依序檢查文法一致性與語意合理性，並整理常見片語搭配（collocations）與商用動詞。",
+      "published": "unknown"
+    },
+    {
+      "title": "Excel in TOEIC Listening Part 3: Essential Tips for Conversations",
+      "url": "https://www.famousjamesadventures.com/blog/top-tips-to-excel-in-toeic-listening-part-3-conversations",
+      "author_or_channel": "FamousJames Adventures",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC listening Part 3 4 strategies tips』前 10 名",
+      "summary_zh": "提供 Part 3 對話題的預讀技巧、避免卡在單一細節漏聽、以及利用語意而非字面比對答案的具體做法。",
+      "published": "unknown"
+    },
+    {
+      "title": "Mastering TOEIC Reading Part 6: Tips for Completing Texts with Ease",
+      "url": "https://www.famousjamesadventures.com/blog/toeic-reading-part-6-text-completion-strategies-for-higher-scores",
+      "author_or_channel": "FamousJames Adventures",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 6 text completion strategy tips』前 10 名",
+      "summary_zh": "強調先讀完整篇短文抓語氣與目的再回填空格，特別針對句子插入題說明如何判斷上下文承接是否通順。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Test Structure: Complete 7-Part Breakdown with Time Management Guide",
+      "url": "https://redswantutor.com/toeic-test-structure-complete-7-part-breakdown-with-time-management-guide/",
+      "author_or_channel": "Redswan Tutor",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 7 reading strategy tips time management』第 6 名",
+      "summary_zh": "提供閱讀測驗精確的配速建議：Part 5 每題不超過 20 秒、Part 6 每題約 30 秒，並強調若前兩部分超時將嚴重壓縮 Part 7 的作答時間。",
+      "published": "unknown"
+    },
+    {
+      "title": "Master 5 extremely effective TOEIC tips to help you conquer high scores!",
+      "url": "https://prepedu.com/en/blog/toeic-tips",
+      "author_or_channel": "PrepEdu",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『Preply TOEIC tips strategies』第 1 名",
+      "summary_zh": "按七個 Part 分別說明對應策略，強調各 Part 需要量身訂做的解題方法，並提醒依難度分配作答時間，不要在難題上卡關。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Listening Part 4: Easy-to-Apply Tips for Better Performance",
+      "url": "https://prepedu.com/en/blog/toeic-listening-part-4",
+      "author_or_channel": "PrepEdu",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 4 short talks strategy tips prediction』第 1 名",
+      "summary_zh": "說明 Part 4 短獨白題型的預讀劃記技巧、常見文章類型的固定套路，以及第一句話通常決定全文主旨的重點提醒。",
+      "published": "unknown"
+    },
+    {
+      "title": "Strategies for the TOEIC Listening & Reading Test – PART 3: Conversations",
+      "url": "https://morksensei.com/strategies-for-the-toeic-listening-reading-test-part-3-conversations",
+      "author_or_channel": "Morksensei",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC listening Part 3 4 strategies tips』前 10 名，同系列亦有 YouTube 影片版本",
+      "summary_zh": "整理 Part 3 常見的婉拒句型（I'm afraid...、I'd love to but...）與其後方常帶出的原因，並提醒同一字詞在錯誤選項中重複出現時要特別小心。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Listening Part 3: Overview, Tips And Tricks",
+      "url": "https://estudyme.com/en/toeic-listening-part-3-overview-tips-and-tricks/",
+      "author_or_channel": "eStudyMe",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC listening Part 3 4 strategies tips』前 10 名",
+      "summary_zh": "說明如何依聲音與角色分辨說話者、辨識矛盾轉折語（I like it but...），以及三題常見的固定問法模式（主旨題、細節題、推論題）。",
+      "published": "unknown"
+    },
+    {
+      "title": "Grammar TOEIC: Essential Rules For A High TOEIC Score",
+      "url": "https://estudyme.com/en/grammar-toeic/",
+      "author_or_channel": "eStudyMe",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 5 grammar vocabulary tips shortcut strategy』前 10 名",
+      "summary_zh": "整理 Part 5/6 常考文法規則，包括詞性判斷口訣（冠詞後接名詞、連綴動詞後接形容詞）與常見字首字尾規則。",
+      "published": "unknown"
+    },
+    {
+      "title": "Common Vocabulary For TOEIC Part 5",
+      "url": "https://estudyme.com/en/common-vocabulary-for-toeic-part-5/",
+      "author_or_channel": "eStudyMe",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 5 grammar vocabulary tips shortcut strategy』前 10 名",
+      "summary_zh": "整理近義詞辨析（advise/recommend/suggest 等）與其各自的文法搭配用法，用於破解 Part 5 詞彙題。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Time Management Tips: 9 Clock Strategies High Scorers Use",
+      "url": "https://toeicspeaking.net/toeic-time-management-tips/",
+      "author_or_channel": "TOEIC Speaking",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC exam day tips answer sheet bubble time budget』與『TOEIC Part 7 reading strategy tips time management』皆有出現，排名前 5",
+      "summary_zh": "提出 9 個時鐘策略，包含聽力各 Part 的劃記節奏建議（Part1-2 每題 5-8 秒、Part3-4 每題 8-12 秒）與高分者不逐題塗答案卡的作法。",
+      "published": "unknown"
+    },
+    {
+      "title": "TOEIC Listening Part One Tips for Students - Photographs",
+      "url": "https://www.usingenglish.com/articles/toeic-listening-part-one-tips-for-students-photographs.html",
+      "author_or_channel": "UsingEnglish.com",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 1 Part 2 photograph question response tips』第 3 名",
+      "summary_zh": "針對 Part 1 照片題說明如何利用作答空檔預覽下一張照片、心中默想主詞動詞，並列出方位介系詞是最常見的誘答陷阱來源。",
+      "published": "unknown"
+    },
+    {
+      "title": "TIME MANAGEMENT For the NEW Format TOEIC test",
+      "url": "https://crl.insa-lyon.fr/sites/crl/files/time_management_for_the_new_format_toeic_test.pdf",
+      "author_or_channel": "CRL, INSA Lyon（法國國立應用科學學院語言中心）",
+      "type": "official",
+      "language": "en",
+      "popularity_signal": "法國高等教育機構語言中心發布的 PDF 教材，於『TOEIC Part 7 reading strategy tips time management』搜尋排名第 3",
+      "summary_zh": "大學語言中心製作的官方時間管理教材，建議考試最後剩約 5 分鐘時，將所有未作答題目統一塗同一個選項（如全部塗 B 或 C），因為答錯不倒扣。",
+      "published": "unknown"
+    },
+    {
+      "title": "Complete TOEIC Reading Tutorial: From Basics to Perfect Score",
+      "url": "https://www.lingomelo.com/blog-page/toeic-reading/",
+      "author_or_channel": "Lingomelo",
+      "type": "prep_site",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 7 reading strategy tips time management』前 5 名",
+      "summary_zh": "說明高分考生「先看題目再讀文章」的尋寶式閱讀法，以及三篇閱讀中 NOT 題、跨文章比對題最耗時、應留到最後處理的建議。",
+      "published": "unknown"
+    },
+    {
+      "title": "How to Score 800 on the TOEIC | Proven Tips, Strategies & Study Plan for Success",
+      "url": "https://www.youtube.com/watch?v=AYOKbhe6NYU",
+      "author_or_channel": "YouTube（TOEIC 備考頻道）",
+      "type": "youtube",
+      "language": "en",
+      "popularity_signal": "unknown（YouTube 頁面觀看數無法直接抓取，於搜尋『TOEIC tips youtube video views strategy full test』排名第 4）",
+      "summary_zh": "以達成 800 分為目標的讀書計畫影片，內容涵蓋各 Part 應考策略與讀書排程規劃。",
+      "published": "unknown"
+    },
+    {
+      "title": "HOW TO INCREASE YOUR TOEIC READING SPEED & SCORE: (9 TIPS!)",
+      "url": "https://www.youtube.com/watch?v=R7U-8Hy-g1U",
+      "author_or_channel": "YouTube（#TOEICTIPS #TOEIC990 頻道）",
+      "type": "youtube",
+      "language": "en",
+      "popularity_signal": "unknown（YouTube 頁面觀看數無法直接抓取，於搜尋『TOEIC tips youtube video views strategy full test』排名第 10，標籤含 #TOEIC990 顯示鎖定高分族群）",
+      "summary_zh": "專門講解如何提升閱讀速度與分數的 9 個技巧影片，鎖定 TOEIC 990 滿分考生族群。",
+      "published": "unknown"
+    },
+    {
+      "title": "Taking the TOEIC L&R Skills and Strategies",
+      "url": "https://www.businessenglishallure.com/taking-the-toeic-use-these-skills-and-strategies/",
+      "author_or_channel": "Business English Allure",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC test taking strategies tips ETS official』與『TOEIC exam day tips answer sheet bubble time budget』皆出現，排名前 6",
+      "summary_zh": "面向 TOEIC 教師與考生的技巧整理，包含高分考生不逐題塗答案卡、改為累積一小段落後再一次劃記的作答節奏建議。",
+      "published": "unknown"
+    },
+    {
+      "title": "Tips Part 6 TOEIC Test Reading: Text Completion",
+      "url": "https://tricksmagical.com/tips-part-6-toeic-test-reading-text-completion.html",
+      "author_or_channel": "TricksMagical",
+      "type": "blog",
+      "language": "en",
+      "popularity_signal": "搜尋『TOEIC Part 6 text completion strategy tips』前 10 名",
+      "summary_zh": "建議 Part 6 每題配速控制在 20-30 秒內，遇到需要通篇理解才能判斷的題目應先跳過、最後再回頭處理。",
+      "published": "unknown"
+    }
+  ],
+  "tips": [
+    {
+      "title_zh": "先看題目再聽音檔，鎖定關鍵字預測內容",
+      "part": "P3",
+      "detail_zh": "在聽力播放前，利用題目間的空檔快速瀏覽 Part 3 的題目與四個選項，抓出角色關係、時間、地點等關鍵字，讓自己在對話播出時能有目的地聽，而不是被動接收全部內容。這個「預讀」動作能大幅降低漏聽答案線索的機率，是多數 Part 3/4 教材公認最重要的單一技巧。",
+      "example": "Skim first: 'What does the woman ask the man to do?' → underline 'ask...to do' before the audio starts.",
+      "source_url": "https://estudyme.com/en/toeic-listening-part-3-overview-tips-and-tricks/"
+    },
+    {
+      "title_zh": "留意婉拒句型，緊接的原因常是答案",
+      "part": "P3",
+      "detail_zh": "Part 3 對話中常出現一方提出請求或邀約，另一方用「I'm afraid we can only...」「I'd love to, but...」「I don't think I'll be able to...」等句型婉拒，緊接在婉拒之後說出的原因，往往就是第一題的答案。平時可整理這類婉拒慣用語清單，聽到觸發詞就提高專注度。",
+      "example": "\"I'd love to join the meeting, but I have a client call at the same time.\" → reason for declining = correct answer.",
+      "source_url": "https://morksensei.com/strategies-for-the-toeic-listening-reading-test-part-3-conversations"
+    },
+    {
+      "title_zh": "答案常是同義詞改寫，別死等原句重現",
+      "part": "P3",
+      "detail_zh": "正確選項很少直接複製音檔中的原句，而是用同義詞或換句話說的方式呈現。聽的時候要抓「意思」而非「字面」，若選項用字與音檔完全相同反而要提高警覺，因為這常是刻意設計的誘答陷阱。平時可多累積同一主題（天氣、會議、費用）的近義詞群組。",
+      "example": "Audio: \"Let's push the deadline back.\" → correct choice: \"They will postpone the deadline.\"",
+      "source_url": "https://morksensei.com/strategies-for-the-toeic-listening-reading-test-part-3-conversations"
+    },
+    {
+      "title_zh": "用簡單符號標記說話者，避免張冠李戴",
+      "part": "P3",
+      "detail_zh": "Part 3 常有 2-3 人對話，題目經常問「某位說話者」的意見或需求，若沒分清楚聲音與角色就容易選到另一人講的內容。可在題本上用 W（女）、M1、M2 等符號快速標記，搭配題目中出現的人名或職稱對應，聽到誰說話就立刻連結到正確的人。",
+      "example": "",
+      "source_url": "https://estudyme.com/en/toeic-listening-part-3-overview-tips-and-tricks/"
+    },
+    {
+      "title_zh": "聽漏一個細節就放掉，別在腦中重播",
+      "part": "P3",
+      "detail_zh": "若中途漏聽一個資訊，不要在腦中反覆回想剛才聽到什麼，這樣只會錯過接下來的內容，造成連環漏聽。正確做法是立刻放下、根據前後文與常識合理推測，並把注意力拉回當下正在播放的音檔內容。",
+      "example": "",
+      "source_url": "https://www.famousjamesadventures.com/blog/top-tips-to-excel-in-toeic-listening-part-3-conversations"
+    },
+    {
+      "title_zh": "Part 4 別漏聽第一句，通常決定全文主旨",
+      "part": "P4",
+      "detail_zh": "短獨白的第一句通常會點出說話目的或場景，例如語音信箱留言、廣播公告、導覽解說等，漏聽開頭就很難抓住全文方向。建議把最初幾秒的注意力全部放在辨識「這是什麼類型的短文、誰在對誰說話」，抓到場景後續內容會更容易預測。",
+      "example": "\"Attention all passengers, this is an announcement regarding Flight 209...\" → sets up airport announcement context.",
+      "source_url": "https://prepedu.com/en/blog/toeic-listening-part-4"
+    },
+    {
+      "title_zh": "Part 4 陷阱較少，聽到與題目相似字詞常常就是答案",
+      "part": "P4",
+      "detail_zh": "與 Part 3 刻意用近似詞誤導不同，Part 4 較少設置這類陷阱，因此當你聽到與題目或選項中出現的詞彙、表達方式相似的內容時，該選項是正確答案的機率較高。可以善用這個特性，聽到關鍵字重複出現就直接鎖定，不需要過度懷疑。",
+      "example": "",
+      "source_url": "https://prepedu.com/en/blog/toeic-listening-part-4"
+    },
+    {
+      "title_zh": "利用作答空檔預覽照片，心中默想動詞片語與方位詞",
+      "part": "P1",
+      "detail_zh": "每題作答時間約 5 秒，趁下一題還沒開始播放前先看照片，心中用英文默想可能的主詞與動詞（如 \"A man is loading a truck\"），並特別留意畫面中的方位介系詞（in front of、next to、on top of）等，因為物品擺放位置與介系詞誤用是 Part 1 最常見的誘答陷阱來源。",
+      "example": "Correct: \"A man is loading boxes onto a truck.\" Distractor: \"A man is unloading a truck.\"",
+      "source_url": "https://www.usingenglish.com/articles/toeic-listening-part-one-tips-for-students-photographs.html"
+    },
+    {
+      "title_zh": "Part 5 先讀完整句抓決定性線索，別只看空格前後幾個字",
+      "part": "P5",
+      "detail_zh": "很多考生只看空格前後幾個字就選答案，容易被表面相似的選項誤導。正確做法是讀完整句掌握語意，找出時態指標詞（如 currently、by next month、last year）等真正決定答案的線索，再回頭比對四個選項是否符合這個線索，而不是憑感覺選字。",
+      "example": "\"By the time the manager arrives, the report ______ finished.\" → \"by the time\" signals future perfect: \"will have been\".",
+      "source_url": "https://www.famousjamesadventures.com/blog/mastering-toeic-part-5-incomplete-sentences-strategy-and-tips"
+    },
+    {
+      "title_zh": "詞性判斷口訣：冠詞後接名詞，冠詞與名詞之間接形容詞",
+      "part": "P5",
+      "detail_zh": "遇到詞性題時，先看空格在句子中的位置：the/a/an 後面直接接名詞；冠詞與名詞之間的空格通常填形容詞；be、become、seem 等連綴動詞後面接形容詞而非副詞。這個口訣能在 10 秒內快速篩掉錯誤詞性的選項，是 Part 5 最省時間的技巧之一，適合先練到反射動作的程度。",
+      "example": "\"The company announced a ______ increase in sales.\" → adjective needed: \"significant\", not \"significantly\".",
+      "source_url": "https://estudyme.com/en/grammar-toeic/"
+    },
+    {
+      "title_zh": "用字首字尾快速判斷生字詞意，即使不完全認得單字也能作答",
+      "part": "P5",
+      "detail_zh": "不確定單字意思時，可從字首字尾判斷方向：un-/dis- 常表示「否定」，-able/-ible 表示「可以…的」，-tion/-ment 通常是名詞化字尾，-ize/-ify 通常是動詞化字尾。這個技巧在生字題型中能幫助你排除明顯不合理的詞性或語意選項，提高猜對機率。",
+      "example": "\"un-\" + \"avoidable\" = \"unavoidable\"（無法避免的）",
+      "source_url": "https://estudyme.com/en/grammar-toeic/"
+    },
+    {
+      "title_zh": "近義詞要靠固定搭配辨析，不能只背中文意思",
+      "part": "Vocab",
+      "detail_zh": "TOEIC 常在選項中放入意思相近但文法搭配不同的字，例如 advise、recommend、suggest 中文都翻成「建議」，但後面接的結構不同（advise sb. to V／recommend + Ving 或 that 子句／suggest + Ving 或 that 子句）。建議整理常考近義詞組並用例句記憶固定搭配，而非只背中文翻譯，才能在 Part 5、6 快速判斷。",
+      "example": "\"The doctor advised him to rest.\" vs. \"The doctor suggested resting.\"",
+      "source_url": "https://estudyme.com/en/common-vocabulary-for-toeic-part-5/"
+    },
+    {
+      "title_zh": "Part 6 先讀完整篇文章掌握語氣目的，再回頭填空格",
+      "part": "P6",
+      "detail_zh": "Part 6 的空格往往需要靠上下文、甚至下一句才能判斷正確答案，尤其是轉折連接詞（however、therefore、in addition）與句子插入題。建議先快速讀完全文掌握語氣與目的（如通知、道歉信、廣告），再依序填空，避免因斷章取義選到語氣不合的選項。",
+      "example": "",
+      "source_url": "https://www.famousjamesadventures.com/blog/toeic-reading-part-6-text-completion-strategies-for-higher-scores"
+    },
+    {
+      "title_zh": "Part 6 每題抓 20-30 秒配速，卡住的句子插入題先跳過",
+      "part": "P6",
+      "detail_zh": "Part 6 共 16 題，建議控制在 8-10 分鐘內完成，平均每題不超過 20-30 秒。若遇到需要通篇理解才能判斷的句子插入題，可以先跳過，等讀完全文、確認邏輯脈絡後再回來決定，避免因為一題卡關拖慢後面 Part 7 的作答節奏。",
+      "example": "",
+      "source_url": "https://tricksmagical.com/tips-part-6-toeic-test-reading-text-completion.html"
+    },
+    {
+      "title_zh": "Part 7 先看題目再讀文章，用「尋寶」心態找答案",
+      "part": "P7",
+      "detail_zh": "高分考生的共同做法是先讀題目與選項，鎖定要找的關鍵資訊（人名、日期、數字、原因等），再帶著明確目的去讀文章，而不是從頭到尾逐字閱讀。這種「先問後找」的方式能大幅縮短找答案的時間，尤其對長篇雙篇、三篇閱讀特別有效，因為不需要記住整篇文章的所有細節。",
+      "example": "",
+      "source_url": "https://www.lingomelo.com/blog-page/toeic-reading/"
+    },
+    {
+      "title_zh": "NOT 題與跨文章比對題最耗時，留到該篇章最後處理",
+      "part": "P7",
+      "detail_zh": "三篇閱讀中的「NOT 符合」題型、以及需要交叉比對兩份文件（如信件+價目表）才能作答的題目，通常是整份考卷最花時間的題型。建議在同一篇章的其餘題目都做完之後，最後才處理這類題目，避免因為卡在一題而排擠到後面文章的作答時間，導致最後幾篇來不及做完。",
+      "example": "",
+      "source_url": "https://www.lingomelo.com/blog-page/toeic-reading/"
+    },
+    {
+      "title_zh": "考試剩最後幾分鐘，未做完的題目統一塗同一個選項",
+      "part": "Time",
+      "detail_zh": "TOEIC 答錯不倒扣，空白等於直接放棄得分機會，因此當考試剩下約 5 分鐘、Part 7 還有題目沒做完時，與其隨機亂猜，不如把剩餘題目全部塗同一個選項（例如全部塗 B 或全部塗 C）。因為選項分布通常大致平均，固定塗同一個選項統計上比隨機亂猜更容易命中，且動作更快、能塗完更多題。",
+      "example": "",
+      "source_url": "https://crl.insa-lyon.fr/sites/crl/files/time_management_for_the_new_format_toeic_test.pdf"
+    },
+    {
+      "title_zh": "抓大時間框架：Part 5+6 控制在 20 分鐘內，把時間留給 Part 7",
+      "part": "Time",
+      "detail_zh": "閱讀測驗 75 分鐘的黃金配速大約是 Part 5 用 10 分鐘（每題 20 秒內）、Part 6 用 8-10 分鐘（每題約 30 秒），剩下的 55-57 分鐘全部留給 Part 7 的 54 題。若在 Part 5、6 花超過 20 分鐘，Part 7 就會被嚴重壓縮，這是多數考生閱讀分數卡關的主因，練習時應該優先計時訓練前兩部分的速度。",
+      "example": "",
+      "source_url": "https://redswantutor.com/toeic-test-structure-complete-7-part-breakdown-with-time-management-guide/"
+    },
+    {
+      "title_zh": "聽力段落也要有節奏表：Part 1-2 每題 5-8 秒、Part 3-4 每題 8-12 秒",
+      "part": "Time",
+      "detail_zh": "聽力測驗雖然跟著音檔走、無法自己控制播放速度，但每題留給你劃記答案（同時預讀下一題）的空檔時間是固定的：Part 1-2 大約 5-8 秒、Part 3-4 每題約 8-12 秒。平時可計時模擬練習，讓自己習慣在這個節奏內完成劃記與預讀下一題，避免因分心而跟丟音檔進度。",
+      "example": "",
+      "source_url": "https://toeicspeaking.net/toeic-time-management-tips/"
+    },
+    {
+      "title_zh": "答案卡不必每題塗一次，累積一小段落再一次劃記",
+      "part": "General",
+      "detail_zh": "若擔心邊聽邊塗答案卡會來不及跟上音檔，可以先在題本上用鉛筆輕點記號，等一小段（例如同一組對話的 3 題）結束後再一次劃記到答案卡，避免因為低頭塗卡而錯過下一題的開頭。此法需要考前充分練習手感，確保最後仍能全部劃記完成，不要留到最後才臨時改變作答習慣。",
+      "example": "",
+      "source_url": "https://www.businessenglishallure.com/taking-the-toeic-use-these-skills-and-strategies/"
+    },
+    {
+      "title_zh": "先做一次模考找出最弱的 1-2 個 Part，集中火力加強",
+      "part": "Plan",
+      "detail_zh": "讀書計畫不要「每個 Part 平均分配時間」，而是先做一次模考找出自己最弱的 1-2 個 Part（例如 Part 7 速度太慢、或 Part 5 文法題常錯），把剩餘一個月的大部分讀書時間投入在補強這個弱點。因為弱點部分的分數成長空間通常最大，投報率也最高，比每個 Part 都平均練習更有效率。",
+      "example": "",
+      "source_url": "https://www.englishclub.com/esl-exams/ets-toeic-tips.php"
+    },
+    {
+      "title_zh": "整理自己常中招的誘答選項類型，建立個人陷阱清單",
+      "part": "General",
+      "detail_zh": "每次寫完題目對答案時，把自己選錯的原因分類記錄下來，例如被同義詞混淆、看錯主詞、漏看否定詞、時態判斷錯誤等。久而久之會發現自己容易掉入固定幾種陷阱模式，針對這份個人化清單反覆提醒自己，比盲目多寫新題目更有效率地降低失分。",
+      "example": "",
+      "source_url": "https://www.englishclub.com/esl-exams/ets-toeic-tips.php"
+    },
+    {
+      "title_zh": "每天用不看字幕的英文影集或歌詞磨耳朵，習慣四種口音與正常語速",
+      "part": "General",
+      "detail_zh": "TOEIC 聽力包含美式、英式、加拿大、澳洲四種口音，且語速接近真實對話速度而非刻意放慢的教材錄音。備考期間養成每天看一小段不開字幕的英文影集、或專心聽英文歌歌詞的習慣，能讓耳朵逐漸適應不同口音、連音與弱化音的變化，這比只聽考試專用教材更貼近實戰情境，長期下來對 Part 3、4 的理解速度幫助很大。",
+      "example": "",
+      "source_url": "https://etsglobal.org/About-us/News/5-Tips-to-Prepare-for-the-TOEIC-R-Listening-and-Reading-Test"
+    }
+  ]
+}
