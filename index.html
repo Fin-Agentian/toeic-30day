@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="30 天 TOEIC 衝刺計畫：技巧、做題、聽力、單字 SRS、模考與錯題本。">
-<title>TOEIC 30 天衝刺</title>
+<meta name="description" content="多語言自學平台：多益英語 30 天衝刺、日語五十音到 N5、西班牙語 A1，全部離線可用。">
+<title>多語言學習平台</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AF%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -17,9 +17,9 @@
       <button class="icon-btn sidebar-toggle" id="sidebarToggle" aria-label="開啟選單" aria-controls="sidebar" aria-expanded="false">
         <span aria-hidden="true">☰</span>
       </button>
-      <a href="#/dashboard" class="brand">
-        <span class="brand-mark" aria-hidden="true">🎯</span>
-        <span class="brand-name">TOEIC 30 天衝刺</span>
+      <a href="#/hub" class="brand" title="回語言選擇">
+        <span class="brand-mark" aria-hidden="true">🌐</span>
+        <span class="brand-name" id="brandName">多語言學習平台</span>
       </a>
     </div>
     <div class="topbar-right">
@@ -36,18 +36,10 @@
 
   <div class="app-body">
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <!-- 側欄項目由 js/app.js 依目前語言動態產生（見 Platform.LANGUAGES[].nav） -->
     <nav class="sidebar" id="sidebar" aria-label="主導覽">
       <ul class="sidebar-nav">
-        <li><a href="#/dashboard" data-route="dashboard"><span class="nav-icon" aria-hidden="true">📊</span><span>儀表板</span></a></li>
-        <li><a href="#/plan" data-route="plan"><span class="nav-icon" aria-hidden="true">📅</span><span>30 天計畫</span></a></li>
-        <li><a href="#/tips" data-route="tips"><span class="nav-icon" aria-hidden="true">💡</span><span>技巧庫</span></a></li>
-        <li><a href="#/quiz" data-route="quiz"><span class="nav-icon" aria-hidden="true">✏️</span><span>閱讀做題</span></a></li>
-        <li><a href="#/reading" data-route="reading"><span class="nav-icon" aria-hidden="true">📈</span><span>閱讀診斷室</span></a></li>
-        <li><a href="#/listening" data-route="listening"><span class="nav-icon" aria-hidden="true">🎧</span><span>聽力練習</span></a></li>
-        <li><a href="#/vocab" data-route="vocab"><span class="nav-icon" aria-hidden="true">📚</span><span>單字卡</span></a></li>
-        <li><a href="#/mock" data-route="mock"><span class="nav-icon" aria-hidden="true">🎯</span><span>迷你模考</span></a></li>
-        <li><a href="#/review" data-route="review"><span class="nav-icon" aria-hidden="true">🔁</span><span>錯題本</span></a></li>
-        <li><a href="#/settings" data-route="settings"><span class="nav-icon" aria-hidden="true">⚙️</span><span>設定</span></a></li>
+        <li><a href="#/hub" data-route="hub"><span class="nav-icon" aria-hidden="true">🌐</span><span>選擇語言</span></a></li>
       </ul>
     </nav>
 
@@ -60,22 +52,11 @@
     </main>
   </div>
 
+  <!-- tab 項目由 js/app.js 依目前語言動態產生 -->
   <nav class="bottom-tabbar" aria-label="主導覽（手機版）">
-    <a href="#/dashboard" data-route="dashboard" class="tab-item">
-      <span class="tab-icon" aria-hidden="true">📊</span><span class="tab-label">儀表板</span>
+    <a href="#/hub" data-route="hub" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">🌐</span><span class="tab-label">選擇語言</span>
     </a>
-    <a href="#/plan" data-route="plan" class="tab-item">
-      <span class="tab-icon" aria-hidden="true">📅</span><span class="tab-label">計畫</span>
-    </a>
-    <a href="#/quiz" data-route="quiz" class="tab-item">
-      <span class="tab-icon" aria-hidden="true">✏️</span><span class="tab-label">做題</span>
-    </a>
-    <a href="#/reading" data-route="reading" class="tab-item">
-      <span class="tab-icon" aria-hidden="true">📈</span><span class="tab-label">閱讀</span>
-    </a>
-    <button type="button" id="moreTabBtn" class="tab-item tab-item-more">
-      <span class="tab-icon" aria-hidden="true">⋯</span><span class="tab-label">更多</span>
-    </button>
   </nav>
 
 </div>
@@ -99,14 +80,32 @@
 <script src="data/listening_3.js"></script>
 <script src="data/reading_frameworks.js"></script>
 
+<!-- data：日語 -->
+<script src="data/ja_kana.js"></script>
+<script src="data/ja_vocab_1.js"></script>
+<script src="data/ja_grammar.js"></script>
+<script src="data/ja_quiz_bank.js"></script>
+
+<!-- data：西班牙語 -->
+<script src="data/es_sounds.js"></script>
+<script src="data/es_verbs.js"></script>
+<script src="data/es_vocab_1.js"></script>
+<script src="data/es_phrases.js"></script>
+
 <!-- core -->
 <script src="js/util.js"></script>
+<script src="js/platform.js"></script>
 <script src="js/store.js"></script>
+<script src="js/langstore.js"></script>
 <script src="js/srs.js"></script>
 <script src="js/reading.js"></script>
 <script src="js/tts.js"></script>
+<script src="js/langui.js"></script>
 
-<!-- views -->
+<!-- views：平台入口 -->
+<script src="js/views/hub.js"></script>
+
+<!-- views：多益英語 -->
 <script src="js/views/dashboard.js"></script>
 <script src="js/views/plan.js"></script>
 <script src="js/views/tips.js"></script>
@@ -117,6 +116,12 @@
 <script src="js/views/mock.js"></script>
 <script src="js/views/review.js"></script>
 <script src="js/views/settings.js"></script>
+
+<!-- views：日語 -->
+<script src="js/views/ja.js"></script>
+
+<!-- views：西班牙語 -->
+<script src="js/views/es.js"></script>
 
 <!-- app shell（最後載入） -->
 <script src="js/app.js"></script>

@@ -1,12 +1,39 @@
-# TOEIC 30 天衝刺平台
+# 多語言學習平台
 
 > 🌐 線上版（GitHub Pages）：<https://fin-agentian.github.io/toeic-30day/>　— 任何裝置開網址即可練習；進度存於各自瀏覽器，不與他人共用。
 
-一個**純靜態網頁**的 TOEIC 自學平台：每天打開後可以看今日任務、讀應考技巧、做閱讀題（Part 5/6/7）、練聽力（Part 1–4，用瀏覽器 TTS 發音）、背單字（Leitner 5 箱間隔複習 SRS）、做迷你模考，並自動累積錯題本與學習進度。無 build 流程、無後端、無外部 CDN，所有狀態存在瀏覽器 `localStorage`。
+一個**純靜態網頁**的自學平台，首頁選語言後進入該語言的學習介面。無 build 流程、無後端、無帳號、無外部 CDN，所有進度存在瀏覽器 `localStorage`。
 
-**重心放在閱讀（Reading）**：做題會記錄每題秒數與考點，「閱讀診斷室」據此算出各考點正確率、配速與粗估 RC 分數，並排出「接下來該做什麼」；錯題本用三層檢討法（標錯因 → Leitner 排程重做 → 連續答對才算精通）確保錯過的題目會再遇到。
+| 語言 | 範圍 | 內容 |
+|---|---|---|
+| 🇬🇧 **多益英語** | 目標 700+ | 30 天衝刺計畫、閱讀診斷室、Part 1–7 題庫、單字 SRS、迷你模考、錯題本 |
+| 🇯🇵 **日本語** | 入門 → N5 | 五十音 104 音、N5 單字 120 個、N5 文法 30 條、助詞題庫、錯題本 |
+| 🇪🇸 **Español** | 入門 → A1 | 發音規則 22 條、30 個動詞的現在式變位、A1 單字 120 個、常用句型 32 條、錯題本 |
 
-詳細設計契約見 [`docs/DESIGN.md`](docs/DESIGN.md)；view 開發者介面文件見 [`docs/API_ui.md`](docs/API_ui.md)（Util / DOM）與 [`docs/API_infra.md`](docs/API_infra.md)（Store / SRS / TTS）。
+**三個語言的進度完全獨立**（各自的 `localStorage` 命名空間），互不干擾，也各自可以單獨匯出備份或重置。
+
+**共用的學習引擎**：三個語言都用同一套 Leitner 5 箱間隔複習（SRS）與三層檢討法錯題本（標錯因 → 排程重做 → 連續答對才算精通）。發音一律走瀏覽器內建的 Web Speech API，各語言帶自己的語言碼（en-US / ja-JP / es-ES）。
+
+**英語模組的重心在閱讀**：做題會記錄每題秒數與考點，「閱讀診斷室」據此算出各考點正確率、配速與粗估 RC 分數，並排出「接下來該做什麼」。
+
+詳細設計契約見 [`docs/DESIGN.md`](docs/DESIGN.md)；view 開發者介面文件見 [`docs/API_ui.md`](docs/API_ui.md)（Util / DOM）與 [`docs/API_infra.md`](docs/API_infra.md)（Store / SRS / TTS / Reading）。
+
+## 架構：怎麼再加一個語言
+
+```
+js/platform.js    語言註冊表（路由、TTS 語言碼、儲存 key、導覽項目）
+js/langstore.js   非英語模組的狀態層，LangStore.for('ja') 取得該語言的介面
+js/langui.js      四個共用 view 工廠：SRS 閃卡 / 選擇題測驗 / 錯題本 / 學習總覽
+js/views/hub.js   語言選擇入口
+```
+
+加一個新語言只要三步：在 `platform.js` 的 `LANGUAGES` 加一筆（含 nav 路由清單）、
+寫該語言的 `data/*.js`、寫一支 `js/views/<code>.js` 用 `LangUI` 的工廠註冊那些路由。
+`app.js` 不需要改 —— 路由白名單與導覽列都是從 `Platform` 讀出來的。
+
+英語（TOEIC）刻意保留原本的 `window.Store` 與 `toeic30:state`，沒有被搬進這套架構，
+因為它的資料模型（30 天計畫、閱讀考點統計、聽力 Part）和通用引擎差異太大，
+強行統一只會讓兩邊都難維護 —— 而且不動它，既有使用者的進度就零風險。
 
 ## 如何開啟
 
@@ -41,6 +68,37 @@ node scripts/build_single.js
 
 ## 功能一覽
 
+### 平台
+
+| 頁面 | 路由 | 說明 |
+|---|---|---|
+| 語言選擇 | `#/hub` | 預設首頁。三個語言各顯示自己的進度摘要，選一個進入 |
+
+### 🇯🇵 日本語
+
+| 頁面 | 路由 | 說明 |
+|---|---|---|
+| 學習總覽 | `#/ja` | 連續天數、各單元進度、依「五十音 → 單字 → 文法」給下一步建議、匯出匯入 |
+| 五十音 | `#/ja-kana` | 三分頁：五十音表（點字聽發音）／SRS 閃卡／認讀測驗（4 種出題方向） |
+| N5 單字 | `#/ja-vocab` | 120 字 SRS 閃卡，可依主題篩選，附例句與 TTS 發音 |
+| N5 文法 | `#/ja-grammar` | 30 條句型，分五階，含規則、例句與易錯提醒，可標記已讀 |
+| 綜合測驗 | `#/ja-quiz` | 4 種模式：看日文選中文／看中文選日文／看漢字選讀音／助詞填空 |
+| 錯題本 | `#/ja-review` | Leitner 排程重做 + 錯因分類 |
+
+### 🇪🇸 Español
+
+| 頁面 | 路由 | 說明 |
+|---|---|---|
+| 學習總覽 | `#/es` | 同日語，依「發音 → 變位 → 單字 → 句型」給下一步建議 |
+| 發音規則 | `#/es-sounds` | 22 條規則分四類（母音／易錯子音／字母組合／重音），每條附可聽的例字 |
+| 動詞變位 | `#/es-verbs` | 三分頁：變位表（30 個動詞 × 6 人稱，逐格 SRS 追蹤）／ser vs estar 對照／填變位練習 |
+| A1 單字 | `#/es-vocab` | 120 字 SRS 閃卡，名詞一律附 el／la |
+| 常用句型 | `#/es-phrases` | 32 條可直接開口用的整句，分五種場合 |
+| 綜合測驗 | `#/es-quiz` | 4 種模式：看西語選中文／看中文選西語／判斷陰陽性／動詞變位 |
+| 錯題本 | `#/es-review` | 同日語 |
+
+### 🇬🇧 多益英語
+
 | 頁面 | 路由 | 說明 |
 |---|---|---|
 | 儀表板 | `#/dashboard` | 距考試倒數、Day X/30、今日任務清單、30 天進度環、連續天數、弱點提示 |
@@ -73,6 +131,19 @@ node scripts/build_single.js
 | `data/listening_3.js` | `TOEIC_DATA.listening.p4` | 簡短獨白 |
 | `data/reading_frameworks.js` | `TOEIC_DATA.reading` | 十大文法判斷框架、閱讀配速表、Part 6/7 題型攻略、錯因分類（原創教材） |
 
+日語與西班牙語的資料掛在另一個全域變數 `window.LANG_DATA.<語言代碼>`：
+
+| 檔案 | 掛載鍵 | 內容 |
+|---|---|---|
+| `data/ja_kana.js` | `LANG_DATA.ja.kana` | 五十音 104 音 + 分類、行分組、學習順序建議 |
+| `data/ja_vocab_1.js` | `LANG_DATA.ja.vocab` | N5 單字 120 個（含讀音、羅馬拼音、詞性、例句） |
+| `data/ja_grammar.js` | `LANG_DATA.ja.grammar` | N5 文法 30 條 + 五個學習階段 |
+| `data/ja_quiz_bank.js` | `LANG_DATA.ja.particleQuiz` | 助詞填空 24 題（手寫，每題附判斷理由） |
+| `data/es_sounds.js` | `LANG_DATA.es.sounds` | 發音規則 22 條 + 四個分類 |
+| `data/es_verbs.js` | `LANG_DATA.es.verbs` | 30 個動詞的現在式六人稱變位、三組規則字尾、ser vs estar 對照 |
+| `data/es_vocab_1.js` | `LANG_DATA.es.vocab` | A1 單字 120 個（名詞含冠詞與陰陽性） |
+| `data/es_phrases.js` | `LANG_DATA.es.phrases` | 常用句型 32 條 + 五種場合 |
+
 完整 schema 定義見 `docs/DESIGN.md` §5。
 
 ### 閱讀強化怎麼運作
@@ -97,16 +168,24 @@ node scripts/build_single.js
 # 1. 所有 JS 檔語法檢查
 find . -name '*.js' -not -path '*/node_modules/*' | xargs -n1 node --check
 
-# 2. 資料檔 schema 驗證（id 唯一性、answer 範圍、必填欄位等）
+# 2. 英語資料檔 schema 驗證（id 唯一性、answer 範圍、必填欄位、考點與題庫交叉檢查）
 node scripts/validate_data.js
 
-# 3. 純函式單元測試（SRS 演算法、Store 狀態管理與 migration、閱讀診斷引擎）
-node tests/srs.test.js
-node tests/store.test.js
-node tests/reading.test.js
+# 3. 日語 / 西班牙語資料驗證（五十音數量、動詞變位是否符合宣告的規則、
+#    名詞是否都標了陰陽性、日文欄位是否混入非日文字元等）
+node scripts/validate_lang_data.js
+
+# 4. 純函式單元測試
+node tests/srs.test.js         # Leitner SRS 演算法
+node tests/store.test.js       # 英語 Store：狀態管理、錯題 ID 正規化、v1→v2 migration
+node tests/reading.test.js     # 閱讀診斷引擎
+node tests/langstore.test.js   # 語言註冊表 + 日西狀態層（重點：命名空間隔離）
 ```
 
 全部純 Node 執行，不需要安裝任何套件（無 `package.json` / `node_modules`）。
+
+> `validate_lang_data.js` 會擋掉日文欄位裡混進拉丁字母或其他語言字元的情況 ——
+> 這類雜訊在人工校對時很容易漏掉，但機器一抓就出來。
 
 ## 瀏覽器需求
 

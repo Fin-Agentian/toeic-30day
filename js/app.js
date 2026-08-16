@@ -1,38 +1,49 @@
 /**
  * js/app.js
  * App shell：hash router、導覽列同步、主題切換、頂欄倒數/Day 顯示。
- * 暴露：window.App = { navigate, currentRoute, registerView, start }
- * 依賴：window.Util（必要）、window.Store（選用，defensively 處理缺席情況）
+ *
+ * 多語言：路由清單與導覽列都由 window.Platform 驅動 —— 進到哪個語言的路由，
+ * 側欄與底部 tab bar 就換成那個語言的項目；`#/hub` 是語言選擇入口，也是預設路由。
+ * 頂欄的「距考試 N 天 / Day X/30」只對英語（TOEIC）有意義，其他語言改顯示連續天數。
+ *
+ * 暴露：window.App = { navigate, currentRoute, currentLang, registerView, start }
+ * 依賴：window.Util（必要）、window.Platform（必要）、window.Store / window.LangStore（選用）
  */
 (function () {
   'use strict';
 
-  var ROUTES = ['dashboard', 'plan', 'tips', 'quiz', 'reading', 'listening', 'vocab', 'mock', 'review', 'settings'];
-  var DEFAULT_ROUTE = 'dashboard';
   var TOTAL_DAYS = 30;
+  var FALLBACK_ROUTES = ['hub', 'dashboard', 'plan', 'tips', 'quiz', 'reading',
+    'listening', 'vocab', 'mock', 'review', 'settings'];
 
-  var ROUTE_LABELS = {
-    dashboard: '儀表板',
-    plan: '30 天計畫',
-    tips: '技巧庫',
-    quiz: '閱讀做題',
-    reading: '閱讀診斷室',
-    listening: '聽力練習',
-    vocab: '單字卡',
-    mock: '迷你模考',
-    review: '錯題本',
-    settings: '設定'
-  };
+  function platform() {
+    return window.Platform || null;
+  }
 
-  // 底部 tab bar 放不下的路由，收進「更多」選單
-  var MORE_ROUTES = [
-    { route: 'tips', label: '技巧庫', icon: '💡' },
-    { route: 'vocab', label: '單字卡', icon: '📚' },
-    { route: 'listening', label: '聽力練習', icon: '🎧' },
-    { route: 'mock', label: '迷你模考', icon: '🎯' },
-    { route: 'review', label: '錯題本', icon: '🔁' },
-    { route: 'settings', label: '設定', icon: '⚙️' }
-  ];
+  function routes() {
+    var p = platform();
+    return p ? p.allRoutes() : FALLBACK_ROUTES;
+  }
+
+  function defaultRoute() {
+    var p = platform();
+    return p ? p.HUB_ROUTE : 'dashboard';
+  }
+
+  /** 路由的中文名稱：先問 Platform 的 nav 表，找不到才退回硬編清單 */
+  function routeLabel(name) {
+    if (name === 'hub') return '選擇語言';
+    var p = platform();
+    if (p) {
+      var langs = p.languages();
+      for (var i = 0; i < langs.length; i++) {
+        for (var j = 0; j < langs[i].nav.length; j++) {
+          if (langs[i].nav[j].route === name) return langs[i].nav[j].label;
+        }
+      }
+    }
+    return name;
+  }
 
   var THEME_ORDER = ['light', 'dark', 'auto'];
   var THEME_ICON = { light: '☀️', dark: '🌙', auto: '🌓' };
@@ -40,6 +51,7 @@
 
   var currentView = null;
   var currentRouteName = null;
+  var currentLangCode = null;
   var topbarTimer = null;
   var started = false;
 
@@ -126,32 +138,153 @@
   // 頂欄：倒數天數 / Day X/30
   // -----------------------------------------------------------------
 
+  /**
+   * 頂欄右側的兩顆膠囊。英語（TOEIC）沿用「距考試 N 天 / Day X/30」；
+   * 日西沒有考試日概念，改顯示「連續學習 N 天 / 待複習 N 題」；
+   * 在 #/hub 則整組隱藏，因為那時還沒有「目前語言」。
+   */
   function updateTopbar() {
     if (!window.Util) return;
-    var state = safeGetState();
-    var today = Util.todayISO();
-    var examDate = (state && state.examDate) || Util.addDays(today, TOTAL_DAYS);
-    var startDate = (state && state.startDate) || today;
-
-    var daysLeft = Util.diffDays(today, examDate);
-    var dayNum = Util.clamp(Util.diffDays(startDate, today) + 1, 1, TOTAL_DAYS);
-
+    var countdownPill = document.getElementById('countdownPill');
+    var dayPill = document.getElementById('dayPill');
     var countdownEl = document.getElementById('countdownText');
     var dayEl = document.getElementById('dayText');
+    var brandName = document.getElementById('brandName');
 
-    if (countdownEl) {
-      if (daysLeft > 0) countdownEl.textContent = '距考試 ' + daysLeft + ' 天';
-      else if (daysLeft === 0) countdownEl.textContent = '考試就是今天！';
-      else countdownEl.textContent = '考試已結束';
+    var p = platform();
+    var lang = (p && currentLangCode) ? p.byCode(currentLangCode) : null;
+
+    if (brandName) {
+      brandName.textContent = lang ? (lang.flag + ' ' + lang.label) : '多語言學習平台';
     }
-    if (dayEl) {
-      dayEl.textContent = 'Day ' + dayNum + '/' + TOTAL_DAYS;
+
+    // hub：沒有語言脈絡，隱藏兩顆膠囊
+    if (!lang) {
+      if (countdownPill) countdownPill.style.display = 'none';
+      if (dayPill) dayPill.style.display = 'none';
+      return;
+    }
+    if (countdownPill) countdownPill.style.display = '';
+    if (dayPill) dayPill.style.display = '';
+
+    if (lang.engine === 'toeic') {
+      var state = safeGetState();
+      var today = Util.todayISO();
+      var examDate = (state && state.examDate) || Util.addDays(today, TOTAL_DAYS);
+      var startDate = (state && state.startDate) || today;
+      var daysLeft = Util.diffDays(today, examDate);
+      var dayNum = Util.clamp(Util.diffDays(startDate, today) + 1, 1, TOTAL_DAYS);
+
+      if (countdownEl) {
+        if (daysLeft > 0) countdownEl.textContent = '距考試 ' + daysLeft + ' 天';
+        else if (daysLeft === 0) countdownEl.textContent = '考試就是今天！';
+        else countdownEl.textContent = '考試已結束';
+      }
+      if (dayEl) dayEl.textContent = 'Day ' + dayNum + '/' + TOTAL_DAYS;
+      return;
+    }
+
+    // 日語 / 西班牙語
+    try {
+      var store = window.LangStore.for(lang.code);
+      var s = store.get();
+      if (countdownEl) countdownEl.textContent = '🔥 連續 ' + s.streak.current + ' 天';
+      if (dayEl) dayEl.textContent = '待複習 ' + store.dueWrongIds().length + ' 題';
+    } catch (e) {
+      if (countdownEl) countdownEl.textContent = lang.label;
+      if (dayEl) dayEl.textContent = lang.level || '';
     }
   }
 
   // -----------------------------------------------------------------
-  // 導覽列 active 狀態
+  // 導覽列：依目前語言重建側欄與底部 tab bar
   // -----------------------------------------------------------------
+
+  function navLink(item, isTab) {
+    var a = document.createElement('a');
+    a.href = '#/' + item.route;
+    a.setAttribute('data-route', item.route);
+    if (isTab) a.className = 'tab-item';
+    var icon = document.createElement('span');
+    icon.className = isTab ? 'tab-icon' : 'nav-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = item.icon;
+    var label = document.createElement('span');
+    if (isTab) label.className = 'tab-label';
+    label.textContent = item.label;
+    a.appendChild(icon);
+    a.appendChild(label);
+    return a;
+  }
+
+  /** 側欄：語言的完整 nav；最上面固定一個「切換語言」回 hub */
+  function rebuildSidebar(langCode) {
+    var ul = document.querySelector('#sidebar .sidebar-nav');
+    if (!ul) return;
+    ul.innerHTML = '';
+
+    var hubLi = document.createElement('li');
+    hubLi.appendChild(navLink({ route: platform().HUB_ROUTE, label: '選擇語言', icon: '🌐' }, false));
+    ul.appendChild(hubLi);
+
+    var p = platform();
+    var lang = langCode ? p.byCode(langCode) : null;
+    if (!lang) return;
+
+    var divider = document.createElement('li');
+    divider.className = 'sidebar-divider';
+    divider.setAttribute('aria-hidden', 'true');
+    divider.textContent = lang.flag + ' ' + lang.label;
+    ul.appendChild(divider);
+
+    lang.nav.forEach(function (item) {
+      var li = document.createElement('li');
+      li.appendChild(navLink(item, false));
+      ul.appendChild(li);
+    });
+  }
+
+  /** 底部 tab bar：該語言標了 tab:true 的前 4 個 + 「更多」 */
+  function rebuildTabbar(langCode) {
+    var bar = document.querySelector('.bottom-tabbar');
+    if (!bar) return;
+    bar.innerHTML = '';
+
+    var p = platform();
+    if (!langCode) {
+      // hub：只放一個「選擇語言」，避免空白 tab bar
+      bar.appendChild(navLink({ route: p.HUB_ROUTE, label: '選擇語言', icon: '🌐' }, true));
+      return;
+    }
+
+    p.tabItems(langCode).forEach(function (item) {
+      bar.appendChild(navLink(item, true));
+    });
+
+    var moreBtn = document.createElement('button');
+    moreBtn.type = 'button';
+    moreBtn.id = 'moreTabBtn';
+    moreBtn.className = 'tab-item tab-item-more';
+    var mIcon = document.createElement('span');
+    mIcon.className = 'tab-icon';
+    mIcon.setAttribute('aria-hidden', 'true');
+    mIcon.textContent = '⋯';
+    var mLabel = document.createElement('span');
+    mLabel.className = 'tab-label';
+    mLabel.textContent = '更多';
+    moreBtn.appendChild(mIcon);
+    moreBtn.appendChild(mLabel);
+    bar.appendChild(moreBtn);
+    bindMoreMenu(); // tab bar 每次重建，「更多」按鈕是新元素，要重新綁定
+  }
+
+  /** 語言變了才重建導覽列，同語言內切頁只更新 active 狀態 */
+  function syncNavForLang(langCode) {
+    if (currentLangCode === langCode) return;
+    currentLangCode = langCode;
+    rebuildSidebar(langCode);
+    rebuildTabbar(langCode);
+  }
 
   function updateNavActive(name) {
     if (!window.Util) return;
@@ -198,12 +331,15 @@
     var btn = document.getElementById('moreTabBtn');
     if (!btn || !window.Util) return;
     btn.addEventListener('click', function () {
+      var p = platform();
+      var items = (p && currentLangCode) ? p.moreItems(currentLangCode) : [];
+      items = items.concat([{ route: p ? p.HUB_ROUTE : 'hub', label: '切換語言', icon: '🌐' }]);
       var closeModal = Util.modal({
         title: '更多功能',
         body: Util.h(
           'div',
           { class: 'more-menu' },
-          MORE_ROUTES.map(function (r) {
+          items.map(function (r) {
             return Util.h(
               'button',
               {
@@ -226,10 +362,6 @@
   // Route rendering
   // -----------------------------------------------------------------
 
-  function routeLabel(name) {
-    return ROUTE_LABELS[name] || name;
-  }
-
   function renderMissingView(container, name) {
     container.appendChild(
       Util.h(
@@ -243,10 +375,13 @@
           {
             class: 'btn btn-primary',
             onClick: function () {
-              navigate('#/dashboard');
+              // 回目前語言的首頁；還沒選語言就回入口
+              var p = platform();
+              var lang = (p && currentLangCode) ? p.byCode(currentLangCode) : null;
+              navigate('#/' + (lang ? lang.home : defaultRoute()));
             }
           },
-          '回儀表板'
+          '回首頁'
         )
       )
     );
@@ -290,14 +425,21 @@
       return;
     }
     var parsed = Util.qs(window.location.hash);
-    var name = parsed.route || DEFAULT_ROUTE;
-    if (ROUTES.indexOf(name) === -1) name = DEFAULT_ROUTE;
+    var name = parsed.route || defaultRoute();
+    if (routes().indexOf(name) === -1) name = defaultRoute();
 
     var container = document.getElementById('view');
     if (!container) {
       console.error('[App] 找不到 #view 容器');
       return;
     }
+
+    // 先切導覽列再渲染內容：進到某語言的路由就換成那個語言的側欄與 tab bar，
+    // #/hub 則收起語言選單。同語言內換頁不會重建 DOM。
+    var p = platform();
+    var langCode = p ? p.langOfRoute(name) : null;
+    syncNavForLang(langCode);
+    if (langCode && p) p.rememberLang(langCode);
 
     if (currentView && typeof currentView.destroy === 'function') {
       try {
@@ -315,6 +457,7 @@
       currentView = null;
       currentRouteName = name;
       updateNavActive(name);
+      updateTopbar();
       focusContainerNoScroll(container);
       window.scrollTo(0, 0);
       return;
@@ -403,10 +546,14 @@
       bindMoreMenu();
 
       if (!window.location.hash) {
-        window.location.hash = '#/' + DEFAULT_ROUTE;
+        window.location.hash = '#/' + defaultRoute();
       }
       renderRoute();
       updateTopbar();
+
+      // 學習狀態變動（任一語言）時同步頂欄的連續天數／待複習題數
+      window.addEventListener('lang:change', updateTopbar);
+      window.addEventListener('toeic30:change', updateTopbar);
 
       if (topbarTimer) clearInterval(topbarTimer);
       topbarTimer = setInterval(updateTopbar, 60000);
@@ -419,9 +566,14 @@
     }
   }
 
+  function currentLang() {
+    return currentLangCode;
+  }
+
   window.App = {
     navigate: navigate,
     currentRoute: currentRoute,
+    currentLang: currentLang,
     registerView: registerView,
     start: start
   };
