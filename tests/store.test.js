@@ -35,7 +35,10 @@ function loadStore(opts) {
     this.detail = params && params.detail;
   }
   const windowShim = {
-    localStorage: opts.withLocalStorage === false ? undefined : createLocalStorageShim(),
+    // opts.localStorage 可傳入預先塞好資料的 shim（用於測 migration）
+    localStorage: opts.withLocalStorage === false
+      ? undefined
+      : (opts.localStorage || createLocalStorageShim()),
     dispatchEvent(evt) { events.push(evt); },
     CustomEvent: CustomEventShim
   };
@@ -58,7 +61,8 @@ console.log('store.test.js');
 test('預設 state 符合 schema，startDate = 今天', () => {
   const { Store } = loadStore();
   const state = Store.get();
-  assert.strictEqual(state.version, 1);
+  assert.strictEqual(state.version, 2);
+  assert.deepEqual(state.readingStats, {});
   assert.strictEqual(state.startDate, todayISO());
   assert.strictEqual(state.examDate, '2026-09-20');
   assert.strictEqual(state.dailyMinutes, 90);
@@ -180,6 +184,208 @@ test('markWrongMastered 標記錯題已掌握', () => {
   const entry = Store.get().wrongBook['p5-005'];
   assert.strictEqual(entry.mastered, true);
   assert.strictEqual(entry.count, 1, 'count 應保留');
+});
+
+// ---- 8b. v2：錯題 ID 正規化、Leitner 排程、錯因、閱讀考點統計 ----
+test('normalizeWrongId 把舊版 P6/P7 子題 key 補上 q，其餘不動', () => {
+  const { Store } = loadStore();
+  assert.strictEqual(Store.normalizeWrongId('p6-001-2'), 'p6-001-q2');
+  assert.strictEqual(Store.normalizeWrongId('p7-013-1'), 'p7-013-q1');
+  assert.strictEqual(Store.normalizeWrongId('p6-001-q2'), 'p6-001-q2', '已是新格式不應重複加工');
+  assert.strictEqual(Store.normalizeWrongId('p5-001'), 'p5-001', 'P5 沒有子題');
+  assert.strictEqual(Store.normalizeWrongId('l3-004-q1'), 'l3-004-q1', '聽力本來就是新格式');
+});
+
+test('recordQuiz 寫入時就把錯題 ID 正規化，且新錯題排進第 1 箱', () => {
+  const { Store } = loadStore();
+  Store.recordQuiz(
+    { mode: 'quiz', part: 'P6', total: 4, correct: 2, seconds: 100, wrongIds: ['p6-001-2', 'p7-003-1'] },
+    '2026-08-16'
+  );
+  const state = Store.get();
+  assert.ok(state.wrongBook['p6-001-q2'], '應存成 -q 格式，否則錯題本查不到題目');
+  assert.ok(state.wrongBook['p7-003-q1']);
+  assert.strictEqual(state.wrongBook['p6-001-2'], undefined, '不應留下舊格式 key');
+  assert.strictEqual(state.wrongBook['p6-001-q2'].box, 1);
+  assert.strictEqual(state.wrongBook['p6-001-q2'].due, '2026-08-16', '答錯當天就到期');
+  assert.strictEqual(state.quizHistory[0].wrongIds[0], 'p6-001-q2');
+});
+
+test('recordQuiz 依 skillStats 累積 readingStats', () => {
+  const { Store } = loadStore();
+  Store.recordQuiz({
+    mode: 'quiz', part: 'P5', total: 3, correct: 2, seconds: 90, wrongIds: ['p5-002'],
+    skillStats: [
+      { key: 'P5:prep', correct: true, seconds: 18 },
+      { key: 'P5:prep', correct: false, seconds: 45 },
+      { key: 'P5:tense', correct: true, seconds: 27 }
+    ]
+  }, '2026-08-16');
+
+  let stats = Store.get().readingStats;
+  assert.deepEqual(stats['P5:prep'], { total: 2, correct: 1, seconds: 63 });
+  assert.deepEqual(stats['P5:tense'], { total: 1, correct: 1, seconds: 27 });
+
+  // 第二次作答要累加，不是覆蓋
+  Store.recordQuiz({
+    mode: 'quiz', part: 'P5', total: 1, correct: 1, seconds: 20, wrongIds: [],
+    skillStats: [{ key: 'P5:prep', correct: true, seconds: 20 }]
+  }, '2026-08-17');
+  stats = Store.get().readingStats;
+  assert.deepEqual(stats['P5:prep'], { total: 3, correct: 2, seconds: 83 });
+});
+
+test('reviewWrong 依 Leitner 升降箱，連續答對到第 5 箱自動標記精通', () => {
+  const { Store } = loadStore();
+  Store.recordQuiz({ mode: 'quiz', part: 'P5', total: 1, correct: 0, seconds: 10, wrongIds: ['p5-007'] }, '2026-08-16');
+
+  Store.reviewWrong('p5-007', true, '2026-08-16');
+  let e = Store.get().wrongBook['p5-007'];
+  assert.strictEqual(e.box, 2);
+  assert.strictEqual(e.due, '2026-08-18', 'box 2 間隔 2 天');
+  assert.strictEqual(e.reviews, 1);
+  assert.strictEqual(e.rights, 1);
+  assert.strictEqual(e.mastered, false);
+
+  // 答錯 → 退回第 1 箱、明天再見
+  Store.reviewWrong('p5-007', false, '2026-08-18');
+  e = Store.get().wrongBook['p5-007'];
+  assert.strictEqual(e.box, 1);
+  assert.strictEqual(e.due, '2026-08-19');
+  assert.strictEqual(e.reviews, 2);
+  assert.strictEqual(e.rights, 1);
+
+  // 連續答對四次爬到第 5 箱
+  ['2026-08-19', '2026-08-20', '2026-08-22', '2026-08-26'].forEach((day) => {
+    Store.reviewWrong('p5-007', true, day);
+  });
+  e = Store.get().wrongBook['p5-007'];
+  assert.strictEqual(e.box, 5);
+  assert.strictEqual(e.mastered, true, '爬到第 5 箱即視為精通');
+
+  // 再次答錯（例如模考又錯）→ recordQuiz 應把它拉回第 1 箱並取消精通
+  Store.recordQuiz({ mode: 'mock', part: '', total: 1, correct: 0, seconds: 30, wrongIds: ['p5-007'] }, '2026-08-27');
+  e = Store.get().wrongBook['p5-007'];
+  assert.strictEqual(e.mastered, false);
+  assert.strictEqual(e.box, 1);
+});
+
+test('setWrongReason / flagWrong 管理錯因，未知錯因丟 Error', () => {
+  const { Store } = loadStore();
+  Store.recordQuiz({ mode: 'quiz', part: 'P5', total: 1, correct: 0, seconds: 10, wrongIds: ['p5-009'] }, '2026-08-16');
+
+  Store.setWrongReason('p5-009', 'grammar');
+  assert.strictEqual(Store.get().wrongBook['p5-009'].reason, 'grammar');
+  Store.setWrongReason('p5-009', '');
+  assert.strictEqual(Store.get().wrongBook['p5-009'].reason, '', '空字串可清除標記');
+  assert.throws(() => Store.setWrongReason('p5-009', 'nonsense'), /錯因/);
+
+  // flagWrong：把猜對的題目手動丟進錯題本
+  Store.flagWrong('p7-002-1', 'guess');
+  const e = Store.get().wrongBook['p7-002-q1'];
+  assert.ok(e, 'flagWrong 也要正規化 id');
+  assert.strictEqual(e.count, 1);
+  assert.strictEqual(e.reason, 'guess');
+  assert.strictEqual(e.box, 1);
+});
+
+test('dueWrongIds 只回傳未精通且已到期的錯題，早到期的優先', () => {
+  const { Store } = loadStore();
+  Store.recordQuiz({
+    mode: 'quiz', part: 'P5', total: 3, correct: 0, seconds: 60,
+    wrongIds: ['p5-011', 'p5-012', 'p5-013']
+  }, '2026-08-16');
+
+  Store.reviewWrong('p5-012', true, '2026-08-16'); // → due 2026-08-18
+  Store.markWrongMastered('p5-013');
+
+  assert.deepEqual(Store.dueWrongIds('2026-08-16'), ['p5-011'], '未到期與已精通都要排除');
+  assert.deepEqual(Store.dueWrongIds('2026-08-19').sort(), ['p5-011', 'p5-012']);
+});
+
+// ---- 8c. v1 → v2 migration ----
+test('載入 v1 舊資料時自動升級：補 readingStats、正規化錯題 key、補 Leitner 欄位', () => {
+  const shim = createLocalStorageShim();
+  const v1 = {
+    version: 1,
+    startDate: '2026-08-01',
+    examDate: '2026-09-20',
+    dailyMinutes: 90,
+    completedTasks: { 'd1-t1': '2026-08-01T10:00:00Z' },
+    tipsMastered: {},
+    quizHistory: [
+      { at: '2026-08-01T10:00:00Z', mode: 'quiz', part: 'P6', total: 4, correct: 2, seconds: 100,
+        wrongIds: ['p6-001-2', 'p5-001'] }
+    ],
+    wrongBook: {
+      'p6-001-2': { count: 3, lastAt: '2026-08-01T10:00:00Z', mastered: false },
+      'p5-001': { count: 1, lastAt: '2026-08-01T10:00:00Z', mastered: true }
+    },
+    vocab: { v0001: { box: 2, due: '2026-08-05', seen: 3, wrong: 1 } },
+    streak: { current: 2, best: 5, lastActive: '2026-08-01' },
+    settings: { ttsRate: 1.0, ttsVoice: '', theme: 'dark' }
+  };
+  shim.setItem('toeic30:state', JSON.stringify(v1));
+
+  const { Store } = loadStore({ localStorage: shim });
+  const state = Store.get();
+
+  assert.strictEqual(state.version, 2);
+  assert.deepEqual(state.readingStats, {}, '新欄位要補上');
+  assert.ok(state.wrongBook['p6-001-q2'], '舊 key 要正規化');
+  assert.strictEqual(state.wrongBook['p6-001-2'], undefined);
+  assert.strictEqual(state.wrongBook['p6-001-q2'].count, 3, '錯誤次數要保留');
+  assert.strictEqual(state.wrongBook['p6-001-q2'].box, 1, '補上 Leitner 欄位');
+  assert.ok(state.wrongBook['p6-001-q2'].due);
+  assert.strictEqual(state.wrongBook['p6-001-q2'].reason, '');
+  assert.strictEqual(state.wrongBook['p5-001'].mastered, true, '既有的精通標記要保留');
+  assert.strictEqual(state.wrongBook['p5-001'].box, 5, '已精通者直接放到第 5 箱');
+  assert.deepEqual(state.quizHistory[0].wrongIds, ['p6-001-q2', 'p5-001'], '歷史紀錄也要正規化');
+  // 其餘欄位原封不動
+  assert.strictEqual(state.startDate, '2026-08-01');
+  assert.strictEqual(state.streak.best, 5);
+  assert.strictEqual(state.settings.theme, 'dark');
+  assert.strictEqual(state.vocab.v0001.box, 2);
+
+  // 升級結果要寫回 localStorage，下次載入不用重跑
+  assert.strictEqual(JSON.parse(shim.getItem('toeic30:state')).version, 2);
+});
+
+test('migration 遇到新舊 key 並存時合併而不是覆蓋', () => {
+  const shim = createLocalStorageShim();
+  shim.setItem('toeic30:state', JSON.stringify({
+    version: 1,
+    startDate: '2026-08-01', examDate: '2026-09-20', dailyMinutes: 90,
+    completedTasks: {}, tipsMastered: {}, quizHistory: [],
+    wrongBook: {
+      'p7-001-1': { count: 2, lastAt: '2026-08-01T00:00:00Z', mastered: false },
+      'p7-001-q1': { count: 3, lastAt: '2026-08-05T00:00:00Z', mastered: false }
+    },
+    vocab: {}, streak: { current: 0, best: 0, lastActive: null },
+    settings: { ttsRate: 1.0, ttsVoice: '', theme: 'light' }
+  }));
+
+  const { Store } = loadStore({ localStorage: shim });
+  const entry = Store.get().wrongBook['p7-001-q1'];
+  assert.strictEqual(entry.count, 5, '兩筆 count 要加總，不能有一筆消失');
+  assert.strictEqual(entry.lastAt, '2026-08-05T00:00:00Z', '取較新的作答時間');
+});
+
+test('import 可接受 v1 舊備份並升級', () => {
+  const { Store } = loadStore();
+  const v1Json = JSON.stringify({
+    version: 1,
+    startDate: '2026-07-01', examDate: '2026-09-20', dailyMinutes: 60,
+    completedTasks: {}, tipsMastered: {}, quizHistory: [],
+    wrongBook: { 'p6-002-3': { count: 1, lastAt: null, mastered: false } },
+    vocab: {}, streak: { current: 0, best: 0, lastActive: null },
+    settings: { ttsRate: 1.2, ttsVoice: '', theme: 'auto' }
+  });
+  const state = Store.import(v1Json);
+  assert.strictEqual(state.version, 2);
+  assert.strictEqual(state.dailyMinutes, 60);
+  assert.ok(state.wrongBook['p6-002-q3']);
+  assert.deepEqual(state.readingStats, {});
 });
 
 // ---- 9. getDayIndex / daysToExam 邊界 ----

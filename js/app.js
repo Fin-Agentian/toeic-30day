@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  var ROUTES = ['dashboard', 'plan', 'tips', 'quiz', 'listening', 'vocab', 'mock', 'review', 'settings'];
+  var ROUTES = ['dashboard', 'plan', 'tips', 'quiz', 'reading', 'listening', 'vocab', 'mock', 'review', 'settings'];
   var DEFAULT_ROUTE = 'dashboard';
   var TOTAL_DAYS = 30;
 
@@ -16,6 +16,7 @@
     plan: '30 天計畫',
     tips: '技巧庫',
     quiz: '閱讀做題',
+    reading: '閱讀診斷室',
     listening: '聽力練習',
     vocab: '單字卡',
     mock: '迷你模考',
@@ -23,8 +24,10 @@
     settings: '設定'
   };
 
+  // 底部 tab bar 放不下的路由，收進「更多」選單
   var MORE_ROUTES = [
     { route: 'tips', label: '技巧庫', icon: '💡' },
+    { route: 'vocab', label: '單字卡', icon: '📚' },
     { route: 'listening', label: '聽力練習', icon: '🎧' },
     { route: 'mock', label: '迷你模考', icon: '🎯' },
     { route: 'review', label: '錯題本', icon: '🔁' },

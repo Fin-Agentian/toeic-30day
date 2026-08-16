@@ -1,15 +1,25 @@
 /**
  * js/views/review.js — 錯題本（#/review）
- * 合併 Store.wrongBook 與 p5/p6/p7/listening 各題資料（依 id 前綴 p5-/p6-/p7-/l1-/l2-/l3-/l4- 查表），
- * 提供篩選（Part / 只看未精通）、排序（次數 / 時間）、統計長條圖、
- * 查看詳解（含聽力逐字稿 + TTS）、單題重做、標記已精通、重做全部未精通（本 view 內逐題進行）。
- * params.task 存在時，進入頁面即視為完成當日任務（Store.completeTask）。
+ *
+ * 合併 Store.wrongBook 與 p5/p6/p7/listening 各題資料（依 id 前綴 p5-/p6-/p7-/l1-/l2-/l3-/l4- 查表）。
+ *
+ * 三層檢討法（本頁的核心流程）：
+ *   第一層「為什麼錯」— 每題標記錯因（單字／文法／看錯／沒時間／用猜的），統計出主要失分型態
+ *   第二層「重做一次」— Leitner 排程：答對往上一箱（1→2→4→7→14 天後再見），答錯退回第 1 箱明天再見
+ *   第三層「排進複習」— 只有連續答對到第 5 箱才算精通，避免「看過解析就以為會了」
+ *
+ * 提供：今日到期佇列、Part / 錯因 / 未精通篩選、排序、錯因與考點分佈圖、
+ * 查看詳解（含聽力逐字稿 + TTS）、單題或整批重做。
+ * params.task 存在時，進入頁面即視為完成當日任務；params.due=1 時預設只看今日到期。
  * 純 IIFE，暴露 window.Views.review = { render, destroy }。
  */
 (function () {
   'use strict';
 
   var LETTERS = ['A', 'B', 'C', 'D'];
+
+  // 與 store.js 的 WRONG_INTERVAL_DAYS 對應，只用於顯示文案
+  var BOX_LABELS = ['第 1 箱', '第 2 箱', '第 3 箱', '第 4 箱', '已精通'];
 
   var PART_INFO = {
     p5: { short: 'P5', label: 'P5 單句填空', listening: false,
@@ -29,9 +39,35 @@
   };
   var PART_FILTER_CODES = ['all', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7'];
   var SORT_OPTIONS = [
+    { code: 'due_asc', label: '複習排程：先到期的優先' },
     { code: 'count_desc', label: '錯誤次數：多 → 少' },
     { code: 'time_desc', label: '最後作答：新 → 舊' }
   ];
+
+  function reasonDefs() {
+    return (window.TOEIC_DATA && window.TOEIC_DATA.reading && window.TOEIC_DATA.reading.reasons) || [];
+  }
+
+  function reasonDef(code) {
+    var defs = reasonDefs();
+    for (var i = 0; i < defs.length; i++) {
+      if (defs[i].code === code) return defs[i];
+    }
+    return null;
+  }
+
+  /** 把 store 的 wrongBook 項目補齊欄位；Store 較舊時退回本地預設值 */
+  function normalizeEntry(rec, today) {
+    if (window.Store && typeof Store.normalizeWrongEntry === 'function') {
+      return Store.normalizeWrongEntry(rec, today);
+    }
+    rec = rec || {};
+    return {
+      count: rec.count || 0, lastAt: rec.lastAt || null, mastered: !!rec.mastered,
+      box: rec.box || 1, due: rec.due || today, reason: rec.reason || '',
+      reviews: rec.reviews || 0, rights: rec.rights || 0
+    };
+  }
 
   // ---- module-level 狀態（每次 render() 重新建立） ----
   var S = null;
@@ -170,15 +206,22 @@
 
   function loadItems() {
     var wb = S.wrongBook;
+    var today = S.today;
     return Object.keys(wb).map(function (id) {
-      var rec = wb[id] || { count: 0, lastAt: null, mastered: false };
+      var rec = normalizeEntry(wb[id], today);
       var entry = buildEntry(id);
       var kind = idPrefixKind(id);
       return {
         id: id,
-        count: rec.count || 0,
-        lastAt: rec.lastAt || null,
-        mastered: !!rec.mastered,
+        count: rec.count,
+        lastAt: rec.lastAt,
+        mastered: rec.mastered,
+        box: rec.box,
+        due: rec.due,
+        reason: rec.reason,
+        reviews: rec.reviews,
+        rights: rec.rights,
+        isDue: !rec.mastered && (rec.due || today) <= today,
         partShort: entry ? entry.partShort : (kind && PART_INFO[kind] ? PART_INFO[kind].short : '？'),
         entry: entry
       };
@@ -189,6 +232,7 @@
     S.wrongBook = (Store.get().wrongBook) || {};
     S.items = loadItems();
     renderStats();
+    renderReasonStats();
     renderList();
     renderCounts();
   }
@@ -201,6 +245,8 @@
     return S.items.filter(function (it) {
       if (S.filters.part !== 'all' && it.partShort !== S.filters.part) return false;
       if (S.filters.unmasteredOnly && it.mastered) return false;
+      if (S.filters.dueOnly && !it.isDue) return false;
+      if (S.filters.reason && it.reason !== S.filters.reason) return false;
       return true;
     });
   }
@@ -209,6 +255,13 @@
     var copy = items.slice();
     if (S.sort === 'time_desc') {
       copy.sort(function (a, b) { return (b.lastAt || '').localeCompare(a.lastAt || ''); });
+    } else if (S.sort === 'due_asc') {
+      copy.sort(function (a, b) {
+        // 未精通且已到期的優先，其次依到期日、再依錯誤次數
+        if (a.isDue !== b.isDue) return a.isDue ? -1 : 1;
+        var d = (a.due || '').localeCompare(b.due || '');
+        return d || (b.count - a.count);
+      });
     } else {
       copy.sort(function (a, b) { return (b.count - a.count) || (b.lastAt || '').localeCompare(a.lastAt || ''); });
     }
@@ -254,15 +307,118 @@
     });
   }
 
+  /** 錯因分佈：告訴使用者「主要不是不會，而是 XXX」 */
+  function renderReasonStats() {
+    var wrap = S.reasonWrapEl;
+    if (!wrap) return;
+    while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
+
+    var defs = reasonDefs();
+    if (!defs.length) {
+      wrap.appendChild(Util.h('p.u-text-muted', {}, '教材資料未載入，無法顯示錯因分類。'));
+      return;
+    }
+
+    var total = S.items.length;
+    var counts = {};
+    var untagged = 0;
+    S.items.forEach(function (it) {
+      if (!it.reason) { untagged += 1; return; }
+      counts[it.reason] = (counts[it.reason] || 0) + 1;
+    });
+
+    if (untagged === total) {
+      wrap.appendChild(Util.h('p', {},
+        '這 ' + total + ' 題都還沒標記錯因。點每一列的「查看」或「重做」，在解析下方選一個錯因 — ' +
+        '「單字不會」和「時間不夠」要用完全不同的方法補，分清楚才知道該練什麼。'));
+      return;
+    }
+
+    var rows = defs.map(function (d) {
+      return { def: d, count: counts[d.code] || 0 };
+    }).filter(function (r) { return r.count > 0; })
+      .sort(function (a, b) { return b.count - a.count; });
+
+    rows.forEach(function (r, idx) {
+      var share = Util.pct(r.count, total);
+      wrap.appendChild(Util.h('div', { style: { marginTop: idx === 0 ? '0' : '12px' } },
+        Util.h('div.u-flex.u-justify-between', {},
+          Util.h('button.btn.btn-ghost.btn-sm', {
+            onClick: function () {
+              S.filters.reason = S.filters.reason === r.def.code ? '' : r.def.code;
+              rebuildFilterBar();
+              renderList();
+            }
+          }, r.def.icon + ' ' + r.def.label),
+          Util.h('span.u-text-muted', {}, r.count + ' 題（' + share + '%）')
+        ),
+        Util.h('div.progress-bar', { style: { marginTop: '4px' } },
+          Util.h('div.progress-bar-fill', { style: { width: share + '%' } })
+        ),
+        idx === 0 ? Util.h('p', { style: { fontSize: '0.85rem', marginTop: '6px' } },
+          '👉 ' + r.def.advice) : null
+      ));
+    });
+
+    if (untagged) {
+      wrap.appendChild(Util.h('p.u-text-muted', { style: { marginTop: '12px' } },
+        '還有 ' + untagged + ' 題未標記錯因。'));
+    }
+  }
+
+  /** 錯因選擇列（查看 / 重做 modal 內共用） */
+  function buildReasonPicker(id, onChange) {
+    var defs = reasonDefs();
+    if (!defs.length) return null;
+    var wb = (Store.get().wrongBook) || {};
+    var current = (wb[id] && wb[id].reason) || '';
+
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginTop: '8px' } });
+    defs.forEach(function (d) {
+      row.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (current === d.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () {
+          try {
+            Store.setWrongReason(id, current === d.code ? '' : d.code);
+            Util.toast(current === d.code ? '已取消錯因標記' : ('已標記：' + d.label), 'success');
+          } catch (e) {
+            Util.toast('標記失敗：' + e.message, 'error');
+          }
+          refresh();
+          if (onChange) onChange();
+        }
+      }, d.icon + ' ' + d.label));
+    });
+
+    var currentDef = reasonDef(current);
+    return Util.h('div.card', { style: { background: 'var(--color-surface-alt)' } },
+      Util.h('div.card-body', {},
+        Util.h('h3', {}, '第一層：這題為什麼錯？'),
+        row,
+        currentDef ? Util.h('p', { style: { marginTop: '10px' } }, '👉 ' + currentDef.advice) : null
+      )
+    );
+  }
+
   // -----------------------------------------------------------------------
   // 標記已精通
   // -----------------------------------------------------------------------
 
   function toggleMastered(id, value) {
     try {
-      if (value) Store.markWrongMastered(id);
-      else Store.update(['wrongBook', id, 'mastered'], false);
-      Util.toast(value ? '已標記為精通' : '已取消精通標記', 'success');
+      if (value) {
+        Store.markWrongMastered(id);
+      } else {
+        // 取消精通＝退回第 1 箱、今天就該重做，否則到期日還停在 14 天後
+        Store.set(function (old) {
+          var wrongBook = Object.assign({}, old.wrongBook);
+          wrongBook[id] = Object.assign({}, normalizeEntry(wrongBook[id], S.today), {
+            mastered: false, box: 1, due: S.today
+          });
+          return Object.assign({}, old, { wrongBook: wrongBook });
+        });
+      }
+      Util.toast(value ? '已標記為精通' : '已取消精通標記，排回今日複習', 'success');
     } catch (e) {
       Util.toast('更新失敗：' + e.message, 'error');
     }
@@ -391,16 +547,27 @@
     }
     var wb = (Store.get().wrongBook) || {};
     var mastered = !!(wb[id] && wb[id].mastered);
-    var body = buildQuestionBody(entry, { revealed: true, selected: entry.answer, onSelect: null });
+    var bodyWrap = Util.h('div');
+
+    function paint() {
+      while (bodyWrap.firstChild) bodyWrap.removeChild(bodyWrap.firstChild);
+      bodyWrap.appendChild(buildQuestionBody(entry, { revealed: true, selected: entry.answer, onSelect: null }));
+      var picker = buildReasonPicker(id, paint);
+      if (picker) bodyWrap.appendChild(picker);
+    }
+    paint();
+
     S.activeModalClose = Util.modal({
       title: entry.partLabel + ' · ' + id,
-      body: body,
+      body: bodyWrap,
       actions: [
         { label: '關閉', class: 'btn btn-ghost' },
+        { label: '重做這題', class: 'btn btn-primary',
+          onClick: function (close) { close(); runRedoQueue([id]); } },
         mastered
           ? { label: '取消已精通', class: 'btn btn-ghost', onClick: function (close) { toggleMastered(id, false); close(); } }
-          : { label: '標記已精通', class: 'btn btn-primary', onClick: function (close) { toggleMastered(id, true); close(); } }
-      ]
+          : null
+      ].filter(Boolean)
     });
   }
 
@@ -416,13 +583,14 @@
       return;
     }
     var answered = false;
+    var scheduled = false; // 只在第一次作答時更新 Leitner，重畫不重複計分
     var selectedIdx = null;
     var bodyWrap = Util.h('div');
     var closeModal = null;
 
-    function isMasteredNow() {
+    function currentRec() {
       var wb = (Store.get().wrongBook) || {};
-      return !!(wb[id] && wb[id].mastered);
+      return normalizeEntry(wb[id], S.today);
     }
 
     function paint() {
@@ -430,25 +598,51 @@
       bodyWrap.appendChild(buildQuestionBody(entry, {
         revealed: answered,
         selected: selectedIdx,
-        onSelect: answered ? null : function (i) { selectedIdx = i; answered = true; paint(); }
+        onSelect: answered ? null : function (i) {
+          selectedIdx = i;
+          answered = true;
+          if (!scheduled) {
+            scheduled = true;
+            try {
+              // 第二層：答對往上一箱、答錯退回第 1 箱，由 Store 算下次到期日
+              Store.reviewWrong(id, selectedIdx === entry.answer);
+            } catch (e) {
+              Util.toast('更新複習排程失敗：' + e.message, 'error');
+            }
+          }
+          paint();
+        }
       }));
 
       if (answered) {
         var isCorrect = selectedIdx === entry.answer;
-        var actionsRow = Util.h('div.u-flex.u-items-center.u-gap-sm.u-mt-md', { style: { flexWrap: 'wrap' } });
-        actionsRow.appendChild(Util.h('span', {}, isCorrect ? '✅ 答對了！' : '❌ 還不熟悉，再接再厲！'));
-        if (isCorrect && !isMasteredNow()) {
-          actionsRow.appendChild(Util.h('button.btn.btn-primary.btn-sm', {
-            onClick: function () { toggleMastered(id, true); paint(); }
-          }, '標記已精通'));
+        var rec = currentRec();
+        var scheduleText = rec.mastered
+          ? '🎓 連續答對，已升到第 5 箱 → 標記為精通'
+          : ('📅 ' + BOX_LABELS[rec.box - 1] + '，下次複習：' + rec.due);
+
+        bodyWrap.appendChild(Util.h('div.card', { style: { marginTop: '14px' } },
+          Util.h('div.card-body', {},
+            Util.h('h3', {}, isCorrect ? '✅ 答對了' : '❌ 還不熟，明天再來一次'),
+            Util.h('p', {}, scheduleText),
+            Util.h('p.u-text-muted', { style: { fontSize: '0.85rem', marginTop: '4px' } },
+              '累計重做 ' + rec.reviews + ' 次，答對 ' + rec.rights + ' 次。')
+          )
+        ));
+
+        if (!isCorrect) {
+          var picker = buildReasonPicker(id, paint);
+          if (picker) bodyWrap.appendChild(picker);
         }
-        actionsRow.appendChild(Util.h('button.btn.btn-ghost.btn-sm', {
-          onClick: function () {
-            if (closeModal) closeModal();
-            onResolved(isCorrect);
-          }
-        }, '下一題 →'));
-        bodyWrap.appendChild(actionsRow);
+
+        bodyWrap.appendChild(Util.h('div.u-flex.u-items-center.u-gap-sm.u-mt-md', { style: { flexWrap: 'wrap' } },
+          Util.h('button.btn.btn-primary.btn-sm', {
+            onClick: function () {
+              if (closeModal) closeModal();
+              onResolved(isCorrect);
+            }
+          }, '下一題 →')
+        ));
       }
     }
 
@@ -494,17 +688,28 @@
       .map(function (it) { return it.id; });
   }
 
+  function dueIdsInScope() {
+    return sortedItems(filteredItems().filter(function (it) { return it.isDue; }))
+      .map(function (it) { return it.id; });
+  }
+
   function renderCounts() {
     if (S.countEl) {
       var total = S.items.length;
       var unmastered = S.items.filter(function (it) { return !it.mastered; }).length;
-      S.countEl.textContent = '共 ' + total + ' 題錯題 · ' + unmastered + ' 題未精通';
+      var due = S.items.filter(function (it) { return it.isDue; }).length;
+      S.countEl.textContent = '共 ' + total + ' 題錯題 · ' + unmastered + ' 題未精通 · 今天該複習 ' + due + ' 題';
     }
   }
 
   function buildRow(it) {
-    var badgeClass = it.mastered ? 'badge-success' : 'badge-warning';
-    var badgeText = it.mastered ? '已精通' : '未精通';
+    var statusBadge = it.mastered
+      ? Util.h('span.badge.badge-success', {}, '已精通')
+      : (it.isDue
+        ? Util.h('span.badge.badge-danger', {}, '今天該複習')
+        : Util.h('span.badge.badge-warning', {}, BOX_LABELS[it.box - 1]));
+    var rDef = reasonDef(it.reason);
+
     return Util.h('tr', {},
       Util.h('td', {}, Util.h('span.badge.badge-primary', {}, it.partShort)),
       Util.h('td', {},
@@ -512,21 +717,27 @@
           style: { maxWidth: '320px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'inline-block' }
         }, summaryText(it.entry, it.id))
       ),
+      Util.h('td', {}, rDef
+        ? Util.h('span.badge', { title: rDef.advice }, rDef.icon + ' ' + rDef.label)
+        : Util.h('span.u-text-muted', {}, '未標記')),
       Util.h('td', {}, String(it.count)),
-      Util.h('td', {}, fmtLastAt(it.lastAt)),
-      Util.h('td', {}, Util.h('span.badge.' + badgeClass, {}, badgeText)),
+      Util.h('td', {}, it.mastered ? '—' : (it.due || '—')),
+      Util.h('td', {}, statusBadge),
       Util.h('td', {},
         Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } },
           Util.h('button.btn.btn-ghost.btn-sm', { onClick: function () { openViewModal(it.id); } }, '查看'),
-          Util.h('button.btn.btn-ghost.btn-sm', {
+          Util.h('button', {
+            class: 'btn btn-sm ' + (it.isDue ? 'btn-primary' : 'btn-ghost'),
             onClick: function () { runRedoQueue([it.id]); }
           }, '重做'),
-          Util.h('button', {
-            class: 'btn btn-sm ' + (it.mastered ? 'btn-ghost' : 'btn-primary'),
-            onClick: function () { toggleMastered(it.id, !it.mastered); }
-          }, it.mastered ? '取消已精通' : '標記已精通')
+          it.mastered
+            ? Util.h('button.btn.btn-ghost.btn-sm', {
+              onClick: function () { toggleMastered(it.id, false); }
+            }, '取消已精通')
+            : null
         )
-      )
+      ),
+      Util.h('td', {}, fmtLastAt(it.lastAt))
     );
   }
 
@@ -537,13 +748,21 @@
 
     var items = sortedItems(filteredItems());
     var redoIds = unmasteredIdsInScope();
+    var dueIds = dueIdsInScope();
 
     wrap.appendChild(Util.h('div.u-flex.u-justify-between.u-items-center.u-mt-md', { style: { flexWrap: 'wrap', gap: '10px' } },
-      Util.h('span.u-text-muted', {}, '目前篩選共 ' + items.length + ' 題，其中 ' + redoIds.length + ' 題未精通'),
-      Util.h('button.btn.btn-primary.btn-sm', {
-        disabled: redoIds.length === 0,
-        onClick: function () { runRedoQueue(redoIds); }
-      }, '重做全部未精通')
+      Util.h('span.u-text-muted', {},
+        '目前篩選共 ' + items.length + ' 題 · ' + dueIds.length + ' 題今天到期 · ' + redoIds.length + ' 題未精通'),
+      Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } },
+        Util.h('button.btn.btn-primary.btn-sm', {
+          disabled: dueIds.length === 0,
+          onClick: function () { runRedoQueue(dueIds); }
+        }, '複習今日到期（' + dueIds.length + '）'),
+        Util.h('button.btn.btn-ghost.btn-sm', {
+          disabled: redoIds.length === 0,
+          onClick: function () { runRedoQueue(redoIds); }
+        }, '重做全部未精通')
+      )
     ));
 
     if (!items.length) {
@@ -557,8 +776,9 @@
 
     var table = Util.h('table.table', {},
       Util.h('thead', {}, Util.h('tr', {},
-        Util.h('th', {}, '題型'), Util.h('th', {}, '題目摘要'), Util.h('th', {}, '錯誤次數'),
-        Util.h('th', {}, '最後時間'), Util.h('th', {}, '狀態'), Util.h('th', {}, '操作')
+        Util.h('th', {}, '題型'), Util.h('th', {}, '題目摘要'), Util.h('th', {}, '錯因'),
+        Util.h('th', {}, '錯誤次數'), Util.h('th', {}, '下次複習'), Util.h('th', {}, '狀態'),
+        Util.h('th', {}, '操作'), Util.h('th', {}, '最後作答')
       )),
       Util.h('tbody', {}, items.map(buildRow))
     );
@@ -589,7 +809,37 @@
     return row;
   }
 
+  function buildReasonChips() {
+    var defs = reasonDefs();
+    if (!defs.length) return null;
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } });
+    var all = [{ code: '', label: '全部', icon: '' }].concat(defs);
+    all.forEach(function (d) {
+      var count = d.code === ''
+        ? S.items.length
+        : S.items.filter(function (it) { return it.reason === d.code; }).length;
+      row.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (S.filters.reason === d.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () {
+          S.filters.reason = d.code;
+          rebuildFilterBar();
+          renderList();
+        }
+      }, (d.icon ? d.icon + ' ' : '') + d.label + '（' + count + '）'));
+    });
+    return row;
+  }
+
   function buildFilterBar() {
+    var dueCount = S.items.filter(function (it) { return it.isDue; }).length;
+    var dueCheckbox = Util.h('label.checkbox-row', {},
+      Util.h('input', {
+        type: 'checkbox', checked: S.filters.dueOnly,
+        onChange: function (e) { S.filters.dueOnly = e.target.checked; renderList(); }
+      }),
+      Util.h('span', {}, '只看今天該複習（' + dueCount + '）')
+    );
+
     var unmasteredCheckbox = Util.h('label.checkbox-row', {},
       Util.h('input', {
         type: 'checkbox', checked: S.filters.unmasteredOnly,
@@ -604,14 +854,20 @@
       return Util.h('option', { value: o.code, selected: o.code === S.sort }, o.label);
     }));
 
+    var reasonChips = buildReasonChips();
+
     return Util.h('div.card', {},
       Util.h('div.card-body', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         Util.h('div', {},
           Util.h('div.card-subtitle', { style: { marginTop: '0' } }, 'Part'),
           buildPartChips()
         ),
+        reasonChips ? Util.h('div', {},
+          Util.h('div.card-subtitle', { style: { marginTop: '0' } }, '錯因'),
+          reasonChips
+        ) : null,
         Util.h('div.u-flex.u-items-center.u-justify-between', { style: { flexWrap: 'wrap', gap: '10px' } },
-          unmasteredCheckbox,
+          Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } }, dueCheckbox, unmasteredCheckbox),
           Util.h('div.field', { style: { marginBottom: '0', minWidth: '220px' } },
             Util.h('label.field-label', {}, '排序'), sortSelect
           )
@@ -635,12 +891,15 @@
     params = params || {};
 
     S = {
+      today: Util.todayISO(),
       wrongBook: {},
       items: [],
-      filters: { part: 'all', unmasteredOnly: false },
-      sort: 'count_desc',
+      // params.due=1（例如從閱讀診斷室的「先清掉 N 題到期錯題」點進來）→ 預設只看今日到期
+      filters: { part: 'all', unmasteredOnly: false, dueOnly: params.due === '1' || params.due === 1, reason: '' },
+      sort: 'due_asc',
       countEl: null,
       statsWrapEl: null,
+      reasonWrapEl: null,
       filterBarSlotEl: null,
       listWrapEl: null,
       activeModalClose: null
@@ -674,6 +933,37 @@
       return;
     }
 
+    // 今日到期提示：進頁面第一眼就知道該做什麼
+    var dueNow = S.items.filter(function (it) { return it.isDue; });
+    if (dueNow.length) {
+      container.appendChild(Util.h('div.card', {},
+        Util.h('div.card-title', {}, '📅 今天有 ' + dueNow.length + ' 題該複習'),
+        Util.h('div.card-subtitle', {},
+          '答對就往上一箱（1 → 2 → 4 → 7 → 14 天後再見），答錯退回第 1 箱明天重來。' +
+          '連續答對到第 5 箱才算真的會。'),
+        Util.h('div.card-actions', {},
+          Util.h('button.btn.btn-primary', {
+            onClick: function () {
+              runRedoQueue(sortedItems(S.items.filter(function (it) { return it.isDue; }))
+                .map(function (it) { return it.id; }));
+            }
+          }, '開始複習')
+        )
+      ));
+    }
+
+    var reasonCard = Util.h('div.card', {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, '錯因分佈'),
+          Util.h('div.card-subtitle', {}, '第一層檢討：先分清楚為什麼錯，才知道要補什麼')
+        )
+      )
+    );
+    S.reasonWrapEl = Util.h('div.card-body', {});
+    reasonCard.appendChild(S.reasonWrapEl);
+    container.appendChild(reasonCard);
+
     var statsCard = Util.h('div.card', {},
       Util.h('div.card-header', {}, Util.h('div.card-title', {}, '各 Part / 類別錯誤分佈'))
     );
@@ -689,6 +979,7 @@
     container.appendChild(S.listWrapEl);
 
     renderStats();
+    renderReasonStats();
     renderList();
     renderCounts();
   }

@@ -1,35 +1,38 @@
 <!--
   此檔案由 scripts/build_single.js 自動產生，請勿手動修改。
-  產生時間: 2026-08-15T23:37:00.687Z
-  來源檔案（依載入順序，共 28 個，總計 960.6 KB）:
-    - css/style.css (25.6 KB)
-    - data/tips.js (87.5 KB)
-    - data/plan.js (42.2 KB)
-    - data/vocab_1.js (124.1 KB)
-    - data/vocab_2.js (121.2 KB)
-    - data/questions_p5_1.js (23.3 KB)
-    - data/questions_p5_2.js (25.8 KB)
-    - data/questions_p5_3.js (32.4 KB)
-    - data/questions_p6.js (34.0 KB)
-    - data/questions_p7_1.js (42.5 KB)
-    - data/questions_p7_2.js (40.5 KB)
-    - data/listening_1.js (42.0 KB)
-    - data/listening_2.js (40.2 KB)
-    - data/listening_3.js (36.0 KB)
-    - js/util.js (12.5 KB)
-    - js/store.js (13.3 KB)
-    - js/srs.js (3.6 KB)
-    - js/tts.js (6.7 KB)
-    - js/views/dashboard.js (18.7 KB)
-    - js/views/plan.js (12.4 KB)
-    - js/views/tips.js (14.2 KB)
-    - js/views/quiz.js (26.2 KB)
-    - js/views/listening.js (23.8 KB)
-    - js/views/vocab.js (22.2 KB)
-    - js/views/mock.js (27.1 KB)
-    - js/views/review.js (26.9 KB)
-    - js/views/settings.js (22.5 KB)
-    - js/app.js (13.0 KB)
+  產生時間: 2026-08-16T10:40:03.589Z
+  來源檔案（依載入順序，共 31 個，總計 1078.5 KB）:
+    - css/style.css (26.3 KB)
+    - data/tips.js (88.2 KB)
+    - data/plan.js (43.7 KB)
+    - data/vocab_1.js (125.4 KB)
+    - data/vocab_2.js (122.6 KB)
+    - data/questions_p5_1.js (23.5 KB)
+    - data/questions_p5_2.js (26.0 KB)
+    - data/questions_p5_3.js (32.6 KB)
+    - data/questions_p6.js (34.2 KB)
+    - data/questions_p7_1.js (43.0 KB)
+    - data/questions_p7_2.js (40.7 KB)
+    - data/listening_1.js (42.4 KB)
+    - data/listening_2.js (40.6 KB)
+    - data/listening_3.js (36.3 KB)
+    - data/reading_frameworks.js (19.3 KB)
+    - js/util.js (12.9 KB)
+    - js/store.js (23.8 KB)
+    - js/srs.js (3.7 KB)
+    - js/reading.js (18.8 KB)
+    - js/tts.js (6.9 KB)
+    - js/views/dashboard.js (21.9 KB)
+    - js/views/plan.js (12.8 KB)
+    - js/views/tips.js (14.6 KB)
+    - js/views/quiz.js (41.8 KB)
+    - js/views/reading.js (25.5 KB)
+    - js/views/listening.js (24.5 KB)
+    - js/views/vocab.js (22.8 KB)
+    - js/views/mock.js (27.7 KB)
+    - js/views/review.js (39.1 KB)
+    - js/views/settings.js (23.1 KB)
+    - js/app.js (13.6 KB)
 -->
 
 <title>TOEIC 30 天衝刺</title>
@@ -830,6 +833,7 @@ body.modal-open { overflow: hidden; }
         <li><a href="#/plan" data-route="plan"><span class="nav-icon" aria-hidden="true">📅</span><span>30 天計畫</span></a></li>
         <li><a href="#/tips" data-route="tips"><span class="nav-icon" aria-hidden="true">💡</span><span>技巧庫</span></a></li>
         <li><a href="#/quiz" data-route="quiz"><span class="nav-icon" aria-hidden="true">✏️</span><span>閱讀做題</span></a></li>
+        <li><a href="#/reading" data-route="reading"><span class="nav-icon" aria-hidden="true">📈</span><span>閱讀診斷室</span></a></li>
         <li><a href="#/listening" data-route="listening"><span class="nav-icon" aria-hidden="true">🎧</span><span>聽力練習</span></a></li>
         <li><a href="#/vocab" data-route="vocab"><span class="nav-icon" aria-hidden="true">📚</span><span>單字卡</span></a></li>
         <li><a href="#/mock" data-route="mock"><span class="nav-icon" aria-hidden="true">🎯</span><span>迷你模考</span></a></li>
@@ -857,8 +861,8 @@ body.modal-open { overflow: hidden; }
     <a href="#/quiz" data-route="quiz" class="tab-item">
       <span class="tab-icon" aria-hidden="true">✏️</span><span class="tab-label">做題</span>
     </a>
-    <a href="#/vocab" data-route="vocab" class="tab-item">
-      <span class="tab-icon" aria-hidden="true">📚</span><span class="tab-label">單字</span>
+    <a href="#/reading" data-route="reading" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">📈</span><span class="tab-label">閱讀</span>
     </a>
     <button type="button" id="moreTabBtn" class="tab-item tab-item-more">
       <span class="tab-icon" aria-hidden="true">⋯</span><span class="tab-label">更多</span>
@@ -8582,6 +8586,372 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 ]);
 
 </script>
+<script>
+/* data/reading_frameworks.js */
+// data/reading_frameworks.js — TOEIC_DATA.reading
+//
+// 閱讀（Part 5/6/7）強化教材：文法判斷框架、官方配速表、Part 7 題型攻略、錯因分類。
+// 供 #/reading 閱讀診斷室與 #/quiz 結果頁引用。
+//
+// 內容全為原創撰寫的繁體中文教學材料，例句自行編寫，不含任何正式試題內容。
+// 題型結構、題數與作答時間依 ETS TOEIC Listening & Reading 公開測驗簡介整理：
+//   https://www.ets.org/toeic/test-takers/listening-reading/about.html
+//
+// 設計取向：使用者閱讀分數偏低（RC 約 120／495）時，最有效率的加分順序是
+//   1) Part 5 文法判斷（考點固定、秒殺率最高）
+//   2) Part 7 定位與同義改寫（題數最多，但需要配速支撐）
+//   3) Part 6 篇章邏輯（題數少，靠 5/7 的底子自然帶起來）
+// 因此 frameworks 以 Part 5 十大考點為主軸，每條都對得上 data/questions_p5_*.js 的 tag，
+// 讓「診斷 → 讀框架 → 專項練習」形成一個閉環。
+
+window.TOEIC_DATA = window.TOEIC_DATA || {};
+window.TOEIC_DATA.reading = {
+
+  // -------------------------------------------------------------------
+  // 一、十大文法判斷框架（對應 P5 tag，可由診斷室直接連到專項練習）
+  // -------------------------------------------------------------------
+  frameworks: [
+    {
+      id: 'fw-pos',
+      tag: 'pos',
+      title: '詞性判斷：先看空格左右，不要讀整句',
+      when: '四個選項是同字根的變化（success / successful / successfully / succeed）時，這題考詞性，不考語意。',
+      steps: [
+        '遮住選項，只看空格「前一個字」和「後一個字」。',
+        '冠詞（a / an / the）、所有格（our / its）、形容詞之後 → 填名詞。',
+        'be 動詞、感官動詞、become / remain 之後 → 填形容詞（當補語）。',
+        '完整句子裡多出來的修飾語、或修飾形容詞與動詞的位置 → 填副詞。',
+        '主詞後面沒有動詞、或 to / 助動詞之後 → 填動詞。'
+      ],
+      example: {
+        en: 'The new filing system has made the office noticeably more ______.',
+        zh: '新的檔案系統讓辦公室明顯更有效率。',
+        point: 'more ______ 是比較級結構，中間只能放形容詞（efficient），不能放名詞 efficiency 或副詞 efficiently。'
+      },
+      trap: '看到 -ly 就直覺選副詞。副詞不能當 be 動詞的補語，也不能放在冠詞後面。',
+      seconds: 15
+    },
+    {
+      id: 'fw-tense',
+      tag: 'tense',
+      title: '時態：找時間線索字，找不到就看前後句',
+      when: '選項是同一個動詞的不同時態（arrives / arrived / will arrive / has arrived）。',
+      steps: [
+        '掃描全句找時間標記：yesterday / last month → 過去式。',
+        'since + 時間點、for + 一段時間、so far、recently → 現在完成式。',
+        'next week、by tomorrow、soon → 未來式或未來完成式。',
+        'every day、usually、each quarter → 現在簡單式。',
+        '完全沒有線索時，看同段落其他句子的時態，商用文件通常前後一致。'
+      ],
+      example: {
+        en: 'The maintenance team ______ the elevators three times since January.',
+        zh: '維修團隊自一月以來已經檢查電梯三次。',
+        point: 'since January 是完成式的招牌線索，選 has inspected。'
+      },
+      trap: 'by + 未來時間點常搭配未來完成式（will have finished），不是單純未來式。',
+      seconds: 20
+    },
+    {
+      id: 'fw-voice',
+      tag: 'participle',
+      title: '主動 vs. 被動：問「主詞是做的人還是被做的東西」',
+      when: '選項同時出現 V-ing 與 V-ed／be + p.p. 的組合。',
+      steps: [
+        '找出空格的主詞是誰。',
+        '主詞自己執行動作 → 主動（The manager approved…）。',
+        '主詞承受動作 → 被動（The request was approved…）。',
+        '動詞後面已經有受詞 → 幾乎不可能是被動。',
+        '分詞當形容詞時：-ing 表「主動、令人…」，-ed 表「被動、感到…」。'
+      ],
+      example: {
+        en: 'All invoices ______ before the end of the fiscal quarter.',
+        zh: '所有發票須在本會計季結束前處理完畢。',
+        point: 'invoices 是被處理的對象，且後面沒有受詞，選 must be processed。'
+      },
+      trap: 'interesting／interested、confusing／confused 這類分詞形容詞：修飾「事物」用 -ing，修飾「人的感受」用 -ed。',
+      seconds: 20
+    },
+    {
+      id: 'fw-agreement',
+      tag: 'agreement',
+      title: '主謂一致：把中間的修飾語整段刪掉再看',
+      when: '選項只差在單複數（is / are、has / have、requires / require）。',
+      steps: [
+        '找到真正的主詞，把介系詞片語、關係子句整段用手遮掉。',
+        'each / every / either / neither / one of + 名詞 → 視為單數。',
+        'A and B → 複數；A as well as B、A along with B → 動詞跟著 A。',
+        '不可數名詞（information、equipment、advice、staff 作整體）→ 單數。',
+        'The number of… → 單數；A number of… → 複數。'
+      ],
+      example: {
+        en: 'Each of the branch managers ______ required to submit a monthly summary.',
+        zh: '每一位分店經理都必須繳交月報。',
+        point: '主詞是 Each（單數），of the branch managers 只是修飾語，選 is。'
+      },
+      trap: '被 of 後面的複數名詞牽著走。決定動詞的是 of 前面的字。',
+      seconds: 15
+    },
+    {
+      id: 'fw-prep',
+      tag: 'prep',
+      title: '介系詞：先分「時間、地點、還是固定搭配」',
+      when: '四個選項都是介系詞（in / on / at / by / for / during / within）。',
+      steps: [
+        '時間：at + 時刻、on + 日期或星期、in + 月份年份季節。',
+        '期限：by = 不遲於（一次性動作）、until = 持續到（持續性動作）。',
+        '期間：during + 名詞（during the meeting）、for + 一段長度（for two hours）、within = 在…之內。',
+        '先確認空格後面是名詞還是子句 — 後面接子句就不是介系詞。',
+        '確認是不是動詞或形容詞的固定搭配（depend on、responsible for、comply with）。'
+      ],
+      example: {
+        en: 'Please submit the reimbursement form ______ five business days of your trip.',
+        zh: '請於出差後五個工作天內繳交核銷單。',
+        point: 'five business days 是一段長度且語意為「之內」，選 within。'
+      },
+      trap: 'by 與 until 最常混。「繳交、完成、抵達」用 by；「營業、等待、停留」用 until。',
+      seconds: 20
+    },
+    {
+      id: 'fw-conj',
+      tag: 'conj',
+      title: '連接詞 vs. 介系詞：看空格後面是「子句」還是「名詞」',
+      when: 'although / despite、because / because of、while / during 這種成對出現在選項時。',
+      steps: [
+        '看空格後面到逗號為止，有沒有「主詞＋動詞」。',
+        '有主詞動詞 → 用連接詞：because、although、while、if、unless、so that。',
+        '只有名詞片語 → 用介系詞：because of、despite、in spite of、during。',
+        '再確認邏輯方向：轉折（although、however）還是因果（because、therefore）。',
+        'however、therefore、nevertheless 是副詞，不能直接連接兩個子句，前面要有句號或分號。'
+      ],
+      example: {
+        en: '______ the heavy rain, the outdoor launch event proceeded as scheduled.',
+        zh: '儘管下大雨，戶外發表會仍照原訂計畫進行。',
+        point: '後面 the heavy rain 是名詞片語，不是子句，所以要用介系詞 Despite，不能用 Although。'
+      },
+      trap: '中文都翻成「雖然」，但 although 後接子句、despite 後接名詞，這是最高頻的送分題。',
+      seconds: 20
+    },
+    {
+      id: 'fw-relative',
+      tag: 'relative',
+      title: '關係詞：先看先行詞是人是物，再看後面缺什麼',
+      when: '選項是 who / which / whose / where / that / what 的組合。',
+      steps: [
+        '找空格前面的先行詞：人 → who／whom，物 → which，人物皆可 → that。',
+        '看關係子句裡缺什麼：缺主詞 → who／which；缺受詞 → whom／which（可省略）。',
+        '子句完整、只是補充所有關係 → whose + 名詞。',
+        '子句完整且先行詞是地點、時間、原因 → where / when / why。',
+        '前面根本沒有先行詞 → what（等於 the thing that）。'
+      ],
+      example: {
+        en: 'We hired a consultant ______ recommendations reduced shipping costs by 12 percent.',
+        zh: '我們聘請了一位顧問，他的建議讓運費降低了 12%。',
+        point: '空格後 recommendations 是完整名詞、子句也不缺主詞，是「顧問的建議」，選 whose。'
+      },
+      trap: '看到人就反射選 who。若後面緊接名詞且子句不缺元素，答案是 whose。',
+      seconds: 25
+    },
+    {
+      id: 'fw-verbal',
+      tag: 'other',
+      title: '不定詞 vs. 動名詞：記動詞的習慣，不要憑語感',
+      when: '選項出現 to V 與 V-ing 並列。',
+      steps: [
+        '接 to V：plan、decide、agree、hope、offer、refuse、manage、afford。',
+        '接 V-ing：avoid、finish、consider、suggest、recommend、enjoy、mind、postpone。',
+        '介系詞（to 當介系詞時也算）後面一律 V-ing：look forward to seeing、be committed to improving。',
+        '表目的用 in order to V／so as to V。',
+        'be used to + V-ing（習慣於）vs. used to + V（過去經常），兩者不同。'
+      ],
+      example: {
+        en: 'The board postponed ______ the merger until the audit is complete.',
+        zh: '董事會將併購案延後到稽核完成之後。',
+        point: 'postpone 後面固定接動名詞，選 approving。'
+      },
+      trap: 'look forward to、be dedicated to、object to 的 to 是介系詞，後面接 V-ing 不是原形動詞。',
+      seconds: 20
+    },
+    {
+      id: 'fw-comparison',
+      tag: 'comparison',
+      title: '比較級與最高級：找 than、the、範圍字',
+      when: '選項是 large / larger / largest / more large 這類階梯。',
+      steps: [
+        '句中有 than → 比較級。',
+        '有 the 且有範圍（in the region、of all applicants）→ 最高級。',
+        'as ______ as 之間一律放原級。',
+        'much / far / even / significantly 可以修飾比較級，very 不行。',
+        '兩者之間用比較級，三者以上才用最高級。'
+      ],
+      example: {
+        en: 'This year\'s conference attracted far ______ participants than last year\'s.',
+        zh: '今年研討會吸引的參加者遠多於去年。',
+        point: 'than 出現、且 far 修飾比較級，選 more。'
+      },
+      trap: 'more expensive 已經是比較級，不會再寫成 more expensiver；看到雙重比較級直接刪。',
+      seconds: 15
+    },
+    {
+      id: 'fw-pronoun',
+      tag: 'pronoun',
+      title: '代名詞：看空格在句中的「職位」',
+      when: '選項是 he / him / his / himself 這種同一人稱的四種格。',
+      steps: [
+        '空格當主詞 → 主格（he、they）。',
+        '空格在動詞或介系詞後面當受詞 → 受格（him、them）。',
+        '空格後面接名詞 → 所有格（his、their）。',
+        '空格後面沒有名詞、且要表示「…的東西」 → 所有格代名詞（his、theirs）。',
+        '動作回到主詞自己身上 → 反身代名詞（himself、themselves）。'
+      ],
+      example: {
+        en: 'Employees who complete the survey may keep the results for ______ own records.',
+        zh: '完成問卷的員工可以自行保留結果作為紀錄。',
+        point: '空格後面接名詞 own records，要用所有格 their。'
+      },
+      trap: 'its（它的）與 it\'s（it is）不同；TOEIC 幾乎不會把 it\'s 當正解。',
+      seconds: 15
+    }
+  ],
+
+  // -------------------------------------------------------------------
+  // 二、閱讀配速表（Reading Section 共 75 分鐘、100 題）
+  // -------------------------------------------------------------------
+  pace: {
+    totalMinutes: 75,
+    totalQuestions: 100,
+    parts: [
+      {
+        part: 'P5', name: 'Part 5 單句填空', count: 30, minutes: 10, secPerQ: 20,
+        checkpoint: '第 130 題做完時，時鐘應該只走了 10 分鐘',
+        tip: '文法題 15 秒、單字題 25 秒。看完選項 5 秒內判斷不出考點，直接猜同一個字母跳過並做記號。'
+      },
+      {
+        part: 'P6', name: 'Part 6 段落填空', count: 16, minutes: 8, secPerQ: 30,
+        checkpoint: '第 146 題做完時，累計 18 分鐘',
+        tip: '先花 20 秒掃完整篇抓文體與目的，再回頭填空。句子插入題留到該篇最後做。'
+      },
+      {
+        part: 'P7', name: 'Part 7 閱讀理解', count: 54, minutes: 55, secPerQ: 60,
+        checkpoint: '單篇（147–175）應在 25 分鐘內結束，剩 30 分鐘給多篇',
+        tip: '先讀題目再回文章定位。單篇每篇 2–3 分鐘、雙篇 4 分鐘、三篇 6 分鐘，超時就先劃記跳下一篇。'
+      }
+    ],
+    rules: [
+      '閱讀是「時間管理測驗」，不是「英文程度測驗」。分數低的人有一半失分來自沒做完，而不是不會。',
+      'Part 5 每多花 1 分鐘，Part 7 就少 1 題有機會作答；前面省下的時間才是後面的分數。',
+      '答案卡不要留白。跳過的題目先固定猜 C，回頭有時間再改。',
+      '練習時一定要開計時。沒有計時的練習只練到英文，練不到考試。'
+    ]
+  },
+
+  // -------------------------------------------------------------------
+  // 三、Part 7 題型攻略（對應 data/questions_p7_*.js 的 skill 欄位）
+  // -------------------------------------------------------------------
+  p7Playbook: [
+    {
+      skill: 'main_idea',
+      label: '主旨／目的題',
+      signal: 'What is the purpose of…／Why was this notice written／What is being announced',
+      steps: [
+        '答案幾乎都在第一段前兩句，或信件的 Subject 行。',
+        '讀完開頭直接作答，不要讀完整篇再回來。',
+        '選項若只提到文章某一小段的細節，通常是錯的 — 主旨題要選涵蓋全文的那個。'
+      ],
+      seconds: 40,
+      trap: '把文中真的有提到、但只佔一句話的細節，誤當成整篇主旨。'
+    },
+    {
+      skill: 'detail',
+      label: '細節查找題',
+      signal: 'What time…／How much…／Who will…／According to the email, what…',
+      steps: [
+        '從題目抓一個「不會被改寫的關鍵字」：人名、日期、數字、地名、產品名。',
+        '用眼睛掃文章找那個關鍵字，找到後只讀那一句和下一句。',
+        '確認選項是不是那句話的同義改寫，而不是原字照抄 — TOEIC 正解多半換過字。'
+      ],
+      seconds: 45,
+      trap: '文章出現兩個日期／兩個金額時，看清楚題目問的是哪一個事件的。'
+    },
+    {
+      skill: 'vocab_in_context',
+      label: '文中字義題',
+      signal: 'The word "X" in paragraph 2, line 3, is closest in meaning to…',
+      steps: [
+        '一定要回原句讀，不能只憑單字的常見字義選。',
+        '把四個選項輪流代入原句，讀起來語意通順的才是答案。',
+        '這是 Part 7 最快的題型，30 秒內解決。'
+      ],
+      seconds: 30,
+      trap: '選了該單字「最常見」的意思，但文中用的是次要字義。'
+    },
+    {
+      skill: 'inference',
+      label: '推論／暗示題',
+      signal: 'What is suggested about…／What can be inferred／What is implied',
+      steps: [
+        '推論題沒有明說的答案，但一定有文字根據 — 不能靠常識腦補。',
+        '用刪去法：四個選項逐一問「文章哪一句支持這個說法？」，講不出來的就刪。',
+        '這類題最花時間，一篇文章裡留到最後做。'
+      ],
+      seconds: 75,
+      trap: '選了「聽起來很合理但文章沒寫」的選項。TOEIC 的推論其實很保守。'
+    },
+    {
+      skill: 'NOT',
+      label: 'NOT／排除題',
+      signal: 'What is NOT mentioned／Which of the following is NOT included',
+      steps: [
+        '先在題目上圈起 NOT，避免看反。',
+        '這題等於要查四次。把三個「有提到」的逐一在文章打勾，剩下那個就是答案。',
+        '如果卡超過 90 秒，先猜一個跳過 — 這是 CP 值最低的題型。'
+      ],
+      seconds: 90,
+      trap: '找到一個選項在文中出現就急著選它 — 出現的那三個都是要排除的。'
+    },
+    {
+      skill: 'cross_ref',
+      label: '跨篇對照題（雙篇／三篇）',
+      signal: '題目同時牽涉兩份文件，例如「符合資格的申請者可獲得多少折扣？」',
+      steps: [
+        '雙篇／三篇題組中，通常有 1–2 題必須合併兩份文件才能作答。',
+        '先讀第一篇建立背景（誰、什麼事、什麼條件），第二篇通常是回覆或表單。',
+        '看到題目裡的條件（日期、會員等級、數量）就去另一份文件對照那條規則。'
+      ],
+      seconds: 75,
+      trap: '只在其中一份文件裡找答案，選到「單看一篇是對的、合起來是錯的」的選項。'
+    },
+    {
+      skill: 'sentence_insert',
+      label: '句子插入題（Part 6）',
+      signal: '四個選項都是完整句子，要選最適合放進 [N] 的那一句',
+      steps: [
+        '先讀空格「前一句」和「後一句」，判斷這裡需要的是補充、轉折還是結論。',
+        '看選項裡的指代詞與連接詞：this、these、however、in addition 必須有前文可以接。',
+        '與文章主題無關、或與前後文時序矛盾的選項先刪。'
+      ],
+      seconds: 60,
+      trap: '選了句子本身寫得最漂亮、但和前後文接不起來的那一句。'
+    }
+  ],
+
+  // -------------------------------------------------------------------
+  // 四、錯因分類（三層檢討法第一層；code 對齊 Store.WRONG_REASONS）
+  // -------------------------------------------------------------------
+  reasons: [
+    { code: 'vocab', label: '單字不認識', icon: '📖',
+      advice: '把這題的關鍵字加進單字卡，隔天用 SRS 複習。單字造成的錯最好補，也回收最快。' },
+    { code: 'grammar', label: '文法規則不熟', icon: '📐',
+      advice: '回閱讀診斷室讀對應的判斷框架，再做 10 題同考點專項練習。' },
+    { code: 'misread', label: '看錯題目／選項', icon: '👀',
+      advice: '作答時先圈題目的關鍵字（NOT、EXCEPT、疑問詞）。這類錯不用補英文，補習慣就好。' },
+    { code: 'time', label: '時間不夠亂選', icon: '⏱️',
+      advice: '不是實力問題而是配速問題。回配速表確認各 Part 的檢查點，練習時務必開計時。' },
+    { code: 'guess', label: '沒把握用猜的', icon: '🎲',
+      advice: '猜對也算不會 — 在結果頁把「其實是猜的」題目丟進錯題本，才不會被虛高的正確率騙過去。' }
+  ]
+};
+
+</script>
 
 <!-- core -->
 <script>
@@ -9029,10 +9399,18 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
   'use strict';
 
   var STORAGE_KEY = 'toeic30:state';
-  var STATE_VERSION = 1;
+  var STATE_VERSION = 2;
   var TOTAL_DAYS = 30;
   var ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   var QUIZ_MODES = ['quiz', 'listening', 'mock'];
+
+  // 錯題 Leitner 排程：box 1..5，index = box - 1，單位為天。
+  // 比單字 SRS 更密（30 天衝刺內要讓錯題至少再遇到 2–3 次），box 5 視為精通。
+  var WRONG_INTERVAL_DAYS = [1, 2, 4, 7, 14];
+  var WRONG_MAX_BOX = 5;
+
+  // 錯因分類（review 三層檢討法用）：''（未標記）或以下五種
+  var WRONG_REASONS = ['vocab', 'grammar', 'misread', 'time', 'guess'];
 
   // ---- 記憶體 fallback（node / localStorage 不可用或受限環境時）----
   var memoryRaw = null;
@@ -9090,6 +9468,41 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
   function deepClone(obj) {
     if (obj === undefined) return obj;
     return JSON.parse(JSON.stringify(obj));
+  }
+
+  /**
+   * normalizeWrongId(id) — 統一 P6/P7 子題 key 為 `<groupId>-q<n>`。
+   * 舊版 quiz.js 寫入的是 `p6-001-2` / `p7-001-1`（缺 q），而 mock.js、listening.js
+   * 與 review.js 都用 `-q<n>`，導致這些錯題在錯題本查不到題目。此函式同時供
+   * migration 與 recordQuiz 寫入前使用，確保新舊資料都落在同一格式。
+   */
+  function normalizeWrongId(id) {
+    var s = String(id || '');
+    var m = /^(p[67]-\d+)-(\d+)$/.exec(s);
+    return m ? (m[1] + '-q' + m[2]) : s;
+  }
+
+  /** 錯題 Leitner：依 box 算下次到期日 */
+  function wrongDueFrom(box, today) {
+    var idx = Math.max(1, Math.min(WRONG_MAX_BOX, box)) - 1;
+    return addDaysISO(today, WRONG_INTERVAL_DAYS[idx]);
+  }
+
+  /** 補齊錯題項目缺少的欄位（box / due / reason / reviews / rights） */
+  function normalizeWrongEntry(entry, todayOverride) {
+    var today = todayOverride || todayISO();
+    var e = isPlainObject(entry) ? entry : {};
+    var box = typeof e.box === 'number' && e.box >= 1 && e.box <= WRONG_MAX_BOX ? Math.round(e.box) : 1;
+    return {
+      count: typeof e.count === 'number' ? e.count : 0,
+      lastAt: e.lastAt || null,
+      mastered: !!e.mastered,
+      box: e.mastered ? WRONG_MAX_BOX : box,
+      due: typeof e.due === 'string' && ISO_DATE_RE.test(e.due) ? e.due : today,
+      reason: WRONG_REASONS.indexOf(e.reason) === -1 ? '' : e.reason,
+      reviews: typeof e.reviews === 'number' ? e.reviews : 0,
+      rights: typeof e.rights === 'number' ? e.rights : 0
+    };
   }
 
   // ---- localStorage 存取（含 node 記憶體 fallback；沙箱 iframe / 隱私模式下存取
@@ -9158,10 +9571,62 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       tipsMastered: {},
       quizHistory: [],
       wrongBook: {},
+      readingStats: {},
       vocab: {},
       streak: { current: 0, best: 0, lastActive: null },
       settings: { ttsRate: 1.0, ttsVoice: '', theme: 'light' }
     };
+  }
+
+  /**
+   * migrate(state) — 把舊版 state 就地升級到 STATE_VERSION，回傳新物件。
+   * v1 → v2：
+   *   1. wrongBook / quizHistory.wrongIds 的 P6/P7 子題 key 補上 `q`（見 normalizeWrongId）
+   *   2. wrongBook 每筆補上 Leitner 欄位（box/due/reason/reviews/rights）
+   *   3. 新增 readingStats（依考點累積正確率與秒數）
+   * 無法辨識的 version（例如未來版本或損毀）交由 loadState 的 try/catch 退回預設值。
+   */
+  function migrate(state) {
+    if (!isPlainObject(state)) return state;
+    var version = typeof state.version === 'number' ? state.version : 0;
+    if (version >= STATE_VERSION) return state;
+
+    var today = todayISO();
+    var next = Object.assign({}, state);
+
+    if (version < 2) {
+      var oldBook = isPlainObject(state.wrongBook) ? state.wrongBook : {};
+      var newBook = {};
+      Object.keys(oldBook).forEach(function (rawId) {
+        var id = normalizeWrongId(rawId);
+        var incoming = normalizeWrongEntry(oldBook[rawId], today);
+        var existing = newBook[id];
+        // 正規化後可能與既有 key 相撞（舊 `p6-001-2` 與新 `p6-001-q2` 並存）→ 合併
+        newBook[id] = existing
+          ? Object.assign({}, existing, {
+            count: existing.count + incoming.count,
+            lastAt: (existing.lastAt || '') > (incoming.lastAt || '') ? existing.lastAt : incoming.lastAt,
+            mastered: existing.mastered && incoming.mastered,
+            box: Math.min(existing.box, incoming.box),
+            due: (existing.due || today) < (incoming.due || today) ? existing.due : incoming.due,
+            reason: existing.reason || incoming.reason,
+            reviews: existing.reviews + incoming.reviews,
+            rights: existing.rights + incoming.rights
+          })
+          : incoming;
+      });
+      next.wrongBook = newBook;
+
+      next.quizHistory = (Array.isArray(state.quizHistory) ? state.quizHistory : []).map(function (entry) {
+        if (!isPlainObject(entry) || !Array.isArray(entry.wrongIds)) return entry;
+        return Object.assign({}, entry, { wrongIds: entry.wrongIds.map(normalizeWrongId) });
+      });
+
+      if (!isPlainObject(next.readingStats)) next.readingStats = {};
+    }
+
+    next.version = STATE_VERSION;
+    return next;
   }
 
   function validateState(state) {
@@ -9191,6 +9656,9 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     }
     if (!isPlainObject(state.wrongBook)) {
       throw new Error('Store: wrongBook 必須是物件');
+    }
+    if (!isPlainObject(state.readingStats)) {
+      throw new Error('Store: readingStats 必須是物件');
     }
     if (!isPlainObject(state.vocab)) {
       throw new Error('Store: vocab 必須是物件');
@@ -9224,6 +9692,9 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     if (payload.wrongIds !== undefined && !Array.isArray(payload.wrongIds)) {
       throw new Error('Store.recordQuiz: wrongIds 必須是陣列');
     }
+    if (payload.skillStats !== undefined && !Array.isArray(payload.skillStats)) {
+      throw new Error('Store.recordQuiz: skillStats 必須是陣列');
+    }
   }
 
   // ---- load / persist ----
@@ -9236,9 +9707,13 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       return currentState;
     }
     try {
-      var parsed = JSON.parse(raw);
+      var parsed = migrate(JSON.parse(raw));
       validateState(parsed);
+      if (parsed.version !== STATE_VERSION) {
+        throw new Error('Store: 不支援的 version ' + parsed.version);
+      }
       currentState = parsed;
+      persist(currentState); // 升級後立即寫回，避免每次載入都重跑 migration
     } catch (e) {
       // 資料損毀 → 退回預設值，不中斷應用程式
       currentState = defaultState();
@@ -9329,9 +9804,12 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     } catch (e) {
       throw new Error('Store.import: 無法解析 JSON — ' + e.message);
     }
+    var received = isPlainObject(parsed) && typeof parsed.version === 'number' ? parsed.version : '（未知）';
+    // 舊版備份（v1）先升級再驗證，讓使用者換版本後仍能還原進度
+    parsed = migrate(parsed);
     validateState(parsed);
     if (parsed.version !== STATE_VERSION) {
-      throw new Error('Store.import: 不支援的 version（預期 ' + STATE_VERSION + '，收到 ' + parsed.version + '）');
+      throw new Error('Store.import: 不支援的 version（預期 ' + STATE_VERSION + '，收到 ' + received + '）');
     }
     currentState = deepClone(parsed);
     persist(currentState);
@@ -9388,9 +9866,17 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     });
   }
 
+  /**
+   * recordQuiz(payload) — 記錄一次作答。
+   * payload: { mode, part, total, correct, seconds, wrongIds?, skillStats? }
+   *   skillStats: [{ key: 'P5:prep'|'P6:sentence'|'P7:inference', correct: boolean, seconds: number }]
+   *   → 累積到 state.readingStats，供閱讀診斷室（Reading.diagnose）算各考點正確率與配速。
+   * 錯題一律回到 box 1（今天到期），並取消先前的「已精通」標記。
+   */
   function recordQuiz(payload, todayOverride) {
     validateQuizPayload(payload);
-    var wrongIds = Array.isArray(payload.wrongIds) ? payload.wrongIds.slice() : [];
+    var wrongIds = (Array.isArray(payload.wrongIds) ? payload.wrongIds : []).map(normalizeWrongId);
+    var skillStats = Array.isArray(payload.skillStats) ? payload.skillStats : [];
     var nowIso = new Date().toISOString();
     var today = todayOverride || todayISO();
 
@@ -9408,11 +9894,24 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
       var wrongBook = Object.assign({}, old.wrongBook);
       wrongIds.forEach(function (id) {
-        var existing = wrongBook[id] || { count: 0, lastAt: null, mastered: false };
-        wrongBook[id] = {
+        var existing = normalizeWrongEntry(wrongBook[id], today);
+        wrongBook[id] = Object.assign({}, existing, {
           count: existing.count + 1,
           lastAt: nowIso,
-          mastered: false
+          mastered: false,
+          box: 1,
+          due: today
+        });
+      });
+
+      var readingStats = Object.assign({}, old.readingStats);
+      skillStats.forEach(function (s) {
+        if (!s || typeof s.key !== 'string' || !s.key) return;
+        var prev = readingStats[s.key] || { total: 0, correct: 0, seconds: 0 };
+        readingStats[s.key] = {
+          total: prev.total + 1,
+          correct: prev.correct + (s.correct ? 1 : 0),
+          seconds: prev.seconds + (typeof s.seconds === 'number' && s.seconds > 0 ? Math.round(s.seconds) : 0)
         };
       });
 
@@ -9421,6 +9920,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       return Object.assign({}, old, {
         quizHistory: quizHistory,
         wrongBook: wrongBook,
+        readingStats: readingStats,
         streak: streak
       });
     });
@@ -9430,12 +9930,111 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     if (!id) {
       throw new Error('Store.markWrongMastered: id 為必填');
     }
+    var today = todayISO();
     return set(function (old) {
-      var existing = old.wrongBook[id] || { count: 0, lastAt: null, mastered: false };
+      var existing = normalizeWrongEntry(old.wrongBook[normalizeWrongId(id)], today);
       var wrongBook = Object.assign({}, old.wrongBook);
-      wrongBook[id] = Object.assign({}, existing, { mastered: true });
+      wrongBook[normalizeWrongId(id)] = Object.assign({}, existing, {
+        mastered: true,
+        box: WRONG_MAX_BOX,
+        due: wrongDueFrom(WRONG_MAX_BOX, today)
+      });
       return Object.assign({}, old, { wrongBook: wrongBook });
     });
+  }
+
+  /**
+   * reviewWrong(id, correct) — 錯題本重做一題後更新 Leitner 排程。
+   * 答對 → box +1（到 5 即自動標記精通）；答錯 → 退回 box 1，明天再見。
+   */
+  function reviewWrong(id, correct, todayOverride) {
+    if (!id) {
+      throw new Error('Store.reviewWrong: id 為必填');
+    }
+    var today = todayOverride || todayISO();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var nextBox = correct ? Math.min(WRONG_MAX_BOX, existing.box + 1) : 1;
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, {
+        box: nextBox,
+        due: wrongDueFrom(nextBox, today),
+        mastered: nextBox >= WRONG_MAX_BOX,
+        reviews: existing.reviews + 1,
+        rights: existing.rights + (correct ? 1 : 0)
+      });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /**
+   * setWrongReason(id, reason) — 標記錯因（三層檢討法第一層：先分類為什麼錯）。
+   * reason 需為 WRONG_REASONS 之一，傳空字串可清除標記。
+   */
+  function setWrongReason(id, reason) {
+    if (!id) {
+      throw new Error('Store.setWrongReason: id 為必填');
+    }
+    var r = reason || '';
+    if (r && WRONG_REASONS.indexOf(r) === -1) {
+      throw new Error('Store.setWrongReason: 未知的錯因 ' + r);
+    }
+    var today = todayISO();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, { reason: r });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /**
+   * flagWrong(id, reason) — 手動把一題丟進錯題本（不經過 recordQuiz）。
+   * 用於「這題我猜對的」：正確率會騙人，蒙對的題目一樣要排進複習佇列。
+   */
+  function flagWrong(id, reason) {
+    if (!id) {
+      throw new Error('Store.flagWrong: id 為必填');
+    }
+    var r = reason || '';
+    if (r && WRONG_REASONS.indexOf(r) === -1) {
+      throw new Error('Store.flagWrong: 未知的錯因 ' + r);
+    }
+    var today = todayISO();
+    var nowIso = new Date().toISOString();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, {
+        count: Math.max(1, existing.count),
+        lastAt: nowIso,
+        mastered: false,
+        box: 1,
+        due: today,
+        reason: r || existing.reason
+      });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /** dueWrongIds(today) — 今天（含逾期）該複習、且尚未精通的錯題 id，早到期的排前面 */
+  function dueWrongIds(todayOverride) {
+    var today = todayOverride || todayISO();
+    var wb = loadState().wrongBook || {};
+    return Object.keys(wb)
+      .filter(function (id) {
+        var e = normalizeWrongEntry(wb[id], today);
+        return !e.mastered && (e.due || today) <= today;
+      })
+      .sort(function (a, b) {
+        var da = normalizeWrongEntry(wb[a], today).due;
+        var db = normalizeWrongEntry(wb[b], today).due;
+        if (da !== db) return da < db ? -1 : 1;
+        return normalizeWrongEntry(wb[b], today).count - normalizeWrongEntry(wb[a], today).count;
+      });
   }
 
   function getDayIndex(dateISO) {
@@ -9464,10 +10063,18 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     isTaskDone: isTaskDone,
     recordQuiz: recordQuiz,
     markWrongMastered: markWrongMastered,
+    reviewWrong: reviewWrong,
+    setWrongReason: setWrongReason,
+    flagWrong: flagWrong,
+    dueWrongIds: dueWrongIds,
+    normalizeWrongId: normalizeWrongId,
+    normalizeWrongEntry: normalizeWrongEntry,
     touchStreak: touchStreak,
     getDayIndex: getDayIndex,
     daysToExam: daysToExam,
-    isPersistent: isPersistent
+    isPersistent: isPersistent,
+    WRONG_REASONS: WRONG_REASONS.slice(),
+    STATE_VERSION: STATE_VERSION
   };
 })(typeof window !== 'undefined' ? window : globalThis);
 
@@ -9600,6 +10207,536 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     isDue: isDue,
     pickSession: pickSession,
     stats: stats
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+/* js/reading.js */
+/**
+ * js/reading.js — 閱讀（Part 5/6/7）診斷引擎
+ *
+ * window.Reading：純函式模組，只吃傳進來的 state（Store.get() 的結果）與 TOEIC_DATA，
+ * 不自己讀寫 localStorage、不碰 DOM，因此可以直接在 node 測試。
+ *
+ * 提供：
+ *   - skillKey(part, question)  把題目對應到考點 key（'P5:prep'、'P7:inference'…）
+ *   - SKILL_LABELS / PACE_TARGET / labelFor(key)
+ *   - skillBreakdown(state)     各考點正確率 + 平均秒數，附熟練度分級
+ *   - paceReport(state)         各 Part 的實際配速 vs 目標配速
+ *   - estimateRC(state)         粗估 Reading 分數（5–495）
+ *   - reasonBreakdown(state)    錯因分佈
+ *   - diagnose(state)           上面全部 + 依優先序排出的行動建議
+ *
+ * 依賴：無（window.TOEIC_DATA.reading 缺檔時各函式仍能運作，只是少了教材文字）。
+ */
+(function (window) {
+  'use strict';
+
+  // 每題目標秒數。單一真實來源：quiz.js / mock.js / #/reading 都引用這裡，
+  // 依 Reading Section 75 分鐘 100 題的官方配置換算（P5 30題10分、P6 16題8分、P7 54題55分）。
+  var PACE_TARGET = { P5: 20, P6: 30, P7: 60 };
+
+  var SKILL_LABELS = {
+    'P5:pos': '詞性判斷',
+    'P5:tense': '時態',
+    'P5:prep': '介系詞',
+    'P5:conj': '連接詞',
+    'P5:pronoun': '代名詞',
+    'P5:agreement': '主謂一致',
+    'P5:participle': '分詞／語態',
+    'P5:relative': '關係詞',
+    'P5:comparison': '比較級',
+    'P5:vocab': '字彙搭配',
+    'P5:other': '綜合文法',
+    'P6:word': '篇章填空',
+    'P6:sentence': '句子插入',
+    'P7:main_idea': '主旨目的',
+    'P7:detail': '細節查找',
+    'P7:inference': '推論題',
+    'P7:NOT': 'NOT／排除題',
+    'P7:vocab_in_context': '文中字義',
+    'P7:cross_ref': '跨篇對照'
+  };
+
+  var PART_LABELS = { P5: 'Part 5 單句填空', P6: 'Part 6 段落填空', P7: 'Part 7 閱讀理解' };
+
+  // 熟練度分級門檻（正確率 %）
+  var LEVELS = [
+    { min: 85, code: 'strong', label: '穩定', tone: 'success' },
+    { min: 65, code: 'ok', label: '及格', tone: 'primary' },
+    { min: 45, code: 'shaky', label: '不穩', tone: 'warning' },
+    { min: 0, code: 'weak', label: '弱點', tone: 'danger' }
+  ];
+
+  // 樣本太少時不下判斷，只顯示「資料不足」
+  var MIN_SAMPLE = 5;
+
+  // 粗估 RC 分數用的錨點：[答對題數（滿分 100）, 換算分數]。
+  // 依公開換算表的常見區間取樣後線性內插，僅供自我追蹤，不等於官方分數。
+  var RC_CURVE = [
+    [0, 5], [10, 25], [20, 60], [30, 105], [40, 150], [50, 200],
+    [60, 255], [70, 310], [80, 370], [90, 425], [95, 455], [100, 495]
+  ];
+
+  // -------------------------------------------------------------------
+  // 小工具
+  // -------------------------------------------------------------------
+
+  function pct(part, total) {
+    if (!total) return 0;
+    return Math.round((part / total) * 100);
+  }
+
+  function readingData() {
+    return (window.TOEIC_DATA && window.TOEIC_DATA.reading) || null;
+  }
+
+  function labelFor(key) {
+    return SKILL_LABELS[key] || key;
+  }
+
+  function partOfKey(key) {
+    var idx = String(key || '').indexOf(':');
+    return idx === -1 ? '' : key.slice(0, idx);
+  }
+
+  function tagOfKey(key) {
+    var idx = String(key || '').indexOf(':');
+    return idx === -1 ? '' : key.slice(idx + 1);
+  }
+
+  function levelOf(accuracy) {
+    for (var i = 0; i < LEVELS.length; i++) {
+      if (accuracy >= LEVELS[i].min) return LEVELS[i];
+    }
+    return LEVELS[LEVELS.length - 1];
+  }
+
+  /**
+   * skillKey(part, question) — 由題目物件算出考點 key。
+   * P5 用 tag、P6 用 type、P7 用 skill；缺欄位一律歸到 other。
+   */
+  function skillKey(part, question) {
+    var q = question || {};
+    if (part === 'P5') return 'P5:' + (q.tag || 'other');
+    if (part === 'P6') return 'P6:' + (q.type || 'word');
+    if (part === 'P7') return 'P7:' + (q.skill || 'detail');
+    return String(part || '') + ':other';
+  }
+
+  /** 題庫中每個考點各有幾題，用來提示「這個考點還有多少題可練」 */
+  function poolSizeByKey() {
+    var data = window.TOEIC_DATA || {};
+    var counts = {};
+    function bump(key) { counts[key] = (counts[key] || 0) + 1; }
+
+    (data.p5 || []).forEach(function (q) { bump(skillKey('P5', q)); });
+    (data.p6 || []).forEach(function (g) {
+      (g.questions || []).forEach(function (q) { bump(skillKey('P6', q)); });
+    });
+    (data.p7 || []).forEach(function (g) {
+      (g.questions || []).forEach(function (q) { bump(skillKey('P7', q)); });
+    });
+    return counts;
+  }
+
+  // -------------------------------------------------------------------
+  // 考點分析
+  // -------------------------------------------------------------------
+
+  /**
+   * skillBreakdown(state, opts) — 把 state.readingStats 攤成陣列。
+   * opts.part 可過濾單一 Part。回傳依正確率由低到高排序（弱點在前）。
+   */
+  function skillBreakdown(state, opts) {
+    opts = opts || {};
+    var stats = (state && state.readingStats) || {};
+    var pool = poolSizeByKey();
+
+    var rows = Object.keys(stats).map(function (key) {
+      var s = stats[key] || { total: 0, correct: 0, seconds: 0 };
+      var part = partOfKey(key);
+      var accuracy = pct(s.correct, s.total);
+      var avgSeconds = s.total ? Math.round(s.seconds / s.total) : 0;
+      var target = PACE_TARGET[part] || 0;
+      return {
+        key: key,
+        part: part,
+        tag: tagOfKey(key),
+        label: labelFor(key),
+        total: s.total,
+        correct: s.correct,
+        accuracy: accuracy,
+        avgSeconds: avgSeconds,
+        targetSeconds: target,
+        overPace: !!(target && avgSeconds > target * 1.3),
+        enough: s.total >= MIN_SAMPLE,
+        level: s.total >= MIN_SAMPLE ? levelOf(accuracy) : { code: 'unknown', label: '資料不足', tone: 'muted' },
+        poolSize: pool[key] || 0
+      };
+    });
+
+    if (opts.part) {
+      rows = rows.filter(function (r) { return r.part === opts.part; });
+    }
+    rows.sort(function (a, b) {
+      // 有足夠樣本的排前面，其次正確率低的排前面，再其次題數多的排前面
+      if (a.enough !== b.enough) return a.enough ? -1 : 1;
+      if (a.accuracy !== b.accuracy) return a.accuracy - b.accuracy;
+      return b.total - a.total;
+    });
+    return rows;
+  }
+
+  /** 尚未練過的考點（題庫裡有、但 readingStats 沒紀錄），提醒別漏練 */
+  function untouchedSkills(state) {
+    var stats = (state && state.readingStats) || {};
+    var pool = poolSizeByKey();
+    return Object.keys(pool)
+      .filter(function (key) { return !stats[key] || !stats[key].total; })
+      .map(function (key) {
+        return { key: key, label: labelFor(key), part: partOfKey(key), tag: tagOfKey(key), poolSize: pool[key] };
+      })
+      .sort(function (a, b) { return b.poolSize - a.poolSize; });
+  }
+
+  // -------------------------------------------------------------------
+  // 配速分析
+  // -------------------------------------------------------------------
+
+  /**
+   * paceReport(state) — 依 quizHistory 中的閱讀紀錄（mode='quiz'）算各 Part 實際配速。
+   * 回傳每個 Part 的 { avgSeconds, targetSeconds, ratio, verdict }。
+   */
+  function paceReport(state) {
+    var history = (state && state.quizHistory) || [];
+    var acc = {};
+    history.forEach(function (entry) {
+      if (!entry || entry.mode !== 'quiz') return;
+      var part = entry.part;
+      if (!PACE_TARGET[part]) return;
+      if (!acc[part]) acc[part] = { seconds: 0, questions: 0, correct: 0, sessions: 0 };
+      acc[part].seconds += entry.seconds || 0;
+      acc[part].questions += entry.total || 0;
+      acc[part].correct += entry.correct || 0;
+      acc[part].sessions += 1;
+    });
+
+    return ['P5', 'P6', 'P7'].map(function (part) {
+      var a = acc[part];
+      var target = PACE_TARGET[part];
+      if (!a || !a.questions) {
+        return {
+          part: part, label: PART_LABELS[part], targetSeconds: target,
+          avgSeconds: 0, questions: 0, sessions: 0, accuracy: 0,
+          ratio: 0, verdict: 'none', verdictText: '尚無計時紀錄'
+        };
+      }
+      var avg = Math.round(a.seconds / a.questions);
+      var ratio = target ? avg / target : 0;
+      var verdict = 'ok';
+      var verdictText = '配速在目標範圍內';
+      if (ratio > 1.5) { verdict = 'slow'; verdictText = '明顯超時，正式考會做不完'; }
+      else if (ratio > 1.15) { verdict = 'warn'; verdictText = '略慢，還有壓縮空間'; }
+      else if (ratio < 0.6 && pct(a.correct, a.questions) < 70) {
+        verdict = 'rush'; verdictText = '偏快但正確率低，像是在亂猜';
+      }
+      return {
+        part: part, label: PART_LABELS[part], targetSeconds: target,
+        avgSeconds: avg, questions: a.questions, sessions: a.sessions,
+        accuracy: pct(a.correct, a.questions),
+        ratio: Math.round(ratio * 100) / 100,
+        verdict: verdict, verdictText: verdictText
+      };
+    });
+  }
+
+  /**
+   * projectedFinish(state) — 用目前配速推估：整份 Reading 75 分鐘做得完嗎？
+   * 沒資料的 Part 用目標配速代入。
+   */
+  function projectedFinish(state) {
+    var report = paceReport(state);
+    var counts = { P5: 30, P6: 16, P7: 54 };
+    var totalSeconds = 0;
+    var measured = 0;
+    report.forEach(function (r) {
+      var sec = r.avgSeconds || r.targetSeconds;
+      if (r.avgSeconds) measured += 1;
+      totalSeconds += sec * counts[r.part];
+    });
+    return {
+      minutes: Math.round(totalSeconds / 60),
+      limitMinutes: 75,
+      overMinutes: Math.round((totalSeconds - 75 * 60) / 60),
+      measuredParts: measured,
+      willFinish: totalSeconds <= 75 * 60
+    };
+  }
+
+  // -------------------------------------------------------------------
+  // 分數粗估
+  // -------------------------------------------------------------------
+
+  /** curveToScore(rawOutOf100) — 依 RC_CURVE 線性內插 */
+  function curveToScore(raw) {
+    var x = Math.max(0, Math.min(100, raw));
+    for (var i = 0; i < RC_CURVE.length - 1; i++) {
+      var a = RC_CURVE[i];
+      var b = RC_CURVE[i + 1];
+      if (x >= a[0] && x <= b[0]) {
+        var span = b[0] - a[0];
+        var t = span ? (x - a[0]) / span : 0;
+        return Math.round(a[1] + t * (b[1] - a[1]));
+      }
+    }
+    return 5;
+  }
+
+  /**
+   * estimateRC(state) — 用整體閱讀正確率粗估 Reading 分數。
+   * 只採計 mode='quiz'（閱讀做題）與 mode='mock'（模考）的紀錄。
+   * sample < 30 題時標記 confidence:'low'，UI 應提示樣本不足。
+   */
+  function estimateRC(state) {
+    var history = (state && state.quizHistory) || [];
+    var total = 0;
+    var correct = 0;
+    history.forEach(function (entry) {
+      if (!entry) return;
+      if (entry.mode !== 'quiz' && entry.mode !== 'mock') return;
+      total += entry.total || 0;
+      correct += entry.correct || 0;
+    });
+
+    if (!total) {
+      return { score: null, accuracy: 0, sample: 0, confidence: 'none', nextScore: null, questionsToNext: null };
+    }
+
+    var accuracy = pct(correct, total);
+    var score = curveToScore(accuracy);
+
+    // 「再多對幾題就能跳一級」：以 50 分為一個級距
+    var nextScore = Math.min(495, (Math.floor(score / 50) + 1) * 50);
+    var questionsToNext = null;
+    for (var raw = accuracy; raw <= 100; raw++) {
+      if (curveToScore(raw) >= nextScore) { questionsToNext = raw - accuracy; break; }
+    }
+
+    return {
+      score: score,
+      accuracy: accuracy,
+      sample: total,
+      confidence: total >= 100 ? 'high' : (total >= 30 ? 'medium' : 'low'),
+      nextScore: nextScore,
+      questionsToNext: questionsToNext
+    };
+  }
+
+  // -------------------------------------------------------------------
+  // 錯因分佈
+  // -------------------------------------------------------------------
+
+  function reasonBreakdown(state) {
+    var wb = (state && state.wrongBook) || {};
+    var data = readingData();
+    var defs = (data && data.reasons) || [];
+    var counts = {};
+    var untagged = 0;
+    var totalReading = 0;
+
+    Object.keys(wb).forEach(function (id) {
+      if (!/^p[567]-/.test(id)) return; // 只看閱讀錯題
+      totalReading += 1;
+      var reason = wb[id] && wb[id].reason;
+      if (!reason) { untagged += 1; return; }
+      counts[reason] = (counts[reason] || 0) + 1;
+    });
+
+    var rows = defs.map(function (d) {
+      return {
+        code: d.code, label: d.label, icon: d.icon, advice: d.advice,
+        count: counts[d.code] || 0,
+        share: pct(counts[d.code] || 0, totalReading)
+      };
+    }).sort(function (a, b) { return b.count - a.count; });
+
+    return { rows: rows, untagged: untagged, total: totalReading };
+  }
+
+  // -------------------------------------------------------------------
+  // 綜合診斷 + 行動建議
+  // -------------------------------------------------------------------
+
+  function drillHash(key, count) {
+    var part = partOfKey(key);
+    var tag = tagOfKey(key);
+    return '#/quiz?part=' + encodeURIComponent(part) +
+      '&skill=' + encodeURIComponent(tag) +
+      '&count=' + (count || 10);
+  }
+
+  function frameworkForTag(tag) {
+    var data = readingData();
+    if (!data || !data.frameworks) return null;
+    for (var i = 0; i < data.frameworks.length; i++) {
+      if (data.frameworks[i].tag === tag) return data.frameworks[i];
+    }
+    return null;
+  }
+
+  /**
+   * advice(state) — 依優先序產生 3–5 條可執行建議。
+   * 排序邏輯（分數低的人回收最快的順序）：
+   *   1. 有錯題到期沒複習 → 先清錯題（重做一題的期望增益大於做新題）
+   *   2. Part 5 弱考點 → 秒殺型考點，讀框架 + 專項練習
+   *   3. 配速嚴重超時 → 練縮時，否則實力再好也做不完
+   *   4. Part 7 弱題型 → 讀攻略 + 專項練習
+   *   5. 沒碰過的考點 → 補齊覆蓋率
+   */
+  function advice(state, opts) {
+    opts = opts || {};
+    var today = opts.today || null;
+    var out = [];
+
+    // 1. 到期錯題
+    var wb = (state && state.wrongBook) || {};
+    var dueCount = 0;
+    Object.keys(wb).forEach(function (id) {
+      var e = wb[id] || {};
+      if (e.mastered) return;
+      if (!today || !e.due || e.due <= today) dueCount += 1;
+    });
+    if (dueCount >= 3) {
+      out.push({
+        priority: 1, kind: 'review', icon: '🔁',
+        title: '先清掉 ' + dueCount + ' 題到期錯題',
+        detail: '重做一題已經錯過的題目，比做一題新題更容易加分。做完再去練新題。',
+        actionLabel: '去錯題本',
+        hash: '#/review?due=1'
+      });
+    }
+
+    var rows = skillBreakdown(state);
+    var enoughRows = rows.filter(function (r) { return r.enough; });
+
+    // 2. Part 5 弱考點（最多兩個）
+    enoughRows.filter(function (r) { return r.part === 'P5' && r.accuracy < 65; })
+      .slice(0, 2)
+      .forEach(function (r) {
+        var fw = frameworkForTag(r.tag);
+        out.push({
+          priority: 2, kind: 'skill', icon: '📐',
+          title: 'Part 5「' + r.label + '」正確率只有 ' + r.accuracy + '%',
+          detail: (fw ? '先讀判斷框架「' + fw.title + '」，' : '') +
+            '再做 10 題同考點專項練習（題庫還有 ' + r.poolSize + ' 題）。',
+          actionLabel: '練 10 題 ' + r.label,
+          hash: drillHash(r.key, 10),
+          frameworkId: fw ? fw.id : null,
+          skillKey: r.key
+        });
+      });
+
+    // 3. 配速
+    paceReport(state).forEach(function (p) {
+      if (p.verdict === 'slow') {
+        out.push({
+          priority: 3, kind: 'pace', icon: '⏱️',
+          title: p.label + '平均每題 ' + p.avgSeconds + ' 秒，目標是 ' + p.targetSeconds + ' 秒',
+          detail: '照這個速度正式考會做不完。開計時做 10 題，強迫自己超過目標秒數就先猜再跳。',
+          actionLabel: '計時練 ' + p.part,
+          hash: '#/quiz?part=' + p.part + '&count=10'
+        });
+      } else if (p.verdict === 'rush') {
+        out.push({
+          priority: 3, kind: 'pace', icon: '⚠️',
+          title: p.label + '答得快但正確率只有 ' + p.accuracy + '%',
+          detail: '速度不是問題，是讀得不夠仔細。放慢到接近目標秒數，先把正確率拉到 70%。',
+          actionLabel: '重練 ' + p.part,
+          hash: '#/quiz?part=' + p.part + '&count=10'
+        });
+      }
+    });
+
+    // 4. Part 7 弱題型
+    enoughRows.filter(function (r) { return r.part === 'P7' && r.accuracy < 60; })
+      .slice(0, 2)
+      .forEach(function (r) {
+        out.push({
+          priority: 4, kind: 'skill', icon: '📖',
+          title: 'Part 7「' + r.label + '」正確率只有 ' + r.accuracy + '%',
+          detail: '在閱讀診斷室讀這個題型的攻略步驟，再做同題型專項練習。',
+          actionLabel: '練 ' + r.label,
+          hash: drillHash(r.key, 6),
+          skillKey: r.key
+        });
+      });
+
+    // 5. 覆蓋率
+    var untouched = untouchedSkills(state);
+    if (untouched.length && out.length < 5) {
+      var names = untouched.slice(0, 3).map(function (u) { return u.label; }).join('、');
+      out.push({
+        priority: 5, kind: 'coverage', icon: '🗺️',
+        title: '還有 ' + untouched.length + ' 個考點完全沒練過',
+        detail: '包含 ' + names + ' 等。先各做幾題，診斷才有資料可以判斷強弱。',
+        actionLabel: '練 ' + untouched[0].label,
+        hash: drillHash(untouched[0].key, 10),
+        skillKey: untouched[0].key
+      });
+    }
+
+    if (!out.length) {
+      out.push({
+        priority: 9, kind: 'idle', icon: '✅',
+        title: '目前沒有明顯弱點',
+        detail: '各考點正確率與配速都在範圍內。維持每天一組計時練習，並保持錯題本清空。',
+        actionLabel: '做一組計時練習',
+        hash: '#/quiz?part=P7&count=6'
+      });
+    }
+
+    out.sort(function (a, b) { return a.priority - b.priority; });
+    return out.slice(0, 5);
+  }
+
+  /** diagnose(state, opts) — 一次拿到閱讀診斷室要的所有資料 */
+  function diagnose(state, opts) {
+    opts = opts || {};
+    return {
+      rc: estimateRC(state),
+      skills: skillBreakdown(state),
+      untouched: untouchedSkills(state),
+      pace: paceReport(state),
+      projection: projectedFinish(state),
+      reasons: reasonBreakdown(state),
+      advice: advice(state, opts)
+    };
+  }
+
+  window.Reading = {
+    PACE_TARGET: PACE_TARGET,
+    SKILL_LABELS: SKILL_LABELS,
+    PART_LABELS: PART_LABELS,
+    MIN_SAMPLE: MIN_SAMPLE,
+    skillKey: skillKey,
+    labelFor: labelFor,
+    partOfKey: partOfKey,
+    tagOfKey: tagOfKey,
+    levelOf: levelOf,
+    poolSizeByKey: poolSizeByKey,
+    skillBreakdown: skillBreakdown,
+    untouchedSkills: untouchedSkills,
+    paceReport: paceReport,
+    projectedFinish: projectedFinish,
+    curveToScore: curveToScore,
+    estimateRC: estimateRC,
+    reasonBreakdown: reasonBreakdown,
+    frameworkForTag: frameworkForTag,
+    drillHash: drillHash,
+    advice: advice,
+    diagnose: diagnose
   };
 })(typeof window !== 'undefined' ? window : globalThis);
 
@@ -10292,6 +11429,70 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     );
   }
 
+  /**
+   * 閱讀強化卡：把閱讀診斷室最重要的一條建議搬到儀表板，
+   * 讓「今天閱讀該練什麼」在首頁就看得到，不用先進診斷室。
+   */
+  function buildReadingCard(state) {
+    var card = Util.h(
+      'div.card',
+      {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, '📈 閱讀強化'),
+          Util.h('div.card-subtitle', {}, '閱讀是目前的主戰場 — 這裡只顯示最該先做的那一件事')
+        ),
+        Util.h('button.btn.btn-ghost.btn-sm', { onClick: function () { goTo('#/reading'); } }, '完整診斷')
+      )
+    );
+
+    if (!window.Reading || typeof window.Reading.diagnose !== 'function') {
+      card.appendChild(Util.h('div.u-mt-md.u-text-muted', {}, '閱讀診斷模組尚未載入。'));
+      return card;
+    }
+
+    var d;
+    try {
+      d = window.Reading.diagnose(state, { today: Util.todayISO() });
+    } catch (e) {
+      card.appendChild(Util.h('div.u-mt-md.u-text-muted', {}, '無法計算閱讀診斷：' + (e && e.message)));
+      return card;
+    }
+
+    var rcText = d.rc.score === null ? '—' : String(d.rc.score);
+    var paceText = d.projection.measuredParts === 0
+      ? '尚無計時'
+      : (d.projection.willFinish ? '做得完' : '超時 ' + d.projection.overMinutes + ' 分');
+
+    card.appendChild(Util.h('div.stat-grid', { style: { marginTop: '12px' } },
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, rcText),
+        Util.h('div.stat-label', {}, '粗估 RC 分數')),
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, d.rc.accuracy + '%'),
+        Util.h('div.stat-label', {}, '閱讀正確率')),
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, paceText),
+        Util.h('div.stat-label', {}, '75 分鐘完成度'))
+    ));
+
+    var top = d.advice[0];
+    if (top) {
+      card.appendChild(Util.h('div.card', { style: { marginTop: '14px', background: 'var(--color-surface-alt)' } },
+        Util.h('div.u-flex.u-items-center.u-gap-sm', { style: { flexWrap: 'wrap' } },
+          Util.h('span', { style: { fontSize: '1.1rem' } }, top.icon),
+          Util.h('strong', {}, top.title)
+        ),
+        Util.h('p', { style: { marginTop: '6px' } }, top.detail),
+        Util.h('div.u-flex.u-gap-sm', { style: { marginTop: '10px', flexWrap: 'wrap' } },
+          Util.h('button.btn.btn-primary.btn-sm', { onClick: function () { goTo(top.hash); } }, top.actionLabel)
+        )
+      ));
+    }
+
+    return card;
+  }
+
   function buildWeaknessCard(state) {
     var stats = {};
     (state.quizHistory || []).forEach(function (entry) {
@@ -10388,6 +11589,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       container.appendChild(buildTasksCard(plan, todayDay, dayIndex, state));
       container.appendChild(buildOverviewCard(state, plan));
       container.appendChild(buildWeeklyChart(state));
+      container.appendChild(buildReadingCard(state));
       container.appendChild(buildWeaknessCard(state));
     } catch (e) {
       container.innerHTML = '';
@@ -11241,15 +12443,48 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
  * js/views/quiz.js
  * 閱讀測驗引擎（Part 5 / 6 / 7）。
  * 流程：設定面板 → 作答（逐題即時解析 / 交卷後解析，可選計時）→ 交卷 → 結果頁。
+ * 支援 params.skill 做「考點專項練習」（P5 依 tag、P6 依 type、P7 依 skill 篩題）。
+ * 每題記錄作答秒數，交卷時連同考點寫回 Store.recordQuiz({ skillStats })，
+ * 供 #/reading 閱讀診斷室算各考點正確率與配速。
  * 暴露：window.Views.quiz = { render, destroy }
  */
 (function () {
   'use strict';
 
   var PART_LABELS = { P5: 'Part 5 單句填空', P6: 'Part 6 段落填空', P7: 'Part 7 閱讀理解' };
-  var SUGGESTED_SECONDS = { P5: 30, P6: 45, P7: 60 };
   var WRONG_RATIO = 0.3;
   var OPTION_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+  // 目標配速以 window.Reading 為單一來源；Reading 缺席時退回同樣的預設值
+  var FALLBACK_PACE = { P5: 20, P6: 30, P7: 60 };
+
+  function paceTarget(part) {
+    var table = (window.Reading && window.Reading.PACE_TARGET) || FALLBACK_PACE;
+    return table[part] || FALLBACK_PACE[part] || 30;
+  }
+
+  function skillKeyOf(part, q) {
+    if (window.Reading && typeof window.Reading.skillKey === 'function') {
+      return window.Reading.skillKey(part, q);
+    }
+    if (part === 'P5') return 'P5:' + ((q && q.tag) || 'other');
+    if (part === 'P6') return 'P6:' + ((q && q.type) || 'word');
+    return 'P7:' + ((q && q.skill) || 'detail');
+  }
+
+  function skillLabelOf(key) {
+    if (window.Reading && typeof window.Reading.labelFor === 'function') {
+      return window.Reading.labelFor(key);
+    }
+    return key;
+  }
+
+  /** 該 Part 的考點欄位值（P5:tag / P6:type / P7:skill） */
+  function skillTagOf(part, q) {
+    if (part === 'P5') return (q && q.tag) || 'other';
+    if (part === 'P6') return (q && q.type) || 'word';
+    return (q && q.skill) || 'detail';
+  }
 
   var KIND_LABELS = {
     email: '電子郵件', notice: '公告', article: '文章', ad: '廣告', form: '表單',
@@ -11306,17 +12541,55 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     return (g.questions || []).length || 1;
   }
 
-  function wrongKeysForGroup(part, g) {
-    if (part === 'P5') return [g.id];
-    if (part === 'P6') {
-      return (g.questions || []).map(function (q) { return g.id + '-' + q.n; });
-    }
-    return (g.questions || []).map(function (q, i) { return g.id + '-' + (i + 1); });
+  /**
+   * 子題 key。務必與 mock.js / listening.js / review.js 一致用 `<groupId>-q<n>`，
+   * 否則寫進 wrongBook 的錯題在錯題本會查不到題目。
+   */
+  function subKeyFor(part, g, q, idx) {
+    if (part === 'P5') return g.id;
+    return g.id + '-q' + (part === 'P6' ? q.n : (idx + 1));
   }
 
-  /** 優先抽 wrongBook 中未 mastered 者佔 30%（若有），其餘隨機不重複。 */
-  function sampleGroups(part, pool, countTarget, wrongBook) {
+  function wrongKeysForGroup(part, g) {
+    if (part === 'P5') return [g.id];
+    return (g.questions || []).map(function (q, i) { return subKeyFor(part, g, q, i); });
+  }
+
+  /** 這一組（P5 單題 / P6·P7 整篇）有沒有命中指定考點 */
+  function groupHasSkill(part, g, skill) {
+    if (!skill) return true;
+    if (part === 'P5') return skillTagOf('P5', g) === skill;
+    return (g.questions || []).some(function (q) { return skillTagOf(part, q) === skill; });
+  }
+
+  /** 該 Part 題庫中出現過的考點清單（含題數），供設定面板顯示 */
+  function skillOptionsFor(part, pool) {
+    var counts = {};
+    (pool || []).forEach(function (g) {
+      if (part === 'P5') {
+        var t = skillTagOf('P5', g);
+        counts[t] = (counts[t] || 0) + 1;
+        return;
+      }
+      (g.questions || []).forEach(function (q) {
+        var tag = skillTagOf(part, q);
+        counts[tag] = (counts[tag] || 0) + 1;
+      });
+    });
+    return Object.keys(counts)
+      .map(function (tag) {
+        return { value: tag, count: counts[tag], label: skillLabelOf(part + ':' + tag) + '（' + counts[tag] + '）' };
+      })
+      .sort(function (a, b) { return b.count - a.count; });
+  }
+
+  /**
+   * 優先抽 wrongBook 中未 mastered 者佔 30%（若有），其餘隨機不重複。
+   * skill 有值時先把題庫縮到該考點（P6/P7 以「整篇含該考點」為單位）。
+   */
+  function sampleGroups(part, rawPool, countTarget, wrongBook, skill) {
     wrongBook = wrongBook || {};
+    var pool = (rawPool || []).filter(function (g) { return groupHasSkill(part, g, skill); });
     if (!pool.length) return [];
     if (countTarget === 'all') return Util.shuffle(pool);
 
@@ -11398,6 +12671,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
         count: normalizeCount(params.count) || 10,
         mode: 'immediate',
         timerOn: true,
+        skill: params.skill || null,
         task: params.task || null
       });
       return;
@@ -11423,14 +12697,16 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     ));
   }
 
-  function renderEmptyForPart(part) {
+  function renderEmptyForPart(part, skill) {
     hostContainer.appendChild(Util.h('div.view-header', {},
       Util.h('div.view-title', {}, Util.h('h1', {}, PART_LABELS[part] || '閱讀做題'))
     ));
     hostContainer.appendChild(Util.h('div.empty-state', {},
       Util.h('div.empty-state-icon', {}, '📭'),
-      Util.h('h2', {}, '這個 Part 目前沒有題目'),
-      Util.h('p', {}, '題庫資料尚未準備好，請稍後再試或選擇其他 Part。'),
+      Util.h('h2', {}, skill ? '這個考點目前沒有題目' : '這個 Part 目前沒有題目'),
+      Util.h('p', {}, skill
+        ? ('「' + skillLabelOf(part + ':' + skill) + '」在此 Part 的題庫中沒有題目，換個考點試試。')
+        : '題庫資料尚未準備好，請稍後再試或選擇其他 Part。'),
       Util.h('button.btn.btn-primary', {
         type: 'button',
         onClick: function () { render(hostContainer, {}); }
@@ -11462,15 +12738,20 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
         (pools.P5.length ? 'P5' : (pools.P6.length ? 'P6' : (pools.P7.length ? 'P7' : 'P5'))),
       count: normalizeCount(params.count) || 10,
       mode: 'immediate',
-      timerOn: true
+      timerOn: true,
+      skill: params.skill || ''
     };
     var taskId = params.task || null;
 
     hostContainer.appendChild(Util.h('div.view-header', {},
       Util.h('div.view-title', {},
         Util.h('h1', {}, '閱讀做題'),
-        Util.h('p.view-subtitle', {}, '選擇 Part、題數與作答模式後開始練習。')
-      )
+        Util.h('p.view-subtitle', {}, '選擇 Part、考點、題數與作答模式後開始練習。做完會依考點更新閱讀診斷。')
+      ),
+      Util.h('button.btn.btn-ghost.btn-sm', {
+        type: 'button',
+        onClick: function () { if (window.App) window.App.navigate('#/reading'); }
+      }, '📈 看閱讀診斷')
     ));
 
     var bodyHost = Util.h('div');
@@ -11495,12 +12776,31 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
         { value: 'immediate', label: '逐題即時解析' }, { value: 'end', label: '交卷後解析' }
       ];
       var currentPool = pools[draft.part] || [];
+      var skillOpts = skillOptionsFor(draft.part, currentPool);
+      // 換 Part 後舊考點可能不存在 → 自動退回「全部考點」
+      if (draft.skill && !skillOpts.some(function (o) { return o.value === draft.skill; })) {
+        draft.skill = '';
+      }
+      var skillToggle = [{ value: '', label: '全部考點' }].concat(skillOpts);
+      var matchedGroups = currentPool.filter(function (g) {
+        return groupHasSkill(draft.part, g, draft.skill);
+      }).length;
 
       return Util.h('div.card', {},
         Util.h('div.card-body', {},
           Util.h('div.field', {},
             Util.h('label.field-label', {}, '選擇 Part'),
             toggleGroup(partOptions, draft.part, function (v) { draft.part = v; repaint(); })
+          ),
+          Util.h('div.field', {},
+            Util.h('label.field-label', {}, '考點（專項練習）'),
+            toggleGroup(skillToggle, draft.skill, function (v) { draft.skill = v; repaint(); }),
+            Util.h('p.field-hint', {}, draft.skill
+              ? (draft.part === 'P5'
+                ? ('只抽「' + skillLabelOf(draft.part + ':' + draft.skill) + '」考點，共 ' + matchedGroups + ' 題。')
+                : ('只抽含「' + skillLabelOf(draft.part + ':' + draft.skill) + '」的文章共 ' + matchedGroups +
+                  ' 篇；同篇其他題型也會一起作答。'))
+              : '選一個考點就會只抽該類型的題目，適合針對弱點做專項特訓。')
           ),
           Util.h('div.field', {},
             Util.h('label.field-label', {}, '題數'),
@@ -11522,17 +12822,17 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
               checked: draft.timerOn,
               onChange: function (e) { draft.timerOn = e.target.checked; }
             }),
-            Util.h('span', {}, '開啟計時（建議 ' + SUGGESTED_SECONDS[draft.part] + ' 秒／題）')
+            Util.h('span', {}, '開啟計時（目標 ' + paceTarget(draft.part) + ' 秒／題，與正式考配速一致）')
           )
         ),
         Util.h('div.card-actions', {},
           Util.h('button.btn.btn-primary.btn-block', {
             type: 'button',
-            disabled: !currentPool.length,
+            disabled: !currentPool.length || !matchedGroups,
             onClick: function () {
               startSession({
                 part: draft.part, count: draft.count, mode: draft.mode,
-                timerOn: draft.timerOn, task: taskId
+                timerOn: draft.timerOn, skill: draft.skill || null, task: taskId
               });
             }
           }, '開始測驗')
@@ -11551,27 +12851,31 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     cleanupTimer();
     var pool = getPool(cfg.part);
     var state = Store.get();
-    var groups = sampleGroups(cfg.part, pool, cfg.count, state.wrongBook);
+    var groups = sampleGroups(cfg.part, pool, cfg.count, state.wrongBook, cfg.skill);
 
     clearNode(hostContainer);
     if (!groups.length) {
-      renderEmptyForPart(cfg.part);
+      renderEmptyForPart(cfg.part, cfg.skill);
       return;
     }
 
+    var now = Date.now();
     session = {
       part: cfg.part,
       mode: cfg.mode,
       timerOn: !!cfg.timerOn,
+      skill: cfg.skill || null,
       task: cfg.task || null,
       requestedCount: cfg.count,
       groups: groups,
       currentIndex: 0,
       answers: {},
       revealed: {},
+      qSeconds: {},      // key → 該題花掉的秒數（第一次作答時定版）
+      lastAnswerAt: now, // 上一次作答的時間戳，用來切分每題耗時
       activeMarker: null,
       elapsedSeconds: 0,
-      startedAt: Date.now(),
+      startedAt: now,
       phase: 'running',
       result: null
     };
@@ -11601,9 +12905,10 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       Util.h('div.view-title', {},
         Util.h('h1', {}, PART_LABELS[session.part] + ' 測驗'),
         Util.h('p.view-subtitle', {},
-          '第 ' + (session.currentIndex + 1) + ' / ' + total + ' 組 · 建議每題約 ' +
-          SUGGESTED_SECONDS[session.part] + ' 秒 · ' +
-          (session.mode === 'immediate' ? '逐題即時解析' : '交卷後解析'))
+          '第 ' + (session.currentIndex + 1) + ' / ' + total + ' 組 · 目標每題 ' +
+          paceTarget(session.part) + ' 秒 · ' +
+          (session.mode === 'immediate' ? '逐題即時解析' : '交卷後解析') +
+          (session.skill ? ' · 專項：' + skillLabelOf(session.part + ':' + session.skill) : ''))
       ),
       session.timerOn ? Util.h('span.pill', { id: 'quizTimer' }, Util.fmtTime(session.elapsedSeconds)) : null
     );
@@ -11660,6 +12965,16 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     var answers = Object.assign({}, session.answers);
     answers[key] = idx;
     var patch = { answers: answers };
+
+    // 每題耗時：以「距上一次作答」估算，只在第一次作答時定版（改答案不重算）。
+    var now = Date.now();
+    if (session.qSeconds[key] === undefined) {
+      var qSeconds = Object.assign({}, session.qSeconds);
+      qSeconds[key] = Math.max(1, Math.round((now - session.lastAnswerAt) / 1000));
+      patch.qSeconds = qSeconds;
+    }
+    patch.lastAnswerAt = now;
+
     if (session.mode === 'immediate') {
       var revealed = Object.assign({}, session.revealed);
       revealed[key] = true;
@@ -11709,11 +13024,18 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
   // Part 5
   // ---------------------------------------------------------------------
 
+  /** 解析展開時才顯示考點徽章（作答中先揭露考點等於送分） */
+  function skillBadge(part, q, revealed) {
+    if (!revealed) return null;
+    return Util.h('span.badge.badge-primary', {}, skillLabelOf(part + ':' + skillTagOf(part, q)));
+  }
+
   function buildP5Body(group) {
     var key = group.id;
     var selected = session.answers[key];
     var revealed = session.mode === 'immediate' && !!session.revealed[key];
     return Util.h('div.card', {},
+      revealed ? Util.h('div.card-header', {}, skillBadge('P5', group, true)) : null,
       Util.h('div.card-body', {},
         Util.h('p', { style: { fontSize: '1.08rem', lineHeight: '1.8', marginBottom: '16px' } }, group.stem)
       ),
@@ -11741,7 +13063,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
   }
 
   function buildP6SubQuestion(group, q) {
-    var key = group.id + '-' + q.n;
+    var key = subKeyFor('P6', group, q);
     var selected = session.answers[key];
     var revealed = session.mode === 'immediate' && !!session.revealed[key];
     var prompt = q.type === 'sentence'
@@ -11780,7 +13102,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
   function buildP7SubQuestion(group, q, idx) {
     var n = idx + 1;
-    var key = group.id + '-' + n;
+    var key = subKeyFor('P7', group, q, idx);
     var selected = session.answers[key];
     var revealed = session.mode === 'immediate' && !!session.revealed[key];
     return Util.h('div.card', {},
@@ -11843,6 +13165,8 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     var wrongIds = [];
     var detail = [];
 
+    var target = paceTarget(sess.part);
+
     sess.groups.forEach(function (g) {
       if (sess.part === 'P5') {
         var key = g.id;
@@ -11853,13 +13177,16 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
         detail.push({
           key: key, label: truncate(g.stem, 60), ok: ok,
           stem: g.stem, options: g.options, answer: g.answer,
-          explanation: g.explanation_zh, selected: sel
+          explanation: g.explanation_zh, selected: sel,
+          skillKey: skillKeyOf('P5', g),
+          seconds: sess.qSeconds[key] || 0,
+          targetSeconds: target
         });
         return;
       }
       (g.questions || []).forEach(function (q, idx) {
         var n = sess.part === 'P6' ? q.n : (idx + 1);
-        var subKey = g.id + '-' + n;
+        var subKey = subKeyFor(sess.part, g, q, idx);
         var subSel = sess.answers[subKey];
         var subOk = subSel === q.answer;
         total += 1;
@@ -11870,7 +13197,10 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
         detail.push({
           key: subKey, label: truncate(stemText, 60), ok: subOk,
           stem: q.q || stemText, options: q.options, answer: q.answer,
-          explanation: q.explanation_zh, selected: subSel
+          explanation: q.explanation_zh, selected: subSel,
+          skillKey: skillKeyOf(sess.part, q),
+          seconds: sess.qSeconds[subKey] || 0,
+          targetSeconds: target
         });
       });
     });
@@ -11889,7 +13219,11 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       total: result.total,
       correct: result.correct,
       seconds: finalElapsed,
-      wrongIds: result.wrongIds
+      wrongIds: result.wrongIds,
+      // 逐題考點 + 秒數 → state.readingStats，閱讀診斷室據此排弱點與配速
+      skillStats: result.detail.map(function (d) {
+        return { key: d.skillKey, correct: d.ok, seconds: d.seconds };
+      })
     });
     if (session.task) {
       Store.completeTask(session.task);
@@ -11903,12 +13237,18 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     return Util.h('div.table-wrap', {},
       Util.h('table.table', {},
         Util.h('thead', {}, Util.h('tr', {},
-          Util.h('th', {}, '#'), Util.h('th', {}, '題目'), Util.h('th', {}, '結果')
+          Util.h('th', {}, '#'), Util.h('th', {}, '題目'), Util.h('th', {}, '考點'),
+          Util.h('th', {}, '用時'), Util.h('th', {}, '結果')
         )),
         Util.h('tbody', {}, result.detail.map(function (d, i) {
+          var over = d.seconds > d.targetSeconds;
           return Util.h('tr', { style: { cursor: 'pointer' }, onClick: function () { openReviewModal(d); } },
             Util.h('td', {}, String(i + 1)),
             Util.h('td', {}, d.label),
+            Util.h('td', {}, Util.h('span.badge', {}, skillLabelOf(d.skillKey))),
+            Util.h('td', {}, d.seconds
+              ? Util.h('span', { class: over ? 'badge badge-warning' : '' }, d.seconds + 's')
+              : Util.h('span.u-text-muted', {}, '—')),
             Util.h('td', {}, d.ok
               ? Util.h('span.badge.badge-success', {}, '✓ 正確')
               : Util.h('span.badge.badge-danger', {}, '✗ 錯誤'))
@@ -11918,23 +13258,180 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     );
   }
 
-  function openReviewModal(d) {
-    var body = Util.h('div', {},
-      Util.h('p', { style: { fontWeight: 600, marginBottom: '12px' } }, d.stem),
-      buildOptionList(d.options, d.selected, true, d.answer, function () {}),
-      buildExplanation(d.explanation)
+  /** 交卷後的錯因標記列（三層檢討法第一層：先講清楚為什麼錯） */
+  function buildReasonRow(d, onDone) {
+    var reasons = (window.TOEIC_DATA && window.TOEIC_DATA.reading && window.TOEIC_DATA.reading.reasons) || [];
+    if (!reasons.length) return null;
+    var current = '';
+    try {
+      var wb = Store.get().wrongBook || {};
+      current = (wb[d.key] && wb[d.key].reason) || '';
+    } catch (e) {
+      current = '';
+    }
+
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginTop: '8px' } });
+    reasons.forEach(function (r) {
+      row.appendChild(Util.h('button', {
+        type: 'button',
+        class: 'btn btn-sm ' + (current === r.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () {
+          try {
+            Store.setWrongReason(d.key, current === r.code ? '' : r.code);
+            Util.toast(current === r.code ? '已取消錯因標記' : ('已標記錯因：' + r.label), 'success');
+            if (onDone) onDone();
+          } catch (e) {
+            Util.toast('標記失敗：' + e.message, 'error');
+          }
+        }
+      }, r.icon + ' ' + r.label));
+    });
+
+    return Util.h('div.card', { style: { marginTop: '14px', background: 'var(--color-surface-alt)' } },
+      Util.h('p', { style: { fontWeight: 700, marginBottom: '4px' } }, '這題為什麼錯？'),
+      Util.h('p.u-text-muted', { style: { fontSize: '0.85rem' } },
+        '標記錯因後，錯題本會統計你最常見的失分原因，並給對應的補強做法。'),
+      row
     );
+  }
+
+  function openReviewModal(d) {
+    var bodyWrap = Util.h('div');
+
+    function paint() {
+      clearNode(bodyWrap);
+      bodyWrap.appendChild(Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginBottom: '10px' } },
+        Util.h('span.badge.badge-primary', {}, skillLabelOf(d.skillKey)),
+        d.seconds
+          ? Util.h('span', {
+            class: 'badge ' + (d.seconds > d.targetSeconds ? 'badge-warning' : 'badge-success')
+          }, '用時 ' + d.seconds + ' 秒／目標 ' + d.targetSeconds + ' 秒')
+          : null
+      ));
+      bodyWrap.appendChild(Util.h('p', { style: { fontWeight: 600, marginBottom: '12px' } }, d.stem));
+      bodyWrap.appendChild(buildOptionList(d.options, d.selected, true, d.answer, function () {}));
+      bodyWrap.appendChild(buildExplanation(d.explanation));
+
+      if (!d.ok) {
+        var reasonCard = buildReasonRow(d, paint);
+        if (reasonCard) bodyWrap.appendChild(reasonCard);
+      } else {
+        // 蒙對的題目不該被正確率蓋掉 — 讓使用者主動丟回錯題本
+        bodyWrap.appendChild(Util.h('div.card', { style: { marginTop: '14px', background: 'var(--color-surface-alt)' } },
+          Util.h('p', { style: { fontWeight: 700, marginBottom: '4px' } }, '這題是真的會，還是猜的？'),
+          Util.h('button.btn.btn-ghost.btn-sm', {
+            type: 'button',
+            onClick: function () {
+              try {
+                Store.flagWrong(d.key, 'guess');
+                Util.toast('已加入錯題本（錯因：沒把握用猜的）', 'success');
+              } catch (e) {
+                Util.toast('加入失敗：' + e.message, 'error');
+              }
+            }
+          }, '🎲 其實是猜的，加入錯題本')
+        ));
+      }
+    }
+
+    paint();
     Util.modal({
       title: d.ok ? '答對了 🎉' : '答錯了，一起看解析',
-      body: body,
+      body: bodyWrap,
       actions: [{ label: '關閉', class: 'btn btn-primary' }]
     });
+  }
+
+  /** 本次作答依考點分解，直接指出哪個考點該補 */
+  function buildSkillSummary(result) {
+    var map = {};
+    result.detail.forEach(function (d) {
+      if (!map[d.skillKey]) map[d.skillKey] = { total: 0, correct: 0, seconds: 0 };
+      map[d.skillKey].total += 1;
+      map[d.skillKey].correct += d.ok ? 1 : 0;
+      map[d.skillKey].seconds += d.seconds || 0;
+    });
+    var rows = Object.keys(map).map(function (key) {
+      var m = map[key];
+      return { key: key, label: skillLabelOf(key), total: m.total, correct: m.correct, pct: Util.pct(m.correct, m.total) };
+    }).sort(function (a, b) { return a.pct - b.pct || b.total - a.total; });
+
+    if (rows.length < 2) return null;
+
+    var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '12px' } });
+    rows.forEach(function (r) {
+      var tone = r.pct >= 80 ? ' is-success' : (r.pct >= 50 ? ' is-warning' : ' is-danger');
+      list.appendChild(Util.h('div', {},
+        Util.h('div.u-flex.u-justify-between', {},
+          Util.h('span', {}, r.label),
+          Util.h('span.u-text-muted', {}, r.correct + '/' + r.total + '　' + r.pct + '%')
+        ),
+        Util.h('div.progress-bar', { style: { marginTop: '4px' } },
+          Util.h('div', { class: 'progress-bar-fill' + tone, style: { width: r.pct + '%' } })
+        )
+      ));
+    });
+
+    var weakest = rows[0];
+    return Util.h('div.card', {},
+      Util.h('div.card-title', {}, '本次考點分解'),
+      Util.h('div.card-subtitle', {}, '同一個 Part 裡，不同考點的熟練度差很多 — 專項練最快'),
+      list,
+      weakest.pct < 70 ? Util.h('div.card-actions', {},
+        Util.h('button.btn.btn-primary.btn-sm', {
+          type: 'button',
+          onClick: function () {
+            var part = weakest.key.split(':')[0];
+            var tag = weakest.key.slice(part.length + 1);
+            if (window.App) window.App.navigate('#/quiz?part=' + part + '&skill=' + encodeURIComponent(tag) + '&count=10');
+          }
+        }, '專攻「' + weakest.label + '」10 題')
+      ) : null
+    );
+  }
+
+  /** 配速卡：實際每題秒數 vs 目標，換算成整份 Reading 做不做得完 */
+  function buildPaceCard(result) {
+    var timed = result.detail.filter(function (d) { return d.seconds > 0; });
+    if (!timed.length) return null;
+    var target = paceTarget(session.part);
+    var totalSec = timed.reduce(function (s, d) { return s + d.seconds; }, 0);
+    var avg = Math.round(totalSec / timed.length);
+    var over = timed.filter(function (d) { return d.seconds > target; });
+    var ratio = target ? avg / target : 1;
+
+    var verdict, tone;
+    if (ratio > 1.5) { verdict = '明顯超時 — 照這個速度正式考的閱讀會做不完'; tone = 'danger'; }
+    else if (ratio > 1.15) { verdict = '略慢，還有壓縮空間'; tone = 'warning'; }
+    else if (ratio < 0.6 && Util.pct(result.correct, result.total) < 70) {
+      verdict = '很快但正確率偏低，比較像在猜'; tone = 'warning';
+    } else { verdict = '配速在目標範圍內，保持住'; tone = 'success'; }
+
+    return Util.h('div.card', {},
+      Util.h('div.card-title', {}, '配速分析'),
+      Util.h('div.card-subtitle', {},
+        PART_LABELS[session.part] + ' 的目標是每題 ' + target + ' 秒（Reading 全長 75 分鐘 100 題）'),
+      Util.h('div.stat-grid', { style: { marginTop: '12px' } },
+        Util.h('div.stat-card', {},
+          Util.h('div.stat-value', {}, avg + 's'),
+          Util.h('div.stat-label', {}, '平均每題')),
+        Util.h('div.stat-card', {},
+          Util.h('div.stat-value', {}, target + 's'),
+          Util.h('div.stat-label', {}, '目標每題')),
+        Util.h('div.stat-card', {},
+          Util.h('div.stat-value', {}, over.length + ' 題'),
+          Util.h('div.stat-label', {}, '超過目標秒數'))
+      ),
+      Util.h('p', { style: { marginTop: '12px' } },
+        Util.h('span', { class: 'badge badge-' + tone }, verdict))
+    );
   }
 
   function onRetry() {
     startSession({
       part: session.part, count: session.requestedCount,
-      mode: session.mode, timerOn: session.timerOn, task: session.task
+      mode: session.mode, timerOn: session.timerOn,
+      skill: session.skill, task: session.task
     });
   }
 
@@ -11946,7 +13443,9 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     hostContainer.appendChild(Util.h('div.view-header', {},
       Util.h('div.view-title', {},
         Util.h('h1', {}, PART_LABELS[session.part] + ' 結果'),
-        Util.h('p.view-subtitle', {}, '共 ' + result.total + ' 題 · 用時 ' + Util.fmtTime(session.elapsedSeconds))
+        Util.h('p.view-subtitle', {},
+          '共 ' + result.total + ' 題 · 用時 ' + Util.fmtTime(session.elapsedSeconds) +
+          (session.skill ? ' · 專項：' + skillLabelOf(session.part + ':' + session.skill) : ''))
       )
     ));
 
@@ -11967,10 +13466,36 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       Util.h('div', { class: fillClass, style: { width: pctVal + '%' } })
     ));
 
+    var paceCard = buildPaceCard(result);
+    if (paceCard) hostContainer.appendChild(paceCard);
+
+    var skillCard = buildSkillSummary(result);
+    if (skillCard) hostContainer.appendChild(skillCard);
+
+    if (result.wrongIds.length) {
+      hostContainer.appendChild(Util.h('div.card', {},
+        Util.h('div.card-title', {}, '別讓錯題停在這裡'),
+        Util.h('div.card-subtitle', {},
+          '這次答錯的 ' + result.wrongIds.length + ' 題已進入錯題本，並排入 1 天後的複習。' +
+          '點下方表格任一列可以看解析並標記錯因。'),
+        Util.h('div.card-actions', {},
+          Util.h('button.btn.btn-ghost.btn-sm', {
+            type: 'button',
+            onClick: function () { if (window.App) window.App.navigate('#/review'); }
+          }, '去錯題本檢討')
+        )
+      ));
+    }
+
+    hostContainer.appendChild(Util.h('h2', { style: { fontSize: '1.05rem', margin: '20px 0 10px' } }, '逐題結果'));
     hostContainer.appendChild(buildResultTable(result));
 
     hostContainer.appendChild(Util.h('div.u-flex.u-gap-sm.u-mt-md', { style: { flexWrap: 'wrap' } },
       Util.h('button.btn.btn-primary', { type: 'button', onClick: onRetry }, '再做一組'),
+      Util.h('button.btn.btn-ghost', {
+        type: 'button',
+        onClick: function () { if (window.App) window.App.navigate('#/reading'); }
+      }, '看閱讀診斷'),
       Util.h('button.btn.btn-ghost', {
         type: 'button',
         onClick: function () { if (window.App) window.App.navigate('#/dashboard'); }
@@ -11980,6 +13505,622 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
   window.Views = window.Views || {};
   window.Views.quiz = { render: render, destroy: destroy };
+})();
+
+</script>
+<script>
+/* js/views/reading.js */
+/**
+ * js/views/reading.js — 閱讀診斷室（#/reading）
+ *
+ * 把「做完題 → 知道哪裡爛 → 知道怎麼補 → 一鍵去練」串成閉環，是閱讀強化的入口頁。
+ * 四個分頁：
+ *   診斷    Reading 粗估分數、行動建議清單、整份 75 分鐘做不做得完
+ *   考點    P5/P6/P7 各考點正確率與平均秒數排行，可直接開專項練習
+ *   配速    各 Part 實際 vs 目標配速、官方配速表與考場檢查點
+ *   框架    十大文法判斷框架 + Part 7 題型攻略（原創教材）
+ *
+ * 資料來源：Store.get()（readingStats / quizHistory / wrongBook）+ TOEIC_DATA.reading。
+ * 計算全部委託 window.Reading（js/reading.js），本檔只負責畫面。
+ * 暴露：window.Views.reading = { render, destroy }
+ */
+(function () {
+  'use strict';
+
+  var TABS = [
+    { code: 'diagnosis', label: '診斷', icon: '🩺' },
+    { code: 'skills', label: '考點', icon: '🎯' },
+    { code: 'pace', label: '配速', icon: '⏱️' },
+    { code: 'frameworks', label: '框架', icon: '📐' }
+  ];
+
+  var S = null;
+  var container = null;
+  var changeHandler = null;
+
+  // -----------------------------------------------------------------------
+  // 小工具
+  // -----------------------------------------------------------------------
+
+  function goTo(hash) {
+    if (window.App && typeof window.App.navigate === 'function') window.App.navigate(hash);
+    else window.location.hash = hash;
+  }
+
+  function clearNode(el) {
+    while (el && el.firstChild) el.removeChild(el.firstChild);
+  }
+
+  function readingData() {
+    return (window.TOEIC_DATA && window.TOEIC_DATA.reading) || null;
+  }
+
+  function toneClass(tone) {
+    if (tone === 'success') return 'badge-success';
+    if (tone === 'warning') return 'badge-warning';
+    if (tone === 'danger') return 'badge-danger';
+    if (tone === 'primary') return 'badge-primary';
+    return '';
+  }
+
+  function barClass(pct) {
+    if (pct >= 80) return 'progress-bar-fill is-success';
+    if (pct >= 55) return 'progress-bar-fill is-warning';
+    return 'progress-bar-fill is-danger';
+  }
+
+  function statCard(value, label, hint) {
+    return Util.h('div.stat-card', {},
+      Util.h('div.stat-value', {}, value),
+      Util.h('div.stat-label', {}, label),
+      hint ? Util.h('div.u-text-muted', { style: { fontSize: '0.75rem', marginTop: '2px' } }, hint) : null
+    );
+  }
+
+  // -----------------------------------------------------------------------
+  // 分頁一：診斷
+  // -----------------------------------------------------------------------
+
+  function buildRcCard(d) {
+    var rc = d.rc;
+    var card = Util.h('div.card', {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, '閱讀分數粗估'),
+          Util.h('div.card-subtitle', {}, '依你在本站的做題正確率換算，僅供追蹤趨勢，非官方分數')
+        )
+      )
+    );
+
+    if (rc.score === null) {
+      card.appendChild(Util.h('div.card-body', {},
+        Util.h('p', {}, '還沒有做題紀錄。先做一組 10 題的 Part 5，就能算出第一個基準分數。'),
+        Util.h('div.card-actions', {},
+          Util.h('button.btn.btn-primary.btn-sm', {
+            onClick: function () { goTo('#/quiz?part=P5&count=10'); }
+          }, '做 10 題 Part 5')
+        )
+      ));
+      return card;
+    }
+
+    var confLabel = { high: '樣本充足', medium: '樣本尚可', low: '樣本偏少，僅供參考' }[rc.confidence] || '';
+
+    card.appendChild(Util.h('div.stat-grid', { style: { marginTop: '12px' } },
+      statCard(String(rc.score), '粗估 Reading 分數', '滿分 495'),
+      statCard(rc.accuracy + '%', '整體正確率', '共 ' + rc.sample + ' 題'),
+      rc.questionsToNext !== null
+        ? statCard('+' + rc.questionsToNext + '%', '距 ' + rc.nextScore + ' 分', '正確率再拉高這麼多')
+        : statCard('—', '距下一級距', '')
+    ));
+    card.appendChild(Util.h('p', { style: { marginTop: '12px' } },
+      Util.h('span', { class: 'badge ' + (rc.confidence === 'low' ? 'badge-warning' : 'badge-primary') }, confLabel)
+    ));
+
+    var proj = d.projection;
+    card.appendChild(Util.h('div.card', { style: { marginTop: '14px', background: 'var(--color-surface-alt)' } },
+      Util.h('p', { style: { fontWeight: 700, marginBottom: '4px' } }, '整份 Reading 做得完嗎？'),
+      Util.h('p', {}, proj.measuredParts === 0
+        ? '還沒有計時紀錄。做題時請開啟計時，才能推估考場上的完成度。'
+        : (proj.willFinish
+          ? ('照目前配速，100 題大約需要 ' + proj.minutes + ' 分鐘，在 75 分鐘的限制內，可以做完。')
+          // 超時的分鐘數換算成「來不及作答的題數」：用 Part 7 的每題目標秒數估算，
+          // 因為時間不夠時被犧牲的一定是排在最後面的 Part 7。
+          : ('照目前配速，100 題大約需要 ' + proj.minutes + ' 分鐘，超過限制 ' + proj.overMinutes +
+            ' 分鐘 — 大約會有 ' +
+            Math.round(proj.overMinutes * 60 / (Reading.PACE_TARGET.P7 || 60)) +
+            ' 題來不及作答。')))
+    ));
+
+    return card;
+  }
+
+  function buildAdviceCard(d) {
+    var card = Util.h('div.card', {},
+      Util.h('div.card-title', {}, '接下來該做什麼'),
+      Util.h('div.card-subtitle', {}, '依「投入時間 → 分數回收」的順序排列，從上面做起就對了')
+    );
+
+    var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' } });
+    d.advice.forEach(function (a, i) {
+      list.appendChild(Util.h('div.card', { style: { background: 'var(--color-surface-alt)' } },
+        Util.h('div.u-flex.u-items-center.u-gap-sm', {},
+          Util.h('span', { style: { fontSize: '1.2rem' } }, a.icon),
+          Util.h('span.badge.badge-primary', {}, '第 ' + (i + 1) + ' 順位'),
+          Util.h('strong', {}, a.title)
+        ),
+        Util.h('p', { style: { marginTop: '6px' } }, a.detail),
+        Util.h('div.u-flex.u-gap-sm', { style: { marginTop: '10px', flexWrap: 'wrap' } },
+          Util.h('button.btn.btn-primary.btn-sm', {
+            onClick: function () { goTo(a.hash); }
+          }, a.actionLabel),
+          a.frameworkId ? Util.h('button.btn.btn-ghost.btn-sm', {
+            onClick: function () { S.tab = 'frameworks'; S.focusFramework = a.frameworkId; repaint(); }
+          }, '先讀框架') : null
+        )
+      ));
+    });
+    card.appendChild(list);
+    return card;
+  }
+
+  function buildReasonCard(d) {
+    var r = d.reasons;
+    var card = Util.h('div.card', {},
+      Util.h('div.card-title', {}, '錯因分佈'),
+      Util.h('div.card-subtitle', {}, '在錯題本或做題結果頁標記錯因後，這裡會告訴你「主要是哪一種失分」')
+    );
+
+    if (!r.total) {
+      card.appendChild(Util.h('p', { style: { marginTop: '12px' } }, '目前沒有閱讀錯題。'));
+      return card;
+    }
+
+    var tagged = r.total - r.untagged;
+    if (!tagged) {
+      card.appendChild(Util.h('p', { style: { marginTop: '12px' } },
+        '你有 ' + r.total + ' 題閱讀錯題，但都還沒標記錯因。' +
+        '花兩分鐘標一標 — 這是整個檢討流程裡最值錢的一步，因為「單字不會」和「時間不夠」要用完全不同的方法補。'));
+      card.appendChild(Util.h('div.card-actions', {},
+        Util.h('button.btn.btn-primary.btn-sm', { onClick: function () { goTo('#/review'); } }, '去標記錯因')
+      ));
+      return card;
+    }
+
+    var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' } });
+    r.rows.filter(function (row) { return row.count > 0; }).forEach(function (row) {
+      list.appendChild(Util.h('div', {},
+        Util.h('div.u-flex.u-justify-between', {},
+          Util.h('span', {}, row.icon + ' ' + row.label),
+          Util.h('span.u-text-muted', {}, row.count + ' 題（' + row.share + '%）')
+        ),
+        Util.h('div.progress-bar', { style: { marginTop: '4px' } },
+          Util.h('div.progress-bar-fill', { style: { width: row.share + '%' } })
+        ),
+        Util.h('p.u-text-muted', { style: { fontSize: '0.82rem', marginTop: '4px' } }, row.advice)
+      ));
+    });
+    card.appendChild(list);
+
+    if (r.untagged) {
+      card.appendChild(Util.h('p.u-text-muted', { style: { marginTop: '10px' } },
+        '還有 ' + r.untagged + ' 題未標記錯因。'));
+    }
+    return card;
+  }
+
+  function renderDiagnosis(host, d) {
+    host.appendChild(buildRcCard(d));
+    host.appendChild(buildAdviceCard(d));
+    host.appendChild(buildReasonCard(d));
+  }
+
+  // -----------------------------------------------------------------------
+  // 分頁二：考點
+  // -----------------------------------------------------------------------
+
+  function skillRow(r) {
+    var fw = Reading.frameworkForTag(r.tag);
+    var showFramework = r.part === 'P5' && fw;
+    return Util.h('div.card', { style: { background: 'var(--color-surface-alt)' } },
+      Util.h('div.u-flex.u-justify-between.u-items-center', { style: { flexWrap: 'wrap', gap: '8px' } },
+        Util.h('div.u-flex.u-items-center.u-gap-sm', { style: { flexWrap: 'wrap' } },
+          Util.h('strong', {}, r.label),
+          Util.h('span', { class: 'badge ' + toneClass(r.level.tone) }, r.level.label)
+        ),
+        Util.h('span.u-text-muted', {},
+          r.correct + '/' + r.total + '　' + r.accuracy + '%' +
+          (r.avgSeconds ? ('　平均 ' + r.avgSeconds + 's／目標 ' + r.targetSeconds + 's') : ''))
+      ),
+      Util.h('div.progress-bar', { style: { marginTop: '6px' } },
+        Util.h('div', { class: barClass(r.accuracy), style: { width: r.accuracy + '%' } })
+      ),
+      r.overPace ? Util.h('p.u-text-muted', { style: { fontSize: '0.82rem', marginTop: '4px' } },
+        '⏱️ 這個考點花的時間明顯高於目標，通常代表判斷規則還不夠自動化。') : null,
+      Util.h('div.u-flex.u-gap-sm', { style: { marginTop: '10px', flexWrap: 'wrap' } },
+        Util.h('button.btn.btn-primary.btn-sm', {
+          disabled: !r.poolSize,
+          onClick: function () { goTo(Reading.drillHash(r.key, r.part === 'P5' ? 10 : 6)); }
+        }, r.poolSize ? ('專練 ' + (r.part === 'P5' ? 10 : 6) + ' 題') : '題庫無此考點'),
+        showFramework ? Util.h('button.btn.btn-ghost.btn-sm', {
+          onClick: function () { S.tab = 'frameworks'; S.focusFramework = fw.id; repaint(); }
+        }, '讀判斷框架') : null
+      )
+    );
+  }
+
+  function renderSkills(host, d) {
+    var partFilter = S.skillPart;
+    var rows = d.skills.filter(function (r) { return partFilter === 'all' || r.part === partFilter; });
+
+    var chipRow = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } });
+    [['all', '全部'], ['P5', 'Part 5'], ['P6', 'Part 6'], ['P7', 'Part 7']].forEach(function (pair) {
+      var count = pair[0] === 'all' ? d.skills.length
+        : d.skills.filter(function (r) { return r.part === pair[0]; }).length;
+      chipRow.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (partFilter === pair[0] ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () { S.skillPart = pair[0]; repaint(); }
+      }, pair[1] + '（' + count + '）'));
+    });
+
+    host.appendChild(Util.h('div.card', {},
+      Util.h('div.card-title', {}, '考點正確率排行'),
+      Util.h('div.card-subtitle', {},
+        '弱的排前面。樣本少於 ' + Reading.MIN_SAMPLE + ' 題會標「資料不足」，先多做幾題再看結論。'),
+      Util.h('div', { style: { marginTop: '12px' } }, chipRow)
+    ));
+
+    if (!rows.length) {
+      host.appendChild(Util.h('div.empty-state', {},
+        Util.h('div.empty-state-icon', {}, '📊'),
+        Util.h('h2', {}, '還沒有考點資料'),
+        Util.h('p', {}, '做過閱讀練習後，這裡會依 Part 5 文法考點、Part 6 篇章題型、Part 7 閱讀技巧分別統計正確率。'),
+        Util.h('button.btn.btn-primary', { onClick: function () { goTo('#/quiz'); } }, '去做題')
+      ));
+    } else {
+      var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '4px' } });
+      rows.forEach(function (r) { list.appendChild(skillRow(r)); });
+      host.appendChild(list);
+    }
+
+    var untouched = d.untouched.filter(function (u) { return partFilter === 'all' || u.part === partFilter; });
+    if (untouched.length) {
+      var chips = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginTop: '10px' } });
+      untouched.forEach(function (u) {
+        chips.appendChild(Util.h('button.btn.btn-ghost.btn-sm', {
+          onClick: function () { goTo(Reading.drillHash(u.key, u.part === 'P5' ? 10 : 6)); }
+        }, u.label + '（' + u.poolSize + ' 題）'));
+      });
+      host.appendChild(Util.h('div.card', {},
+        Util.h('div.card-title', {}, '還沒練過的考點'),
+        Util.h('div.card-subtitle', {}, '沒有資料就沒有診斷。這些考點各做幾題，弱點地圖才會完整。'),
+        chips
+      ));
+    }
+  }
+
+  // -----------------------------------------------------------------------
+  // 分頁三：配速
+  // -----------------------------------------------------------------------
+
+  function paceRow(p) {
+    var toneMap = { slow: 'danger', warn: 'warning', rush: 'warning', ok: 'success', none: '' };
+    var ratioPct = p.avgSeconds
+      ? Util.clamp(Math.round((p.targetSeconds / p.avgSeconds) * 100), 0, 100)
+      : 0;
+    return Util.h('div.card', { style: { background: 'var(--color-surface-alt)' } },
+      Util.h('div.u-flex.u-justify-between.u-items-center', { style: { flexWrap: 'wrap', gap: '8px' } },
+        Util.h('strong', {}, p.label),
+        Util.h('span', { class: 'badge ' + toneClass(toneMap[p.verdict]) }, p.verdictText)
+      ),
+      p.avgSeconds
+        ? Util.h('div', {},
+          Util.h('p.u-text-muted', { style: { marginTop: '6px' } },
+            '實際平均 ' + p.avgSeconds + ' 秒／題 · 目標 ' + p.targetSeconds + ' 秒／題 · ' +
+            '共 ' + p.questions + ' 題 · 正確率 ' + p.accuracy + '%'),
+          Util.h('div.progress-bar', { style: { marginTop: '6px' } },
+            Util.h('div', { class: barClass(ratioPct), style: { width: ratioPct + '%' } })
+          )
+        )
+        : Util.h('p.u-text-muted', { style: { marginTop: '6px' } },
+          '還沒有計時紀錄。做題時把「開啟計時」打勾就會開始累積。'),
+      Util.h('div.u-flex.u-gap-sm', { style: { marginTop: '10px', flexWrap: 'wrap' } },
+        Util.h('button.btn.btn-primary.btn-sm', {
+          onClick: function () { goTo('#/quiz?part=' + p.part + '&count=10'); }
+        }, '計時練 ' + p.part)
+      )
+    );
+  }
+
+  function renderPace(host, d) {
+    var proj = d.projection;
+    host.appendChild(Util.h('div.card', {},
+      Util.h('div.card-title', {}, '你目前的配速'),
+      Util.h('div.card-subtitle', {}, '閱讀失分有一半來自「沒做完」，而不是「不會」'),
+      Util.h('div.stat-grid', { style: { marginTop: '12px' } },
+        statCard(proj.minutes + ' 分', '推估完成 100 題', '限制 75 分鐘'),
+        statCard(proj.willFinish ? '做得完' : ('超時 ' + proj.overMinutes + ' 分'), '完成度預測',
+          proj.measuredParts + '/3 個 Part 有計時資料')
+      )
+    ));
+
+    var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } });
+    d.pace.forEach(function (p) { list.appendChild(paceRow(p)); });
+    host.appendChild(list);
+
+    var data = readingData();
+    if (!data || !data.pace) return;
+
+    var rows = data.pace.parts.map(function (p) {
+      return Util.h('tr', {},
+        Util.h('td', {}, p.name),
+        Util.h('td', {}, p.count + ' 題'),
+        Util.h('td', {}, p.minutes + ' 分'),
+        Util.h('td', {}, p.secPerQ + ' 秒'),
+        Util.h('td', {}, p.checkpoint)
+      );
+    });
+
+    host.appendChild(Util.h('div.card', {},
+      Util.h('div.card-title', {}, '官方配速表與考場檢查點'),
+      Util.h('div.card-subtitle', {},
+        'Reading Section 共 ' + data.pace.totalQuestions + ' 題 / ' + data.pace.totalMinutes + ' 分鐘'),
+      Util.h('div.table-wrap.u-mt-md', {},
+        Util.h('table.table', {},
+          Util.h('thead', {}, Util.h('tr', {},
+            Util.h('th', {}, 'Part'), Util.h('th', {}, '題數'), Util.h('th', {}, '時間'),
+            Util.h('th', {}, '每題'), Util.h('th', {}, '檢查點')
+          )),
+          Util.h('tbody', {}, rows)
+        )
+      )
+    ));
+
+    var tips = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '12px' } });
+    data.pace.parts.forEach(function (p) {
+      tips.appendChild(Util.h('div', {},
+        Util.h('strong', {}, p.name),
+        Util.h('p.u-text-muted', { style: { marginTop: '2px' } }, p.tip)
+      ));
+    });
+    data.pace.rules.forEach(function (rule) {
+      tips.appendChild(Util.h('p', {}, '・' + rule));
+    });
+    host.appendChild(Util.h('div.card', {},
+      Util.h('div.card-title', {}, '配速心法'),
+      tips
+    ));
+  }
+
+  // -----------------------------------------------------------------------
+  // 分頁四：框架
+  // -----------------------------------------------------------------------
+
+  function frameworkCard(fw, stat, focused) {
+    var steps = Util.h('ol', { style: { margin: '8px 0 0 20px', display: 'flex', flexDirection: 'column', gap: '4px' } },
+      fw.steps.map(function (s) { return Util.h('li', {}, s); })
+    );
+
+    return Util.h('div.card', {
+      id: 'fw-' + fw.id,
+      style: focused ? { boxShadow: '0 0 0 2px var(--color-primary)' } : {}
+    },
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, fw.title),
+          Util.h('div.card-subtitle', {}, fw.when)
+        ),
+        stat && stat.enough
+          ? Util.h('span', { class: 'badge ' + toneClass(stat.level.tone) }, '你的正確率 ' + stat.accuracy + '%')
+          : Util.h('span.badge', {}, '目標 ' + fw.seconds + ' 秒')
+      ),
+      Util.h('div.card-body', {},
+        Util.h('strong', {}, '判斷步驟'),
+        steps,
+        Util.h('div.card', { style: { marginTop: '12px', background: 'var(--color-surface-alt)' } },
+          Util.h('p', { style: { fontWeight: 700, marginBottom: '4px' } }, '例句'),
+          Util.h('p', { style: { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' } }, fw.example.en),
+          Util.h('p.u-text-muted', { style: { marginTop: '4px' } }, fw.example.zh),
+          Util.h('p', { style: { marginTop: '8px' } }, '💡 ' + fw.example.point)
+        ),
+        Util.h('p', { style: { marginTop: '10px' } },
+          Util.h('span.badge.badge-warning', {}, '常見陷阱'), ' ', fw.trap)
+      ),
+      Util.h('div.card-actions', {},
+        Util.h('button.btn.btn-primary.btn-sm', {
+          onClick: function () { goTo('#/quiz?part=P5&skill=' + encodeURIComponent(fw.tag) + '&count=10'); }
+        }, '立刻練 10 題')
+      )
+    );
+  }
+
+  function playbookCard(pb, stat) {
+    return Util.h('div.card', {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, pb.label),
+          Util.h('div.card-subtitle', {}, '題目長相：' + pb.signal)
+        ),
+        stat && stat.enough
+          ? Util.h('span', { class: 'badge ' + toneClass(stat.level.tone) }, '你的正確率 ' + stat.accuracy + '%')
+          : Util.h('span.badge', {}, '建議 ' + pb.seconds + ' 秒')
+      ),
+      Util.h('div.card-body', {},
+        Util.h('ol', { style: { margin: '0 0 0 20px', display: 'flex', flexDirection: 'column', gap: '4px' } },
+          pb.steps.map(function (s) { return Util.h('li', {}, s); })),
+        Util.h('p', { style: { marginTop: '10px' } },
+          Util.h('span.badge.badge-warning', {}, '常見陷阱'), ' ', pb.trap)
+      ),
+      Util.h('div.card-actions', {},
+        Util.h('button.btn.btn-primary.btn-sm', {
+          onClick: function () {
+            var part = pb.skill === 'sentence_insert' ? 'P6' : 'P7';
+            var tag = pb.skill === 'sentence_insert' ? 'sentence' : pb.skill;
+            goTo('#/quiz?part=' + part + '&skill=' + encodeURIComponent(tag) + '&count=6');
+          }
+        }, '練這個題型')
+      )
+    );
+  }
+
+  function renderFrameworks(host, d) {
+    var data = readingData();
+    if (!data) {
+      host.appendChild(Util.h('div.empty-state', {},
+        Util.h('div.empty-state-icon', {}, '📭'),
+        Util.h('h2', {}, '教材資料未載入'),
+        Util.h('p', {}, '請確認 data/reading_frameworks.js 已正確載入。')
+      ));
+      return;
+    }
+
+    var statByKey = {};
+    d.skills.forEach(function (r) { statByKey[r.key] = r; });
+
+    var subTabs = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } },
+      [['grammar', 'Part 5 文法框架'], ['p7', 'Part 6/7 題型攻略']].map(function (pair) {
+        return Util.h('button', {
+          class: 'btn btn-sm ' + (S.fwTab === pair[0] ? 'btn-primary' : 'btn-ghost'),
+          onClick: function () { S.fwTab = pair[0]; repaint(); }
+        }, pair[1]);
+      })
+    );
+
+    host.appendChild(Util.h('div.card', {},
+      Util.h('div.card-title', {}, S.fwTab === 'grammar' ? '十大文法判斷框架' : 'Part 6/7 題型攻略'),
+      Util.h('div.card-subtitle', {}, S.fwTab === 'grammar'
+        ? 'Part 5 的考點是固定的。把這十條變成反射動作，30 題可以在 10 分鐘內做完。'
+        : '閱讀題型各有各的解法與時間預算。先分辨題型，再套對應的步驟。'),
+      Util.h('div', { style: { marginTop: '12px' } }, subTabs)
+    ));
+
+    var list = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } });
+    if (S.fwTab === 'grammar') {
+      (data.frameworks || []).forEach(function (fw) {
+        list.appendChild(frameworkCard(fw, statByKey['P5:' + fw.tag], S.focusFramework === fw.id));
+      });
+    } else {
+      (data.p7Playbook || []).forEach(function (pb) {
+        var key = pb.skill === 'sentence_insert' ? 'P6:sentence' : ('P7:' + pb.skill);
+        list.appendChild(playbookCard(pb, statByKey[key]));
+      });
+    }
+    host.appendChild(list);
+
+    // 從建議卡「先讀框架」跳過來時，捲到該張卡片
+    if (S.focusFramework && S.fwTab === 'grammar') {
+      var target = S.focusFramework;
+      S.focusFramework = null;
+      setTimeout(function () {
+        var el = document.getElementById('fw-' + target);
+        if (el && el.scrollIntoView) el.scrollIntoView({ block: 'center' });
+      }, 0);
+    }
+  }
+
+  // -----------------------------------------------------------------------
+  // 版面
+  // -----------------------------------------------------------------------
+
+  function buildTabBar() {
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginBottom: '16px' } });
+    TABS.forEach(function (t) {
+      row.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (S.tab === t.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () { S.tab = t.code; repaint(); }
+      }, t.icon + ' ' + t.label));
+    });
+    return row;
+  }
+
+  function repaint() {
+    if (!S || !S.bodyEl) return;
+    clearNode(S.bodyEl);
+
+    var state;
+    try {
+      state = Store.get();
+    } catch (e) {
+      S.bodyEl.appendChild(Util.h('div.empty-state.empty-state-error', {},
+        Util.h('div.empty-state-icon', {}, '⚠️'),
+        Util.h('h2', {}, '無法讀取學習紀錄'),
+        Util.h('p', {}, '請重新整理頁面再試一次。')
+      ));
+      return;
+    }
+
+    var d = Reading.diagnose(state, { today: Util.todayISO() });
+
+    S.bodyEl.appendChild(buildTabBar());
+    var host = Util.h('div', { style: { display: 'flex', flexDirection: 'column', gap: '16px' } });
+    S.bodyEl.appendChild(host);
+
+    if (S.tab === 'skills') renderSkills(host, d);
+    else if (S.tab === 'pace') renderPace(host, d);
+    else if (S.tab === 'frameworks') renderFrameworks(host, d);
+    else renderDiagnosis(host, d);
+  }
+
+  // -----------------------------------------------------------------------
+  // render / destroy
+  // -----------------------------------------------------------------------
+
+  function render(containerEl, params) {
+    container = containerEl;
+    params = params || {};
+
+    if (!window.Reading || !window.Store || !window.Util) {
+      container.appendChild(Util.h('div.empty-state.empty-state-error', {},
+        Util.h('div.empty-state-icon', {}, '⚠️'),
+        Util.h('h2', {}, '無法載入閱讀診斷室'),
+        Util.h('p', {}, '核心模組（js/reading.js）尚未載入，請重新整理頁面。')
+      ));
+      return;
+    }
+
+    var validTabs = TABS.map(function (t) { return t.code; });
+    S = {
+      tab: validTabs.indexOf(params.tab) !== -1 ? params.tab : 'diagnosis',
+      skillPart: 'all',
+      fwTab: 'grammar',
+      focusFramework: null,
+      bodyEl: null
+    };
+
+    if (params.task) {
+      try { Store.completeTask(params.task); } catch (e) { /* 任務勾選失敗不阻斷頁面 */ }
+    }
+
+    container.appendChild(Util.h('div.view-header', {},
+      Util.h('div.view-title', {},
+        Util.h('h1', {}, '閱讀診斷室'),
+        Util.h('p.view-subtitle', {}, '找出閱讀失分在哪、為什麼、然後直接去補')
+      ),
+      Util.h('button.btn.btn-primary.btn-sm', {
+        onClick: function () { goTo('#/quiz'); }
+      }, '✏️ 去做題')
+    ));
+
+    S.bodyEl = Util.h('div');
+    container.appendChild(S.bodyEl);
+    repaint();
+
+    // 在其他頁面作答後回到本頁時，資料要跟著更新
+    changeHandler = function () { repaint(); };
+    window.addEventListener('toeic30:change', changeHandler);
+  }
+
+  function destroy() {
+    if (changeHandler) {
+      window.removeEventListener('toeic30:change', changeHandler);
+      changeHandler = null;
+    }
+    S = null;
+    container = null;
+  }
+
+  window.Views = window.Views || {};
+  window.Views.reading = { render: render, destroy: destroy };
 })();
 
 </script>
@@ -13901,16 +16042,26 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 /* js/views/review.js */
 /**
  * js/views/review.js — 錯題本（#/review）
- * 合併 Store.wrongBook 與 p5/p6/p7/listening 各題資料（依 id 前綴 p5-/p6-/p7-/l1-/l2-/l3-/l4- 查表），
- * 提供篩選（Part / 只看未精通）、排序（次數 / 時間）、統計長條圖、
- * 查看詳解（含聽力逐字稿 + TTS）、單題重做、標記已精通、重做全部未精通（本 view 內逐題進行）。
- * params.task 存在時，進入頁面即視為完成當日任務（Store.completeTask）。
+ *
+ * 合併 Store.wrongBook 與 p5/p6/p7/listening 各題資料（依 id 前綴 p5-/p6-/p7-/l1-/l2-/l3-/l4- 查表）。
+ *
+ * 三層檢討法（本頁的核心流程）：
+ *   第一層「為什麼錯」— 每題標記錯因（單字／文法／看錯／沒時間／用猜的），統計出主要失分型態
+ *   第二層「重做一次」— Leitner 排程：答對往上一箱（1→2→4→7→14 天後再見），答錯退回第 1 箱明天再見
+ *   第三層「排進複習」— 只有連續答對到第 5 箱才算精通，避免「看過解析就以為會了」
+ *
+ * 提供：今日到期佇列、Part / 錯因 / 未精通篩選、排序、錯因與考點分佈圖、
+ * 查看詳解（含聽力逐字稿 + TTS）、單題或整批重做。
+ * params.task 存在時，進入頁面即視為完成當日任務；params.due=1 時預設只看今日到期。
  * 純 IIFE，暴露 window.Views.review = { render, destroy }。
  */
 (function () {
   'use strict';
 
   var LETTERS = ['A', 'B', 'C', 'D'];
+
+  // 與 store.js 的 WRONG_INTERVAL_DAYS 對應，只用於顯示文案
+  var BOX_LABELS = ['第 1 箱', '第 2 箱', '第 3 箱', '第 4 箱', '已精通'];
 
   var PART_INFO = {
     p5: { short: 'P5', label: 'P5 單句填空', listening: false,
@@ -13930,9 +16081,35 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
   };
   var PART_FILTER_CODES = ['all', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7'];
   var SORT_OPTIONS = [
+    { code: 'due_asc', label: '複習排程：先到期的優先' },
     { code: 'count_desc', label: '錯誤次數：多 → 少' },
     { code: 'time_desc', label: '最後作答：新 → 舊' }
   ];
+
+  function reasonDefs() {
+    return (window.TOEIC_DATA && window.TOEIC_DATA.reading && window.TOEIC_DATA.reading.reasons) || [];
+  }
+
+  function reasonDef(code) {
+    var defs = reasonDefs();
+    for (var i = 0; i < defs.length; i++) {
+      if (defs[i].code === code) return defs[i];
+    }
+    return null;
+  }
+
+  /** 把 store 的 wrongBook 項目補齊欄位；Store 較舊時退回本地預設值 */
+  function normalizeEntry(rec, today) {
+    if (window.Store && typeof Store.normalizeWrongEntry === 'function') {
+      return Store.normalizeWrongEntry(rec, today);
+    }
+    rec = rec || {};
+    return {
+      count: rec.count || 0, lastAt: rec.lastAt || null, mastered: !!rec.mastered,
+      box: rec.box || 1, due: rec.due || today, reason: rec.reason || '',
+      reviews: rec.reviews || 0, rights: rec.rights || 0
+    };
+  }
 
   // ---- module-level 狀態（每次 render() 重新建立） ----
   var S = null;
@@ -14071,15 +16248,22 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
   function loadItems() {
     var wb = S.wrongBook;
+    var today = S.today;
     return Object.keys(wb).map(function (id) {
-      var rec = wb[id] || { count: 0, lastAt: null, mastered: false };
+      var rec = normalizeEntry(wb[id], today);
       var entry = buildEntry(id);
       var kind = idPrefixKind(id);
       return {
         id: id,
-        count: rec.count || 0,
-        lastAt: rec.lastAt || null,
-        mastered: !!rec.mastered,
+        count: rec.count,
+        lastAt: rec.lastAt,
+        mastered: rec.mastered,
+        box: rec.box,
+        due: rec.due,
+        reason: rec.reason,
+        reviews: rec.reviews,
+        rights: rec.rights,
+        isDue: !rec.mastered && (rec.due || today) <= today,
         partShort: entry ? entry.partShort : (kind && PART_INFO[kind] ? PART_INFO[kind].short : '？'),
         entry: entry
       };
@@ -14090,6 +16274,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     S.wrongBook = (Store.get().wrongBook) || {};
     S.items = loadItems();
     renderStats();
+    renderReasonStats();
     renderList();
     renderCounts();
   }
@@ -14102,6 +16287,8 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     return S.items.filter(function (it) {
       if (S.filters.part !== 'all' && it.partShort !== S.filters.part) return false;
       if (S.filters.unmasteredOnly && it.mastered) return false;
+      if (S.filters.dueOnly && !it.isDue) return false;
+      if (S.filters.reason && it.reason !== S.filters.reason) return false;
       return true;
     });
   }
@@ -14110,6 +16297,13 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     var copy = items.slice();
     if (S.sort === 'time_desc') {
       copy.sort(function (a, b) { return (b.lastAt || '').localeCompare(a.lastAt || ''); });
+    } else if (S.sort === 'due_asc') {
+      copy.sort(function (a, b) {
+        // 未精通且已到期的優先，其次依到期日、再依錯誤次數
+        if (a.isDue !== b.isDue) return a.isDue ? -1 : 1;
+        var d = (a.due || '').localeCompare(b.due || '');
+        return d || (b.count - a.count);
+      });
     } else {
       copy.sort(function (a, b) { return (b.count - a.count) || (b.lastAt || '').localeCompare(a.lastAt || ''); });
     }
@@ -14155,15 +16349,118 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     });
   }
 
+  /** 錯因分佈：告訴使用者「主要不是不會，而是 XXX」 */
+  function renderReasonStats() {
+    var wrap = S.reasonWrapEl;
+    if (!wrap) return;
+    while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
+
+    var defs = reasonDefs();
+    if (!defs.length) {
+      wrap.appendChild(Util.h('p.u-text-muted', {}, '教材資料未載入，無法顯示錯因分類。'));
+      return;
+    }
+
+    var total = S.items.length;
+    var counts = {};
+    var untagged = 0;
+    S.items.forEach(function (it) {
+      if (!it.reason) { untagged += 1; return; }
+      counts[it.reason] = (counts[it.reason] || 0) + 1;
+    });
+
+    if (untagged === total) {
+      wrap.appendChild(Util.h('p', {},
+        '這 ' + total + ' 題都還沒標記錯因。點每一列的「查看」或「重做」，在解析下方選一個錯因 — ' +
+        '「單字不會」和「時間不夠」要用完全不同的方法補，分清楚才知道該練什麼。'));
+      return;
+    }
+
+    var rows = defs.map(function (d) {
+      return { def: d, count: counts[d.code] || 0 };
+    }).filter(function (r) { return r.count > 0; })
+      .sort(function (a, b) { return b.count - a.count; });
+
+    rows.forEach(function (r, idx) {
+      var share = Util.pct(r.count, total);
+      wrap.appendChild(Util.h('div', { style: { marginTop: idx === 0 ? '0' : '12px' } },
+        Util.h('div.u-flex.u-justify-between', {},
+          Util.h('button.btn.btn-ghost.btn-sm', {
+            onClick: function () {
+              S.filters.reason = S.filters.reason === r.def.code ? '' : r.def.code;
+              rebuildFilterBar();
+              renderList();
+            }
+          }, r.def.icon + ' ' + r.def.label),
+          Util.h('span.u-text-muted', {}, r.count + ' 題（' + share + '%）')
+        ),
+        Util.h('div.progress-bar', { style: { marginTop: '4px' } },
+          Util.h('div.progress-bar-fill', { style: { width: share + '%' } })
+        ),
+        idx === 0 ? Util.h('p', { style: { fontSize: '0.85rem', marginTop: '6px' } },
+          '👉 ' + r.def.advice) : null
+      ));
+    });
+
+    if (untagged) {
+      wrap.appendChild(Util.h('p.u-text-muted', { style: { marginTop: '12px' } },
+        '還有 ' + untagged + ' 題未標記錯因。'));
+    }
+  }
+
+  /** 錯因選擇列（查看 / 重做 modal 內共用） */
+  function buildReasonPicker(id, onChange) {
+    var defs = reasonDefs();
+    if (!defs.length) return null;
+    var wb = (Store.get().wrongBook) || {};
+    var current = (wb[id] && wb[id].reason) || '';
+
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap', marginTop: '8px' } });
+    defs.forEach(function (d) {
+      row.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (current === d.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () {
+          try {
+            Store.setWrongReason(id, current === d.code ? '' : d.code);
+            Util.toast(current === d.code ? '已取消錯因標記' : ('已標記：' + d.label), 'success');
+          } catch (e) {
+            Util.toast('標記失敗：' + e.message, 'error');
+          }
+          refresh();
+          if (onChange) onChange();
+        }
+      }, d.icon + ' ' + d.label));
+    });
+
+    var currentDef = reasonDef(current);
+    return Util.h('div.card', { style: { background: 'var(--color-surface-alt)' } },
+      Util.h('div.card-body', {},
+        Util.h('h3', {}, '第一層：這題為什麼錯？'),
+        row,
+        currentDef ? Util.h('p', { style: { marginTop: '10px' } }, '👉 ' + currentDef.advice) : null
+      )
+    );
+  }
+
   // -----------------------------------------------------------------------
   // 標記已精通
   // -----------------------------------------------------------------------
 
   function toggleMastered(id, value) {
     try {
-      if (value) Store.markWrongMastered(id);
-      else Store.update(['wrongBook', id, 'mastered'], false);
-      Util.toast(value ? '已標記為精通' : '已取消精通標記', 'success');
+      if (value) {
+        Store.markWrongMastered(id);
+      } else {
+        // 取消精通＝退回第 1 箱、今天就該重做，否則到期日還停在 14 天後
+        Store.set(function (old) {
+          var wrongBook = Object.assign({}, old.wrongBook);
+          wrongBook[id] = Object.assign({}, normalizeEntry(wrongBook[id], S.today), {
+            mastered: false, box: 1, due: S.today
+          });
+          return Object.assign({}, old, { wrongBook: wrongBook });
+        });
+      }
+      Util.toast(value ? '已標記為精通' : '已取消精通標記，排回今日複習', 'success');
     } catch (e) {
       Util.toast('更新失敗：' + e.message, 'error');
     }
@@ -14292,16 +16589,27 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     }
     var wb = (Store.get().wrongBook) || {};
     var mastered = !!(wb[id] && wb[id].mastered);
-    var body = buildQuestionBody(entry, { revealed: true, selected: entry.answer, onSelect: null });
+    var bodyWrap = Util.h('div');
+
+    function paint() {
+      while (bodyWrap.firstChild) bodyWrap.removeChild(bodyWrap.firstChild);
+      bodyWrap.appendChild(buildQuestionBody(entry, { revealed: true, selected: entry.answer, onSelect: null }));
+      var picker = buildReasonPicker(id, paint);
+      if (picker) bodyWrap.appendChild(picker);
+    }
+    paint();
+
     S.activeModalClose = Util.modal({
       title: entry.partLabel + ' · ' + id,
-      body: body,
+      body: bodyWrap,
       actions: [
         { label: '關閉', class: 'btn btn-ghost' },
+        { label: '重做這題', class: 'btn btn-primary',
+          onClick: function (close) { close(); runRedoQueue([id]); } },
         mastered
           ? { label: '取消已精通', class: 'btn btn-ghost', onClick: function (close) { toggleMastered(id, false); close(); } }
-          : { label: '標記已精通', class: 'btn btn-primary', onClick: function (close) { toggleMastered(id, true); close(); } }
-      ]
+          : null
+      ].filter(Boolean)
     });
   }
 
@@ -14317,13 +16625,14 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       return;
     }
     var answered = false;
+    var scheduled = false; // 只在第一次作答時更新 Leitner，重畫不重複計分
     var selectedIdx = null;
     var bodyWrap = Util.h('div');
     var closeModal = null;
 
-    function isMasteredNow() {
+    function currentRec() {
       var wb = (Store.get().wrongBook) || {};
-      return !!(wb[id] && wb[id].mastered);
+      return normalizeEntry(wb[id], S.today);
     }
 
     function paint() {
@@ -14331,25 +16640,51 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       bodyWrap.appendChild(buildQuestionBody(entry, {
         revealed: answered,
         selected: selectedIdx,
-        onSelect: answered ? null : function (i) { selectedIdx = i; answered = true; paint(); }
+        onSelect: answered ? null : function (i) {
+          selectedIdx = i;
+          answered = true;
+          if (!scheduled) {
+            scheduled = true;
+            try {
+              // 第二層：答對往上一箱、答錯退回第 1 箱，由 Store 算下次到期日
+              Store.reviewWrong(id, selectedIdx === entry.answer);
+            } catch (e) {
+              Util.toast('更新複習排程失敗：' + e.message, 'error');
+            }
+          }
+          paint();
+        }
       }));
 
       if (answered) {
         var isCorrect = selectedIdx === entry.answer;
-        var actionsRow = Util.h('div.u-flex.u-items-center.u-gap-sm.u-mt-md', { style: { flexWrap: 'wrap' } });
-        actionsRow.appendChild(Util.h('span', {}, isCorrect ? '✅ 答對了！' : '❌ 還不熟悉，再接再厲！'));
-        if (isCorrect && !isMasteredNow()) {
-          actionsRow.appendChild(Util.h('button.btn.btn-primary.btn-sm', {
-            onClick: function () { toggleMastered(id, true); paint(); }
-          }, '標記已精通'));
+        var rec = currentRec();
+        var scheduleText = rec.mastered
+          ? '🎓 連續答對，已升到第 5 箱 → 標記為精通'
+          : ('📅 ' + BOX_LABELS[rec.box - 1] + '，下次複習：' + rec.due);
+
+        bodyWrap.appendChild(Util.h('div.card', { style: { marginTop: '14px' } },
+          Util.h('div.card-body', {},
+            Util.h('h3', {}, isCorrect ? '✅ 答對了' : '❌ 還不熟，明天再來一次'),
+            Util.h('p', {}, scheduleText),
+            Util.h('p.u-text-muted', { style: { fontSize: '0.85rem', marginTop: '4px' } },
+              '累計重做 ' + rec.reviews + ' 次，答對 ' + rec.rights + ' 次。')
+          )
+        ));
+
+        if (!isCorrect) {
+          var picker = buildReasonPicker(id, paint);
+          if (picker) bodyWrap.appendChild(picker);
         }
-        actionsRow.appendChild(Util.h('button.btn.btn-ghost.btn-sm', {
-          onClick: function () {
-            if (closeModal) closeModal();
-            onResolved(isCorrect);
-          }
-        }, '下一題 →'));
-        bodyWrap.appendChild(actionsRow);
+
+        bodyWrap.appendChild(Util.h('div.u-flex.u-items-center.u-gap-sm.u-mt-md', { style: { flexWrap: 'wrap' } },
+          Util.h('button.btn.btn-primary.btn-sm', {
+            onClick: function () {
+              if (closeModal) closeModal();
+              onResolved(isCorrect);
+            }
+          }, '下一題 →')
+        ));
       }
     }
 
@@ -14395,17 +16730,28 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       .map(function (it) { return it.id; });
   }
 
+  function dueIdsInScope() {
+    return sortedItems(filteredItems().filter(function (it) { return it.isDue; }))
+      .map(function (it) { return it.id; });
+  }
+
   function renderCounts() {
     if (S.countEl) {
       var total = S.items.length;
       var unmastered = S.items.filter(function (it) { return !it.mastered; }).length;
-      S.countEl.textContent = '共 ' + total + ' 題錯題 · ' + unmastered + ' 題未精通';
+      var due = S.items.filter(function (it) { return it.isDue; }).length;
+      S.countEl.textContent = '共 ' + total + ' 題錯題 · ' + unmastered + ' 題未精通 · 今天該複習 ' + due + ' 題';
     }
   }
 
   function buildRow(it) {
-    var badgeClass = it.mastered ? 'badge-success' : 'badge-warning';
-    var badgeText = it.mastered ? '已精通' : '未精通';
+    var statusBadge = it.mastered
+      ? Util.h('span.badge.badge-success', {}, '已精通')
+      : (it.isDue
+        ? Util.h('span.badge.badge-danger', {}, '今天該複習')
+        : Util.h('span.badge.badge-warning', {}, BOX_LABELS[it.box - 1]));
+    var rDef = reasonDef(it.reason);
+
     return Util.h('tr', {},
       Util.h('td', {}, Util.h('span.badge.badge-primary', {}, it.partShort)),
       Util.h('td', {},
@@ -14413,21 +16759,27 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
           style: { maxWidth: '320px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'inline-block' }
         }, summaryText(it.entry, it.id))
       ),
+      Util.h('td', {}, rDef
+        ? Util.h('span.badge', { title: rDef.advice }, rDef.icon + ' ' + rDef.label)
+        : Util.h('span.u-text-muted', {}, '未標記')),
       Util.h('td', {}, String(it.count)),
-      Util.h('td', {}, fmtLastAt(it.lastAt)),
-      Util.h('td', {}, Util.h('span.badge.' + badgeClass, {}, badgeText)),
+      Util.h('td', {}, it.mastered ? '—' : (it.due || '—')),
+      Util.h('td', {}, statusBadge),
       Util.h('td', {},
         Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } },
           Util.h('button.btn.btn-ghost.btn-sm', { onClick: function () { openViewModal(it.id); } }, '查看'),
-          Util.h('button.btn.btn-ghost.btn-sm', {
+          Util.h('button', {
+            class: 'btn btn-sm ' + (it.isDue ? 'btn-primary' : 'btn-ghost'),
             onClick: function () { runRedoQueue([it.id]); }
           }, '重做'),
-          Util.h('button', {
-            class: 'btn btn-sm ' + (it.mastered ? 'btn-ghost' : 'btn-primary'),
-            onClick: function () { toggleMastered(it.id, !it.mastered); }
-          }, it.mastered ? '取消已精通' : '標記已精通')
+          it.mastered
+            ? Util.h('button.btn.btn-ghost.btn-sm', {
+              onClick: function () { toggleMastered(it.id, false); }
+            }, '取消已精通')
+            : null
         )
-      )
+      ),
+      Util.h('td', {}, fmtLastAt(it.lastAt))
     );
   }
 
@@ -14438,13 +16790,21 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
     var items = sortedItems(filteredItems());
     var redoIds = unmasteredIdsInScope();
+    var dueIds = dueIdsInScope();
 
     wrap.appendChild(Util.h('div.u-flex.u-justify-between.u-items-center.u-mt-md', { style: { flexWrap: 'wrap', gap: '10px' } },
-      Util.h('span.u-text-muted', {}, '目前篩選共 ' + items.length + ' 題，其中 ' + redoIds.length + ' 題未精通'),
-      Util.h('button.btn.btn-primary.btn-sm', {
-        disabled: redoIds.length === 0,
-        onClick: function () { runRedoQueue(redoIds); }
-      }, '重做全部未精通')
+      Util.h('span.u-text-muted', {},
+        '目前篩選共 ' + items.length + ' 題 · ' + dueIds.length + ' 題今天到期 · ' + redoIds.length + ' 題未精通'),
+      Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } },
+        Util.h('button.btn.btn-primary.btn-sm', {
+          disabled: dueIds.length === 0,
+          onClick: function () { runRedoQueue(dueIds); }
+        }, '複習今日到期（' + dueIds.length + '）'),
+        Util.h('button.btn.btn-ghost.btn-sm', {
+          disabled: redoIds.length === 0,
+          onClick: function () { runRedoQueue(redoIds); }
+        }, '重做全部未精通')
+      )
     ));
 
     if (!items.length) {
@@ -14458,8 +16818,9 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 
     var table = Util.h('table.table', {},
       Util.h('thead', {}, Util.h('tr', {},
-        Util.h('th', {}, '題型'), Util.h('th', {}, '題目摘要'), Util.h('th', {}, '錯誤次數'),
-        Util.h('th', {}, '最後時間'), Util.h('th', {}, '狀態'), Util.h('th', {}, '操作')
+        Util.h('th', {}, '題型'), Util.h('th', {}, '題目摘要'), Util.h('th', {}, '錯因'),
+        Util.h('th', {}, '錯誤次數'), Util.h('th', {}, '下次複習'), Util.h('th', {}, '狀態'),
+        Util.h('th', {}, '操作'), Util.h('th', {}, '最後作答')
       )),
       Util.h('tbody', {}, items.map(buildRow))
     );
@@ -14490,7 +16851,37 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     return row;
   }
 
+  function buildReasonChips() {
+    var defs = reasonDefs();
+    if (!defs.length) return null;
+    var row = Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } });
+    var all = [{ code: '', label: '全部', icon: '' }].concat(defs);
+    all.forEach(function (d) {
+      var count = d.code === ''
+        ? S.items.length
+        : S.items.filter(function (it) { return it.reason === d.code; }).length;
+      row.appendChild(Util.h('button', {
+        class: 'btn btn-sm ' + (S.filters.reason === d.code ? 'btn-primary' : 'btn-ghost'),
+        onClick: function () {
+          S.filters.reason = d.code;
+          rebuildFilterBar();
+          renderList();
+        }
+      }, (d.icon ? d.icon + ' ' : '') + d.label + '（' + count + '）'));
+    });
+    return row;
+  }
+
   function buildFilterBar() {
+    var dueCount = S.items.filter(function (it) { return it.isDue; }).length;
+    var dueCheckbox = Util.h('label.checkbox-row', {},
+      Util.h('input', {
+        type: 'checkbox', checked: S.filters.dueOnly,
+        onChange: function (e) { S.filters.dueOnly = e.target.checked; renderList(); }
+      }),
+      Util.h('span', {}, '只看今天該複習（' + dueCount + '）')
+    );
+
     var unmasteredCheckbox = Util.h('label.checkbox-row', {},
       Util.h('input', {
         type: 'checkbox', checked: S.filters.unmasteredOnly,
@@ -14505,14 +16896,20 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       return Util.h('option', { value: o.code, selected: o.code === S.sort }, o.label);
     }));
 
+    var reasonChips = buildReasonChips();
+
     return Util.h('div.card', {},
       Util.h('div.card-body', { style: { display: 'flex', flexDirection: 'column', gap: '14px' } },
         Util.h('div', {},
           Util.h('div.card-subtitle', { style: { marginTop: '0' } }, 'Part'),
           buildPartChips()
         ),
+        reasonChips ? Util.h('div', {},
+          Util.h('div.card-subtitle', { style: { marginTop: '0' } }, '錯因'),
+          reasonChips
+        ) : null,
         Util.h('div.u-flex.u-items-center.u-justify-between', { style: { flexWrap: 'wrap', gap: '10px' } },
-          unmasteredCheckbox,
+          Util.h('div.u-flex.u-gap-sm', { style: { flexWrap: 'wrap' } }, dueCheckbox, unmasteredCheckbox),
           Util.h('div.field', { style: { marginBottom: '0', minWidth: '220px' } },
             Util.h('label.field-label', {}, '排序'), sortSelect
           )
@@ -14536,12 +16933,15 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     params = params || {};
 
     S = {
+      today: Util.todayISO(),
       wrongBook: {},
       items: [],
-      filters: { part: 'all', unmasteredOnly: false },
-      sort: 'count_desc',
+      // params.due=1（例如從閱讀診斷室的「先清掉 N 題到期錯題」點進來）→ 預設只看今日到期
+      filters: { part: 'all', unmasteredOnly: false, dueOnly: params.due === '1' || params.due === 1, reason: '' },
+      sort: 'due_asc',
       countEl: null,
       statsWrapEl: null,
+      reasonWrapEl: null,
       filterBarSlotEl: null,
       listWrapEl: null,
       activeModalClose: null
@@ -14575,6 +16975,37 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
       return;
     }
 
+    // 今日到期提示：進頁面第一眼就知道該做什麼
+    var dueNow = S.items.filter(function (it) { return it.isDue; });
+    if (dueNow.length) {
+      container.appendChild(Util.h('div.card', {},
+        Util.h('div.card-title', {}, '📅 今天有 ' + dueNow.length + ' 題該複習'),
+        Util.h('div.card-subtitle', {},
+          '答對就往上一箱（1 → 2 → 4 → 7 → 14 天後再見），答錯退回第 1 箱明天重來。' +
+          '連續答對到第 5 箱才算真的會。'),
+        Util.h('div.card-actions', {},
+          Util.h('button.btn.btn-primary', {
+            onClick: function () {
+              runRedoQueue(sortedItems(S.items.filter(function (it) { return it.isDue; }))
+                .map(function (it) { return it.id; }));
+            }
+          }, '開始複習')
+        )
+      ));
+    }
+
+    var reasonCard = Util.h('div.card', {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, '錯因分佈'),
+          Util.h('div.card-subtitle', {}, '第一層檢討：先分清楚為什麼錯，才知道要補什麼')
+        )
+      )
+    );
+    S.reasonWrapEl = Util.h('div.card-body', {});
+    reasonCard.appendChild(S.reasonWrapEl);
+    container.appendChild(reasonCard);
+
     var statsCard = Util.h('div.card', {},
       Util.h('div.card-header', {}, Util.h('div.card-title', {}, '各 Part / 類別錯誤分佈'))
     );
@@ -14590,6 +17021,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     container.appendChild(S.listWrapEl);
 
     renderStats();
+    renderReasonStats();
     renderList();
     renderCounts();
   }
@@ -15305,7 +17737,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
 (function () {
   'use strict';
 
-  var ROUTES = ['dashboard', 'plan', 'tips', 'quiz', 'listening', 'vocab', 'mock', 'review', 'settings'];
+  var ROUTES = ['dashboard', 'plan', 'tips', 'quiz', 'reading', 'listening', 'vocab', 'mock', 'review', 'settings'];
   var DEFAULT_ROUTE = 'dashboard';
   var TOTAL_DAYS = 30;
 
@@ -15314,6 +17746,7 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     plan: '30 天計畫',
     tips: '技巧庫',
     quiz: '閱讀做題',
+    reading: '閱讀診斷室',
     listening: '聽力練習',
     vocab: '單字卡',
     mock: '迷你模考',
@@ -15321,8 +17754,10 @@ window.TOEIC_DATA.listening.p4 = (window.TOEIC_DATA.listening.p4 || []).concat([
     settings: '設定'
   };
 
+  // 底部 tab bar 放不下的路由，收進「更多」選單
   var MORE_ROUTES = [
     { route: 'tips', label: '技巧庫', icon: '💡' },
+    { route: 'vocab', label: '單字卡', icon: '📚' },
     { route: 'listening', label: '聽力練習', icon: '🎧' },
     { route: 'mock', label: '迷你模考', icon: '🎯' },
     { route: 'review', label: '錯題本', icon: '🔁' },

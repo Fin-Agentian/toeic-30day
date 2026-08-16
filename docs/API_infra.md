@@ -117,36 +117,70 @@ Store.recordQuiz(payload: {
   total: number,
   correct: number,
   seconds: number,
-  wrongIds?: string[]    // 預設 []
+  wrongIds?: string[],   // 預設 []
+  skillStats?: Array<{ key: string, correct: boolean, seconds: number }>  // 預設 []
 }, todayISO?: string) → State
 ```
 用於 `quiz.js` / `listening.js` / `mock.js` 交卷時呼叫一次。同一次呼叫會
 **同時**：
 - 附加一筆紀錄到 `quizHistory`（含 `at` 時間戳）
 - 對每個 `wrongIds` 更新 `wrongBook[id]`：`count += 1`、`lastAt` 更新、
-  `mastered` 重設為 `false`
+  `mastered` 重設為 `false`、`box` 回到 1、`due` 設為今天
+- 依 `skillStats` 累加 `readingStats[key]` 的 `total` / `correct` / `seconds`
 - 更新 `streak`（依 `lastActive` 判斷連續天數：同一天不變、前一天則
   `current += 1`、否則重置為 1；`best` 取歷史最大）
 
+**`wrongIds` 會先經過 `normalizeWrongId()` 正規化**：P6/P7 的子題 key 一律存成
+`<groupId>-q<n>`（例如傳入 `p6-001-2` 會存成 `p6-001-q2`），`review.js` 才查得到題目。
+
+`skillStats[].key` 的格式是 `<Part>:<考點>`，用 `Reading.skillKey(part, question)` 產生
+（P5 取 `tag`、P6 取 `type`、P7 取 `skill`）。`seconds` 是該題實際花掉的秒數。
+
 `payload` 欄位不合法（`mode` 不在允許值內、`total`/`correct`/`seconds`
-非非負數字、`wrongIds` 非陣列）會 `throw Error`，呼叫端應在遞交前自行檢查
+非非負數字、`wrongIds`/`skillStats` 非陣列）會 `throw Error`，呼叫端應在遞交前自行檢查
 數值來源。`todayISO` 為選填的日期覆寫（測試/時區調整用），一般呼叫不需要帶。
 
 ```js
 Store.recordQuiz({
   mode: 'quiz', part: 'P5', total: 10, correct: 8, seconds: 245,
-  wrongIds: ['p5-003', 'p5-017']
+  wrongIds: ['p5-003', 'p5-017'],
+  skillStats: [
+    { key: 'P5:prep', correct: false, seconds: 42 },
+    { key: 'P5:pos',  correct: true,  seconds: 14 }
+  ]
 });
 ```
 
-### 1.9 `Store.markWrongMastered(id)`
+### 1.9 錯題本 API
 
 ```js
 Store.markWrongMastered(id: string) → State
+Store.reviewWrong(id: string, correct: boolean, todayISO?: string) → State
+Store.setWrongReason(id: string, reason: string) → State
+Store.flagWrong(id: string, reason?: string) → State
+Store.dueWrongIds(todayISO?: string) → string[]
+Store.normalizeWrongId(id: string) → string
+Store.normalizeWrongEntry(entry: object, todayISO?: string) → WrongEntry
+Store.WRONG_REASONS  // ['vocab','grammar','misread','time','guess']
 ```
-用於 `review.js`（錯題本）「標記已懂」按鈕。將 `wrongBook[id].mastered`
-設為 `true`（`count`/`lastAt` 保留）。若該 id 尚無 `wrongBook` 紀錄，會建立
-一筆 `{ count: 0, lastAt: null, mastered: true }`。
+
+以上方法都會先把 `id` 正規化，呼叫端不必自己處理格式。
+
+- **`markWrongMastered(id)`** — 直接標記精通：`mastered = true`、`box = 5`，`count`/`lastAt` 保留。
+- **`reviewWrong(id, correct)`** — 錯題本重做一題後更新 Leitner 排程。答對 `box + 1`、
+  答錯回 `box 1`；`due` 依 box 對應 `[1, 2, 4, 7, 14]` 天後；`reviews` 累加，答對時 `rights` 也累加；
+  升到 box 5 自動 `mastered = true`。
+- **`setWrongReason(id, reason)`** — 標記錯因，傳空字串可清除。`reason` 不在 `WRONG_REASONS`
+  內會 `throw Error`。
+- **`flagWrong(id, reason?)`** — 不經過 `recordQuiz`，手動把一題丟進錯題本（用於「這題我是猜對的」）：
+  `count` 至少為 1、`box = 1`、`due` 設為今天。
+- **`dueWrongIds(today?)`** — 今天（含逾期）該複習且未精通的錯題 id，早到期的排前面。
+
+```js
+// 錯題本重做流程
+Store.reviewWrong('p7-013-q1', userPickedIndex === answer);
+Store.setWrongReason('p7-013-q1', 'time');
+```
 
 ### 1.10 `Store.touchStreak(todayISO?)`
 
@@ -199,14 +233,21 @@ window.addEventListener('toeic30:change', (e) => {
 
 ```js
 {
-  version: 1,
+  version: 2,
   startDate: "YYYY-MM-DD",      // 預設 = 建立當下今天
   examDate: "2026-09-20",
   dailyMinutes: 90,
   completedTasks: { "d1-t1": "2026-08-17T10:00:00.000Z" },
   tipsMastered: { "P2-03": true },
   quizHistory: [ { at, mode, part, total, correct, seconds, wrongIds: [] } ],
-  wrongBook: { "p5-001": { count: 2, lastAt, mastered: false } },
+  wrongBook: { "p5-001": {
+    count: 2, lastAt, mastered: false,
+    box: 1,                 // Leitner 1..5
+    due: "2026-08-18",      // 下次該重做的日期
+    reason: "",             // '' | 'vocab' | 'grammar' | 'misread' | 'time' | 'guess'
+    reviews: 0, rights: 0   // 累計重做次數 / 其中答對次數
+  } },
+  readingStats: { "P5:prep": { total: 12, correct: 4, seconds: 340 } },
   vocab: { "v0001": { box: 1, due: "2026-08-18", seen: 3, wrong: 1 } },
   streak: { current: 0, best: 0, lastActive: null },
   settings: { ttsRate: 1.0, ttsVoice: "", theme: "light" }
@@ -214,7 +255,19 @@ window.addEventListener('toeic30:change', (e) => {
 ```
 `vocab` 欄位的每個卡片形狀與 `SRS` 模組的卡片形狀一致——`vocab.js` 建議直接把
 `SRS.initCard()` / `SRS.review()` 的回傳值透過 `Store.update(['vocab', id], card)`
-寫回。
+寫回。錯題的 Leitner 排程則不走 `SRS`（間隔不同），一律用 `Store.reviewWrong()`。
+
+### 1.15 版本升級（migration）
+
+`Store.STATE_VERSION` 目前為 `2`。`loadState()` 與 `import()` 都會先跑 `migrate(state)`
+再驗證 schema，所以：
+- 使用者瀏覽器裡的 v1 資料會在下次開啟時自動升級並寫回 localStorage
+- 使用者匯出的 v1 備份仍然可以匯入
+
+v1 → v2 做的事：正規化 `wrongBook` 與 `quizHistory[].wrongIds` 的錯題 key、
+為每筆錯題補上 Leitner 欄位、新增空的 `readingStats`。
+新增欄位時請在 `store.js` 的 `migrate()` 加一個 `if (version < N)` 分支，並在
+`tests/store.test.js` 補一個對應的 migration 測試。
 
 ---
 
@@ -393,16 +446,94 @@ TTS.stop() → void
 
 ---
 
-## 4. 測試
+## 4. `window.Reading`（`js/reading.js`）
+
+閱讀（Part 5/6/7）診斷引擎。**純函式**：只吃傳進來的 `state`（`Store.get()` 的結果）
+與 `window.TOEIC_DATA`，不讀寫 localStorage、不碰 DOM，因此可直接在 node 測試。
+
+### 4.1 常數
+
+```js
+Reading.PACE_TARGET   // { P5: 20, P6: 30, P7: 60 } — 每題目標秒數，全站單一來源
+Reading.SKILL_LABELS  // { 'P5:prep': '介系詞', 'P7:inference': '推論題', … }
+Reading.PART_LABELS   // { P5: 'Part 5 單句填空', … }
+Reading.MIN_SAMPLE    // 5 — 少於這個題數不下強弱判斷
+```
+`quiz.js`、`mock.js` 與 `#/reading` 都必須引用 `PACE_TARGET`，不要各自寫死秒數。
+
+### 4.2 考點對應
+
+```js
+Reading.skillKey(part: 'P5'|'P6'|'P7', question: object) → string   // 'P5:prep'
+Reading.labelFor(key: string) → string                              // '介系詞'
+Reading.partOfKey(key) → 'P5' | 'P6' | 'P7'
+Reading.tagOfKey(key)  → 'prep'
+Reading.poolSizeByKey() → { 'P5:prep': 15, … }   // 題庫中各考點有幾題
+Reading.drillHash(key, count?) → '#/quiz?part=P5&skill=prep&count=10'
+Reading.frameworkForTag(tag) → Framework | null  // 取對應的文法判斷框架
+```
+`skillKey` 的來源欄位：P5 用 `tag`、P6 用 `type`、P7 用 `skill`，缺欄位時退回預設值
+（`P5:other` / `P6:word` / `P7:detail`），不會產生 undefined key。
+
+### 4.3 分析
+
+```js
+Reading.skillBreakdown(state, opts?) → Row[]
+// Row: { key, part, tag, label, total, correct, accuracy, avgSeconds, targetSeconds,
+//        overPace, enough, level: { code, label, tone }, poolSize }
+// 依「有足夠樣本 → 正確率低 → 題數多」排序，弱點在最前面。opts.part 可過濾。
+
+Reading.untouchedSkills(state) → { key, label, part, tag, poolSize }[]  // 完全沒練過的考點
+
+Reading.paceReport(state) → Pace[]   // 每個 Part 一筆，只採計 mode='quiz' 的紀錄
+// Pace: { part, label, targetSeconds, avgSeconds, questions, sessions, accuracy,
+//         ratio, verdict: 'none'|'ok'|'warn'|'slow'|'rush', verdictText }
+
+Reading.projectedFinish(state) → { minutes, limitMinutes, overMinutes, measuredParts, willFinish }
+// 用目前配速推估 100 題要多久；沒資料的 Part 以目標配速代入
+
+Reading.estimateRC(state) → { score, accuracy, sample, confidence, nextScore, questionsToNext }
+// score 為 5..495 的粗估值（無紀錄時為 null）；confidence: 'none'|'low'|'medium'|'high'
+Reading.curveToScore(rawOutOf100) → number   // 換算曲線本身，單調遞增、夾在 5..495
+
+Reading.reasonBreakdown(state) → { rows: [{ code, label, icon, advice, count, share }],
+                                   untagged, total }   // 只統計 p5/p6/p7 的錯題
+```
+
+### 4.4 行動建議與整合
+
+```js
+Reading.advice(state, { today? }) → Advice[]   // 最多 5 條，已依優先序排好
+// Advice: { priority, kind, icon, title, detail, actionLabel, hash, frameworkId?, skillKey? }
+
+Reading.diagnose(state, { today? }) → { rc, skills, untouched, pace, projection, reasons, advice }
+```
+`advice` 的優先序（分數低時回收最快的順序）：
+到期錯題 → Part 5 弱考點 → 配速嚴重超時 → Part 7 弱題型 → 沒練過的考點；
+完全沒有弱點時回傳一條鼓勵訊息，不會回空陣列。`hash` 一律是站內路由，可直接餵給 `App.navigate()`。
+
+```js
+const d = Reading.diagnose(Store.get(), { today: Util.todayISO() });
+if (d.advice[0]) App.navigate(d.advice[0].hash);
+```
+
+---
+
+## 5. 測試
 
 - `node tests/store.test.js` — 覆蓋：預設 schema、`get()` 不可變、
   `set()`/`update()` 不可變與驗證失敗丟錯、`completeTask`/`isTaskDone`、
-  `recordQuiz` 同時更新 `wrongBook`/`streak`（含連續與斷streak情境）、
-  `markWrongMastered`、`getDayIndex`/`daysToExam` 邊界、`import` 拒絕壞
-  資料與版本不符、`export`/`import` round-trip、`reset()`、無
-  `localStorage` 時退回記憶體、`localStorage` 跨實例持久化。
+  `recordQuiz` 同時更新 `wrongBook`/`readingStats`/`streak`（含連續與斷streak情境）、
+  錯題 id 正規化、`reviewWrong` 的 Leitner 升降箱、`setWrongReason`/`flagWrong`/`dueWrongIds`、
+  v1 → v2 migration（含新舊 key 並存時的合併）、`markWrongMastered`、
+  `getDayIndex`/`daysToExam` 邊界、`import` 拒絕壞資料與接受 v1 舊備份、
+  `export`/`import` round-trip、`reset()`、無 `localStorage` 時退回記憶體、跨實例持久化。
 - `node tests/srs.test.js` — 覆蓋：`initCard`、`review` 升箱/降箱與間隔天數、
   `isDue` 邊界、`pickSession` 排序與 `newLimit`/`reviewLimit`、`stats`。
+- `node tests/reading.test.js` — 覆蓋：`skillKey` 對應與預設值、題庫所有考點都有中文標籤、
+  `curveToScore` 單調性與值域、`estimateRC`（排除聽力紀錄）、`skillBreakdown` 排序與樣本門檻、
+  `paceReport`/`projectedFinish`、`reasonBreakdown`、`advice` 優先序與連結格式、
+  每條文法框架的 tag 都能在題庫抽到題、`diagnose` 在空 state 下不丟錯。
 
-兩者皆為純 Node 腳本（用 `vm` 載入原始檔到 sandbox，`store.test.js`
+三者皆為純 Node 腳本（用 `vm` 載入原始檔到 sandbox，`store.test.js`
 另外 shim `window.localStorage`），無需額外測試框架即可執行。

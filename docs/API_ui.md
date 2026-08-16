@@ -166,7 +166,7 @@ App.navigate('#/quiz?part=P5&count=10&task=d1-t1');
 初始化 router 與頂欄，`DOMContentLoaded` 時已自動呼叫一次，不需要自己再呼叫。
 
 ### 路由清單
-`dashboard`（預設）`plan` `tips` `quiz` `listening` `vocab` `mock` `review` `settings`。
+`dashboard`（預設）`plan` `tips` `quiz` `reading` `listening` `vocab` `mock` `review` `settings`。
 未知路由會顯示 dashboard 內容（不改變網址）；對應的 `window.Views.<name>` 不存在時，`#view` 會顯示「此頁面尚未完成」的友善空狀態，不會拋錯。
 
 ---

@@ -26,6 +26,7 @@ const FILES = [
   'listening_1.js',
   'listening_2.js',
   'listening_3.js',
+  'reading_frameworks.js',
 ];
 
 // ---------- 共用工具 ----------
@@ -517,6 +518,106 @@ function validateListening(listening) {
   return stats;
 }
 
+// ---------- 5.8 reading（TOEIC_DATA.reading：閱讀框架 / 配速 / 題型攻略 / 錯因） ----------
+// 交叉檢查：frameworks[].tag 必須存在於 p5 題庫，p7Playbook[].skill 必須存在於 p7 題庫，
+// 否則診斷室的「專項練習」按鈕會連到空題庫。
+const REASON_CODES = new Set(['vocab', 'grammar', 'misread', 'time', 'guess']);
+
+function validateReading(reading, p5, p7, p6) {
+  const file = 'data/reading_frameworks.js';
+  const stats = { frameworks: 0, paceParts: 0, playbook: 0, reasons: 0 };
+  if (!reading) {
+    err(file, '-', '缺少 window.TOEIC_DATA.reading');
+    return stats;
+  }
+
+  const p5Tags = new Set((p5 || []).map((q) => q.tag || 'other'));
+  const p7Skills = new Set();
+  (p7 || []).forEach((g) => (g.questions || []).forEach((q) => p7Skills.add(q.skill || 'detail')));
+  const p6Types = new Set();
+  (p6 || []).forEach((g) => (g.questions || []).forEach((q) => p6Types.add(q.type || 'word')));
+
+  const seenFwIds = new Set();
+
+  // frameworks
+  if (!Array.isArray(reading.frameworks) || reading.frameworks.length < 10) {
+    err(file, 'frameworks', `需至少 10 條文法框架，實際 ${reading.frameworks ? reading.frameworks.length : 0}`);
+  }
+  (reading.frameworks || []).forEach((fw, i) => {
+    const label = fw && fw.id ? fw.id : `frameworks#${i}`;
+    if (!isNonEmptyString(fw.id)) err(file, label, '缺少 id');
+    else if (seenFwIds.has(fw.id)) err(file, label, `id 重複: ${fw.id}`);
+    seenFwIds.add(fw.id);
+    ['title', 'when', 'trap', 'tag'].forEach((k) => {
+      if (!isNonEmptyString(fw[k])) err(file, label, `缺少 ${k}`);
+    });
+    if (!Array.isArray(fw.steps) || fw.steps.length < 3) err(file, label, 'steps 需至少 3 步');
+    if (!fw.example || !isNonEmptyString(fw.example.en) || !isNonEmptyString(fw.example.zh) ||
+        !isNonEmptyString(fw.example.point)) {
+      err(file, label, 'example 需含 en / zh / point');
+    }
+    if (!isInt(fw.seconds) || fw.seconds <= 0) err(file, label, `seconds 需為正整數，實際 ${fw.seconds}`);
+    if (!p5Tags.has(fw.tag)) err(file, label, `tag "${fw.tag}" 在 p5 題庫中不存在，專項練習會抽不到題`);
+    stats.frameworks++;
+  });
+
+  // pace
+  const pace = reading.pace;
+  if (!pace || !Array.isArray(pace.parts)) {
+    err(file, 'pace', '缺少 pace.parts');
+  } else {
+    if (pace.totalQuestions !== 100) err(file, 'pace', `totalQuestions 應為 100，實際 ${pace.totalQuestions}`);
+    if (pace.totalMinutes !== 75) err(file, 'pace', `totalMinutes 應為 75，實際 ${pace.totalMinutes}`);
+    let sumQ = 0;
+    pace.parts.forEach((p, i) => {
+      const label = p && p.part ? `pace:${p.part}` : `pace#${i}`;
+      if (!['P5', 'P6', 'P7'].includes(p.part)) err(file, label, `part 值域錯誤: ${p.part}`);
+      if (!isInt(p.count) || p.count <= 0) err(file, label, 'count 需為正整數');
+      if (!isInt(p.secPerQ) || p.secPerQ <= 0) err(file, label, 'secPerQ 需為正整數');
+      ['name', 'checkpoint', 'tip'].forEach((k) => {
+        if (!isNonEmptyString(p[k])) err(file, label, `缺少 ${k}`);
+      });
+      sumQ += p.count || 0;
+      stats.paceParts++;
+    });
+    if (sumQ !== 100) err(file, 'pace', `各 Part 題數加總應為 100，實際 ${sumQ}`);
+    if (!Array.isArray(pace.rules) || !pace.rules.length) err(file, 'pace', '缺少 rules');
+  }
+
+  // p7Playbook
+  (reading.p7Playbook || []).forEach((pb, i) => {
+    const label = pb && pb.skill ? `playbook:${pb.skill}` : `p7Playbook#${i}`;
+    ['label', 'signal', 'trap'].forEach((k) => {
+      if (!isNonEmptyString(pb[k])) err(file, label, `缺少 ${k}`);
+    });
+    if (!Array.isArray(pb.steps) || pb.steps.length < 2) err(file, label, 'steps 需至少 2 步');
+    if (!isInt(pb.seconds) || pb.seconds <= 0) err(file, label, 'seconds 需為正整數');
+    // sentence_insert 對應的是 Part 6 的 type=sentence，其餘對應 p7 的 skill
+    const known = pb.skill === 'sentence_insert' ? p6Types.has('sentence') : p7Skills.has(pb.skill);
+    if (!known) err(file, label, `skill "${pb.skill}" 在題庫中不存在，專項練習會抽不到題`);
+    stats.playbook++;
+  });
+  if (stats.playbook < 5) err(file, 'p7Playbook', `題型攻略需至少 5 條，實際 ${stats.playbook}`);
+
+  // reasons（需與 js/store.js 的 WRONG_REASONS 完全一致）
+  const seen = new Set();
+  (reading.reasons || []).forEach((r, i) => {
+    const label = r && r.code ? `reason:${r.code}` : `reasons#${i}`;
+    if (!REASON_CODES.has(r.code)) err(file, label, `code 值域錯誤: ${r.code}（需與 Store.WRONG_REASONS 一致）`);
+    if (seen.has(r.code)) err(file, label, `code 重複: ${r.code}`);
+    seen.add(r.code);
+    ['label', 'icon', 'advice'].forEach((k) => {
+      if (!isNonEmptyString(r[k])) err(file, label, `缺少 ${k}`);
+    });
+    stats.reasons++;
+  });
+  REASON_CODES.forEach((code) => {
+    if (!seen.has(code)) err(file, 'reasons', `缺少錯因 ${code}`);
+  });
+
+  return stats;
+}
+
 // ---------- 執行驗證 ----------
 const tipsStats = validateTips(TD.tips || []);
 const planStats = validatePlan(TD.plan, missingFiles.includes('plan.js'));
@@ -525,6 +626,7 @@ const p5Stats = validateP5(TD.p5 || []);
 const p6Stats = validateP6(TD.p6 || []);
 const p7Stats = validateP7(TD.p7 || []);
 const listeningStats = validateListening(TD.listening);
+const readingStats = validateReading(TD.reading, TD.p5 || [], TD.p7 || [], TD.p6 || []);
 
 // ---------- 摘要 ----------
 console.log('\n--- 摘要 ---');
@@ -535,6 +637,7 @@ console.log(`p5: 共 ${p5Stats.total} 題`);
 console.log(`p6: 共 ${p6Stats.articles} 篇 / ${p6Stats.questions} 題`);
 console.log(`p7: 共 ${p7Stats.total} 組（single=${p7Stats.single}, double=${p7Stats.double}, triple=${p7Stats.triple}）/ ${p7Stats.questions} 題`);
 console.log(`listening: p1=${listeningStats.p1}, p2=${listeningStats.p2}, p3=${listeningStats.p3}, p4=${listeningStats.p4}`);
+console.log(`reading: 文法框架 ${readingStats.frameworks} 條, 配速 ${readingStats.paceParts} Part, 題型攻略 ${readingStats.playbook} 條, 錯因 ${readingStats.reasons} 類`);
 
 if (missingFiles.length > 0) {
   console.log('\n--- 缺少的資料檔（可能屬正常，尚未由內容工作流產出） ---');

@@ -4,6 +4,8 @@
 
 一個**純靜態網頁**的 TOEIC 自學平台：每天打開後可以看今日任務、讀應考技巧、做閱讀題（Part 5/6/7）、練聽力（Part 1–4，用瀏覽器 TTS 發音）、背單字（Leitner 5 箱間隔複習 SRS）、做迷你模考，並自動累積錯題本與學習進度。無 build 流程、無後端、無外部 CDN，所有狀態存在瀏覽器 `localStorage`。
 
+**重心放在閱讀（Reading）**：做題會記錄每題秒數與考點，「閱讀診斷室」據此算出各考點正確率、配速與粗估 RC 分數，並排出「接下來該做什麼」；錯題本用三層檢討法（標錯因 → Leitner 排程重做 → 連續答對才算精通）確保錯過的題目會再遇到。
+
 詳細設計契約見 [`docs/DESIGN.md`](docs/DESIGN.md)；view 開發者介面文件見 [`docs/API_ui.md`](docs/API_ui.md)（Util / DOM）與 [`docs/API_infra.md`](docs/API_infra.md)（Store / SRS / TTS）。
 
 ## 如何開啟
@@ -44,11 +46,12 @@ node scripts/build_single.js
 | 儀表板 | `#/dashboard` | 距考試倒數、Day X/30、今日任務清單、30 天進度環、連續天數、弱點提示 |
 | 30 天計畫 | `#/plan` | 月曆格檢視 + 每日任務清單，勾選任務即記錄完成時間 |
 | 技巧庫 | `#/tips` | 依 Part 篩選 / 搜尋 / priority 排序，可標記「已掌握」，附原始資料來源連結 |
-| 閱讀做題 | `#/quiz` | Part 5 / 6 / 7 測驗引擎：計時、逐題或整份交卷、中文詳解 |
+| 閱讀做題 | `#/quiz` | Part 5 / 6 / 7 測驗引擎：**考點專項練習**、每題計時、逐題或整份交卷、中文詳解、交卷後的配速與考點分解 |
+| 閱讀診斷室 | `#/reading` | **粗估 RC 分數、考點正確率排行、配速分析、十大文法判斷框架、Part 6/7 題型攻略** |
 | 聽力練習 | `#/listening` | Part 1–4，用 Web Speech API 朗讀題目（預設只播一次可調），作答後顯示逐字稿與解析 |
 | 單字卡 | `#/vocab` | SRS 閃卡，依 Leitner 5 箱排今日新字 / 複習字，另附拼字、選擇小測 |
 | 迷你模考 | `#/mock` | 計時混合題組模考（mini / half），結束後給總分、Part 正確率、弱點建議 |
-| 錯題本 | `#/review` | 彙整所有做題來源的錯題，可重做、標記已懂 |
+| 錯題本 | `#/review` | 三層檢討法：**標記錯因 → Leitner 排程重做 → 連續答對才算精通**，附錯因分佈與今日到期佇列 |
 | 設定 | `#/settings` | 開始日 / 考試日 / 每日讀書時數 / TTS 語速與語音 / 資料匯出匯入 / 重置 |
 
 所有狀態（完成任務、錯題、單字複習進度、連續天數等）都不可變地更新並持久化在 `localStorage`（key 前綴 `toeic30:`），可在「設定」頁匯出成 JSON 備份，或匯入還原。
@@ -68,8 +71,25 @@ node scripts/build_single.js
 | `data/listening_1.js` | `TOEIC_DATA.listening.p1` + `.p2` | 照片描述、應答問題 |
 | `data/listening_2.js` | `TOEIC_DATA.listening.p3` | 簡短對話 |
 | `data/listening_3.js` | `TOEIC_DATA.listening.p4` | 簡短獨白 |
+| `data/reading_frameworks.js` | `TOEIC_DATA.reading` | 十大文法判斷框架、閱讀配速表、Part 6/7 題型攻略、錯因分類（原創教材） |
 
 完整 schema 定義見 `docs/DESIGN.md` §5。
+
+### 閱讀強化怎麼運作
+
+1. **做題時**：`#/quiz` 記錄每題花掉的秒數，以及該題的考點（P5 用 `tag`、P6 用 `type`、P7 用 `skill`）。
+2. **交卷後**：結果頁直接給配速分析（實際 vs 目標秒數）與本次考點分解，弱的考點可一鍵開專項練習；
+   答錯的題目可標記錯因，答對的題目可標記「其實是猜的」丟回錯題本。
+3. **累積起來**：`#/reading` 依 `readingStats` 算出各考點正確率排行、整份 Reading 75 分鐘做不做得完、
+   粗估 RC 分數，並排出依「投入時間 → 分數回收」順序的行動清單。
+4. **錯題不流失**：錯題進 Leitner 排程（1 → 2 → 4 → 7 → 14 天），答錯退回第 1 箱，
+   連續答對爬到第 5 箱才標記精通。
+
+目標配速（P5 20 秒 / P6 30 秒 / P7 60 秒／題）定義在 `js/reading.js` 的 `PACE_TARGET`，
+依 Reading Section 75 分鐘 100 題換算，是全站唯一來源。
+
+> 分數換算與所有練習題、例句、解析皆為原創學習內容，不含任何正式試題；粗估分數僅供追蹤趨勢，非官方換算。
+> TOEIC 為 Educational Testing Service（ETS）的註冊商標，本專案與 ETS 無隸屬或背書關係。
 
 ## 如何驗證
 
@@ -80,9 +100,10 @@ find . -name '*.js' -not -path '*/node_modules/*' | xargs -n1 node --check
 # 2. 資料檔 schema 驗證（id 唯一性、answer 範圍、必填欄位等）
 node scripts/validate_data.js
 
-# 3. 純函式單元測試（SRS 演算法、Store 狀態管理）
+# 3. 純函式單元測試（SRS 演算法、Store 狀態管理與 migration、閱讀診斷引擎）
 node tests/srs.test.js
 node tests/store.test.js
+node tests/reading.test.js
 ```
 
 全部純 Node 執行，不需要安裝任何套件（無 `package.json` / `node_modules`）。

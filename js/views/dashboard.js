@@ -483,6 +483,70 @@
     );
   }
 
+  /**
+   * 閱讀強化卡：把閱讀診斷室最重要的一條建議搬到儀表板，
+   * 讓「今天閱讀該練什麼」在首頁就看得到，不用先進診斷室。
+   */
+  function buildReadingCard(state) {
+    var card = Util.h(
+      'div.card',
+      {},
+      Util.h('div.card-header', {},
+        Util.h('div', {},
+          Util.h('div.card-title', {}, '📈 閱讀強化'),
+          Util.h('div.card-subtitle', {}, '閱讀是目前的主戰場 — 這裡只顯示最該先做的那一件事')
+        ),
+        Util.h('button.btn.btn-ghost.btn-sm', { onClick: function () { goTo('#/reading'); } }, '完整診斷')
+      )
+    );
+
+    if (!window.Reading || typeof window.Reading.diagnose !== 'function') {
+      card.appendChild(Util.h('div.u-mt-md.u-text-muted', {}, '閱讀診斷模組尚未載入。'));
+      return card;
+    }
+
+    var d;
+    try {
+      d = window.Reading.diagnose(state, { today: Util.todayISO() });
+    } catch (e) {
+      card.appendChild(Util.h('div.u-mt-md.u-text-muted', {}, '無法計算閱讀診斷：' + (e && e.message)));
+      return card;
+    }
+
+    var rcText = d.rc.score === null ? '—' : String(d.rc.score);
+    var paceText = d.projection.measuredParts === 0
+      ? '尚無計時'
+      : (d.projection.willFinish ? '做得完' : '超時 ' + d.projection.overMinutes + ' 分');
+
+    card.appendChild(Util.h('div.stat-grid', { style: { marginTop: '12px' } },
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, rcText),
+        Util.h('div.stat-label', {}, '粗估 RC 分數')),
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, d.rc.accuracy + '%'),
+        Util.h('div.stat-label', {}, '閱讀正確率')),
+      Util.h('div.stat-card', {},
+        Util.h('div.stat-value', {}, paceText),
+        Util.h('div.stat-label', {}, '75 分鐘完成度'))
+    ));
+
+    var top = d.advice[0];
+    if (top) {
+      card.appendChild(Util.h('div.card', { style: { marginTop: '14px', background: 'var(--color-surface-alt)' } },
+        Util.h('div.u-flex.u-items-center.u-gap-sm', { style: { flexWrap: 'wrap' } },
+          Util.h('span', { style: { fontSize: '1.1rem' } }, top.icon),
+          Util.h('strong', {}, top.title)
+        ),
+        Util.h('p', { style: { marginTop: '6px' } }, top.detail),
+        Util.h('div.u-flex.u-gap-sm', { style: { marginTop: '10px', flexWrap: 'wrap' } },
+          Util.h('button.btn.btn-primary.btn-sm', { onClick: function () { goTo(top.hash); } }, top.actionLabel)
+        )
+      ));
+    }
+
+    return card;
+  }
+
   function buildWeaknessCard(state) {
     var stats = {};
     (state.quizHistory || []).forEach(function (entry) {
@@ -579,6 +643,7 @@
       container.appendChild(buildTasksCard(plan, todayDay, dayIndex, state));
       container.appendChild(buildOverviewCard(state, plan));
       container.appendChild(buildWeeklyChart(state));
+      container.appendChild(buildReadingCard(state));
       container.appendChild(buildWeaknessCard(state));
     } catch (e) {
       container.innerHTML = '';

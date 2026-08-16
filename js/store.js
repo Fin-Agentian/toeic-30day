@@ -8,10 +8,18 @@
   'use strict';
 
   var STORAGE_KEY = 'toeic30:state';
-  var STATE_VERSION = 1;
+  var STATE_VERSION = 2;
   var TOTAL_DAYS = 30;
   var ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
   var QUIZ_MODES = ['quiz', 'listening', 'mock'];
+
+  // 錯題 Leitner 排程：box 1..5，index = box - 1，單位為天。
+  // 比單字 SRS 更密（30 天衝刺內要讓錯題至少再遇到 2–3 次），box 5 視為精通。
+  var WRONG_INTERVAL_DAYS = [1, 2, 4, 7, 14];
+  var WRONG_MAX_BOX = 5;
+
+  // 錯因分類（review 三層檢討法用）：''（未標記）或以下五種
+  var WRONG_REASONS = ['vocab', 'grammar', 'misread', 'time', 'guess'];
 
   // ---- 記憶體 fallback（node / localStorage 不可用或受限環境時）----
   var memoryRaw = null;
@@ -69,6 +77,41 @@
   function deepClone(obj) {
     if (obj === undefined) return obj;
     return JSON.parse(JSON.stringify(obj));
+  }
+
+  /**
+   * normalizeWrongId(id) — 統一 P6/P7 子題 key 為 `<groupId>-q<n>`。
+   * 舊版 quiz.js 寫入的是 `p6-001-2` / `p7-001-1`（缺 q），而 mock.js、listening.js
+   * 與 review.js 都用 `-q<n>`，導致這些錯題在錯題本查不到題目。此函式同時供
+   * migration 與 recordQuiz 寫入前使用，確保新舊資料都落在同一格式。
+   */
+  function normalizeWrongId(id) {
+    var s = String(id || '');
+    var m = /^(p[67]-\d+)-(\d+)$/.exec(s);
+    return m ? (m[1] + '-q' + m[2]) : s;
+  }
+
+  /** 錯題 Leitner：依 box 算下次到期日 */
+  function wrongDueFrom(box, today) {
+    var idx = Math.max(1, Math.min(WRONG_MAX_BOX, box)) - 1;
+    return addDaysISO(today, WRONG_INTERVAL_DAYS[idx]);
+  }
+
+  /** 補齊錯題項目缺少的欄位（box / due / reason / reviews / rights） */
+  function normalizeWrongEntry(entry, todayOverride) {
+    var today = todayOverride || todayISO();
+    var e = isPlainObject(entry) ? entry : {};
+    var box = typeof e.box === 'number' && e.box >= 1 && e.box <= WRONG_MAX_BOX ? Math.round(e.box) : 1;
+    return {
+      count: typeof e.count === 'number' ? e.count : 0,
+      lastAt: e.lastAt || null,
+      mastered: !!e.mastered,
+      box: e.mastered ? WRONG_MAX_BOX : box,
+      due: typeof e.due === 'string' && ISO_DATE_RE.test(e.due) ? e.due : today,
+      reason: WRONG_REASONS.indexOf(e.reason) === -1 ? '' : e.reason,
+      reviews: typeof e.reviews === 'number' ? e.reviews : 0,
+      rights: typeof e.rights === 'number' ? e.rights : 0
+    };
   }
 
   // ---- localStorage 存取（含 node 記憶體 fallback；沙箱 iframe / 隱私模式下存取
@@ -137,10 +180,62 @@
       tipsMastered: {},
       quizHistory: [],
       wrongBook: {},
+      readingStats: {},
       vocab: {},
       streak: { current: 0, best: 0, lastActive: null },
       settings: { ttsRate: 1.0, ttsVoice: '', theme: 'light' }
     };
+  }
+
+  /**
+   * migrate(state) — 把舊版 state 就地升級到 STATE_VERSION，回傳新物件。
+   * v1 → v2：
+   *   1. wrongBook / quizHistory.wrongIds 的 P6/P7 子題 key 補上 `q`（見 normalizeWrongId）
+   *   2. wrongBook 每筆補上 Leitner 欄位（box/due/reason/reviews/rights）
+   *   3. 新增 readingStats（依考點累積正確率與秒數）
+   * 無法辨識的 version（例如未來版本或損毀）交由 loadState 的 try/catch 退回預設值。
+   */
+  function migrate(state) {
+    if (!isPlainObject(state)) return state;
+    var version = typeof state.version === 'number' ? state.version : 0;
+    if (version >= STATE_VERSION) return state;
+
+    var today = todayISO();
+    var next = Object.assign({}, state);
+
+    if (version < 2) {
+      var oldBook = isPlainObject(state.wrongBook) ? state.wrongBook : {};
+      var newBook = {};
+      Object.keys(oldBook).forEach(function (rawId) {
+        var id = normalizeWrongId(rawId);
+        var incoming = normalizeWrongEntry(oldBook[rawId], today);
+        var existing = newBook[id];
+        // 正規化後可能與既有 key 相撞（舊 `p6-001-2` 與新 `p6-001-q2` 並存）→ 合併
+        newBook[id] = existing
+          ? Object.assign({}, existing, {
+            count: existing.count + incoming.count,
+            lastAt: (existing.lastAt || '') > (incoming.lastAt || '') ? existing.lastAt : incoming.lastAt,
+            mastered: existing.mastered && incoming.mastered,
+            box: Math.min(existing.box, incoming.box),
+            due: (existing.due || today) < (incoming.due || today) ? existing.due : incoming.due,
+            reason: existing.reason || incoming.reason,
+            reviews: existing.reviews + incoming.reviews,
+            rights: existing.rights + incoming.rights
+          })
+          : incoming;
+      });
+      next.wrongBook = newBook;
+
+      next.quizHistory = (Array.isArray(state.quizHistory) ? state.quizHistory : []).map(function (entry) {
+        if (!isPlainObject(entry) || !Array.isArray(entry.wrongIds)) return entry;
+        return Object.assign({}, entry, { wrongIds: entry.wrongIds.map(normalizeWrongId) });
+      });
+
+      if (!isPlainObject(next.readingStats)) next.readingStats = {};
+    }
+
+    next.version = STATE_VERSION;
+    return next;
   }
 
   function validateState(state) {
@@ -170,6 +265,9 @@
     }
     if (!isPlainObject(state.wrongBook)) {
       throw new Error('Store: wrongBook 必須是物件');
+    }
+    if (!isPlainObject(state.readingStats)) {
+      throw new Error('Store: readingStats 必須是物件');
     }
     if (!isPlainObject(state.vocab)) {
       throw new Error('Store: vocab 必須是物件');
@@ -203,6 +301,9 @@
     if (payload.wrongIds !== undefined && !Array.isArray(payload.wrongIds)) {
       throw new Error('Store.recordQuiz: wrongIds 必須是陣列');
     }
+    if (payload.skillStats !== undefined && !Array.isArray(payload.skillStats)) {
+      throw new Error('Store.recordQuiz: skillStats 必須是陣列');
+    }
   }
 
   // ---- load / persist ----
@@ -215,9 +316,13 @@
       return currentState;
     }
     try {
-      var parsed = JSON.parse(raw);
+      var parsed = migrate(JSON.parse(raw));
       validateState(parsed);
+      if (parsed.version !== STATE_VERSION) {
+        throw new Error('Store: 不支援的 version ' + parsed.version);
+      }
       currentState = parsed;
+      persist(currentState); // 升級後立即寫回，避免每次載入都重跑 migration
     } catch (e) {
       // 資料損毀 → 退回預設值，不中斷應用程式
       currentState = defaultState();
@@ -308,9 +413,12 @@
     } catch (e) {
       throw new Error('Store.import: 無法解析 JSON — ' + e.message);
     }
+    var received = isPlainObject(parsed) && typeof parsed.version === 'number' ? parsed.version : '（未知）';
+    // 舊版備份（v1）先升級再驗證，讓使用者換版本後仍能還原進度
+    parsed = migrate(parsed);
     validateState(parsed);
     if (parsed.version !== STATE_VERSION) {
-      throw new Error('Store.import: 不支援的 version（預期 ' + STATE_VERSION + '，收到 ' + parsed.version + '）');
+      throw new Error('Store.import: 不支援的 version（預期 ' + STATE_VERSION + '，收到 ' + received + '）');
     }
     currentState = deepClone(parsed);
     persist(currentState);
@@ -367,9 +475,17 @@
     });
   }
 
+  /**
+   * recordQuiz(payload) — 記錄一次作答。
+   * payload: { mode, part, total, correct, seconds, wrongIds?, skillStats? }
+   *   skillStats: [{ key: 'P5:prep'|'P6:sentence'|'P7:inference', correct: boolean, seconds: number }]
+   *   → 累積到 state.readingStats，供閱讀診斷室（Reading.diagnose）算各考點正確率與配速。
+   * 錯題一律回到 box 1（今天到期），並取消先前的「已精通」標記。
+   */
   function recordQuiz(payload, todayOverride) {
     validateQuizPayload(payload);
-    var wrongIds = Array.isArray(payload.wrongIds) ? payload.wrongIds.slice() : [];
+    var wrongIds = (Array.isArray(payload.wrongIds) ? payload.wrongIds : []).map(normalizeWrongId);
+    var skillStats = Array.isArray(payload.skillStats) ? payload.skillStats : [];
     var nowIso = new Date().toISOString();
     var today = todayOverride || todayISO();
 
@@ -387,11 +503,24 @@
 
       var wrongBook = Object.assign({}, old.wrongBook);
       wrongIds.forEach(function (id) {
-        var existing = wrongBook[id] || { count: 0, lastAt: null, mastered: false };
-        wrongBook[id] = {
+        var existing = normalizeWrongEntry(wrongBook[id], today);
+        wrongBook[id] = Object.assign({}, existing, {
           count: existing.count + 1,
           lastAt: nowIso,
-          mastered: false
+          mastered: false,
+          box: 1,
+          due: today
+        });
+      });
+
+      var readingStats = Object.assign({}, old.readingStats);
+      skillStats.forEach(function (s) {
+        if (!s || typeof s.key !== 'string' || !s.key) return;
+        var prev = readingStats[s.key] || { total: 0, correct: 0, seconds: 0 };
+        readingStats[s.key] = {
+          total: prev.total + 1,
+          correct: prev.correct + (s.correct ? 1 : 0),
+          seconds: prev.seconds + (typeof s.seconds === 'number' && s.seconds > 0 ? Math.round(s.seconds) : 0)
         };
       });
 
@@ -400,6 +529,7 @@
       return Object.assign({}, old, {
         quizHistory: quizHistory,
         wrongBook: wrongBook,
+        readingStats: readingStats,
         streak: streak
       });
     });
@@ -409,12 +539,111 @@
     if (!id) {
       throw new Error('Store.markWrongMastered: id 為必填');
     }
+    var today = todayISO();
     return set(function (old) {
-      var existing = old.wrongBook[id] || { count: 0, lastAt: null, mastered: false };
+      var existing = normalizeWrongEntry(old.wrongBook[normalizeWrongId(id)], today);
       var wrongBook = Object.assign({}, old.wrongBook);
-      wrongBook[id] = Object.assign({}, existing, { mastered: true });
+      wrongBook[normalizeWrongId(id)] = Object.assign({}, existing, {
+        mastered: true,
+        box: WRONG_MAX_BOX,
+        due: wrongDueFrom(WRONG_MAX_BOX, today)
+      });
       return Object.assign({}, old, { wrongBook: wrongBook });
     });
+  }
+
+  /**
+   * reviewWrong(id, correct) — 錯題本重做一題後更新 Leitner 排程。
+   * 答對 → box +1（到 5 即自動標記精通）；答錯 → 退回 box 1，明天再見。
+   */
+  function reviewWrong(id, correct, todayOverride) {
+    if (!id) {
+      throw new Error('Store.reviewWrong: id 為必填');
+    }
+    var today = todayOverride || todayISO();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var nextBox = correct ? Math.min(WRONG_MAX_BOX, existing.box + 1) : 1;
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, {
+        box: nextBox,
+        due: wrongDueFrom(nextBox, today),
+        mastered: nextBox >= WRONG_MAX_BOX,
+        reviews: existing.reviews + 1,
+        rights: existing.rights + (correct ? 1 : 0)
+      });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /**
+   * setWrongReason(id, reason) — 標記錯因（三層檢討法第一層：先分類為什麼錯）。
+   * reason 需為 WRONG_REASONS 之一，傳空字串可清除標記。
+   */
+  function setWrongReason(id, reason) {
+    if (!id) {
+      throw new Error('Store.setWrongReason: id 為必填');
+    }
+    var r = reason || '';
+    if (r && WRONG_REASONS.indexOf(r) === -1) {
+      throw new Error('Store.setWrongReason: 未知的錯因 ' + r);
+    }
+    var today = todayISO();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, { reason: r });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /**
+   * flagWrong(id, reason) — 手動把一題丟進錯題本（不經過 recordQuiz）。
+   * 用於「這題我猜對的」：正確率會騙人，蒙對的題目一樣要排進複習佇列。
+   */
+  function flagWrong(id, reason) {
+    if (!id) {
+      throw new Error('Store.flagWrong: id 為必填');
+    }
+    var r = reason || '';
+    if (r && WRONG_REASONS.indexOf(r) === -1) {
+      throw new Error('Store.flagWrong: 未知的錯因 ' + r);
+    }
+    var today = todayISO();
+    var nowIso = new Date().toISOString();
+    var key = normalizeWrongId(id);
+    return set(function (old) {
+      var existing = normalizeWrongEntry(old.wrongBook[key], today);
+      var wrongBook = Object.assign({}, old.wrongBook);
+      wrongBook[key] = Object.assign({}, existing, {
+        count: Math.max(1, existing.count),
+        lastAt: nowIso,
+        mastered: false,
+        box: 1,
+        due: today,
+        reason: r || existing.reason
+      });
+      return Object.assign({}, old, { wrongBook: wrongBook });
+    });
+  }
+
+  /** dueWrongIds(today) — 今天（含逾期）該複習、且尚未精通的錯題 id，早到期的排前面 */
+  function dueWrongIds(todayOverride) {
+    var today = todayOverride || todayISO();
+    var wb = loadState().wrongBook || {};
+    return Object.keys(wb)
+      .filter(function (id) {
+        var e = normalizeWrongEntry(wb[id], today);
+        return !e.mastered && (e.due || today) <= today;
+      })
+      .sort(function (a, b) {
+        var da = normalizeWrongEntry(wb[a], today).due;
+        var db = normalizeWrongEntry(wb[b], today).due;
+        if (da !== db) return da < db ? -1 : 1;
+        return normalizeWrongEntry(wb[b], today).count - normalizeWrongEntry(wb[a], today).count;
+      });
   }
 
   function getDayIndex(dateISO) {
@@ -443,9 +672,17 @@
     isTaskDone: isTaskDone,
     recordQuiz: recordQuiz,
     markWrongMastered: markWrongMastered,
+    reviewWrong: reviewWrong,
+    setWrongReason: setWrongReason,
+    flagWrong: flagWrong,
+    dueWrongIds: dueWrongIds,
+    normalizeWrongId: normalizeWrongId,
+    normalizeWrongEntry: normalizeWrongEntry,
     touchStreak: touchStreak,
     getDayIndex: getDayIndex,
     daysToExam: daysToExam,
-    isPersistent: isPersistent
+    isPersistent: isPersistent,
+    WRONG_REASONS: WRONG_REASONS.slice(),
+    STATE_VERSION: STATE_VERSION
   };
 })(typeof window !== 'undefined' ? window : globalThis);
