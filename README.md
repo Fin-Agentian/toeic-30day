@@ -1,5 +1,7 @@
 # TOEIC 30 天衝刺平台
 
+> 🌐 線上版（GitHub Pages）：<https://fin-agentian.github.io/toeic-30day/>　— 任何裝置開網址即可練習；進度存於各自瀏覽器，不與他人共用。
+
 一個**純靜態網頁**的 TOEIC 自學平台：每天打開後可以看今日任務、讀應考技巧、做閱讀題（Part 5/6/7）、練聽力（Part 1–4，用瀏覽器 TTS 發音）、背單字（Leitner 5 箱間隔複習 SRS）、做迷你模考，並自動累積錯題本與學習進度。無 build 流程、無後端、無外部 CDN，所有狀態存在瀏覽器 `localStorage`。
 
 詳細設計契約見 [`docs/DESIGN.md`](docs/DESIGN.md)；view 開發者介面文件見 [`docs/API_ui.md`](docs/API_ui.md)（Util / DOM）與 [`docs/API_infra.md`](docs/API_infra.md)（Store / SRS / TTS）。

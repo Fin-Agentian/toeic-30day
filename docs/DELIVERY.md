@@ -6,7 +6,11 @@
 
 一個**純靜態網頁**的 TOEIC 30 天自學平台：每天打開看今日任務、讀技巧、做題、練聽力、背單字、模考，所有進度自動存在瀏覽器裡，不需要安裝任何東西、不需要網路伺服器。
 
-### 線上版（私人 Artifact，手機/任何裝置可開）
+### 線上版（公開網址，任何裝置可開）
+
+- **GitHub Pages：<https://fin-agentian.github.io/toeic-30day/>**（repo：<https://github.com/Fin-Agentian/toeic-30day>；`git push` 到 main 會自動更新）
+
+### 線上版（私人 Artifact）
 
 - <https://claude.ai/code/artifact/bdf67a24-47ae-48bf-b28d-17b26f0767a7>（與 `dist/toeic30.fragment.html` 同一份內容；進度存在該網頁自己的瀏覽器儲存空間，與本機版不互通，可用「設定 → 匯出/匯入」搬移）
 
